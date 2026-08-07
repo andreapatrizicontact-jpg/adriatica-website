@@ -1,20 +1,12 @@
-import { brand, cta, hero, trustNote } from "@/content/site";
+import { brand, cta, hero, progettiCards, trustNote } from "@/content/site";
 import { Pill } from "@/components/ui/Pill";
 import { TornEdge } from "@/components/ui/TornEdge";
 import { CausticsCanvas } from "@/components/hero/CausticsCanvas";
-import { ScrollScatter, type ScatterCard } from "@/components/sections/ScrollScatter";
+import { ScrollScatter } from "@/components/sections/ScrollScatter";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { NicheSection } from "@/components/sections/NicheSection";
-
-// Real case-study content still pending (see MISSING-ASSETS.md) — full
-// Progetti build lands in Phase 3.
-const demoCards: ScatterCard[] = [
-  { fig: "FIG. 01", title: "Progetto A", subtitle: "Social Media Management", x: -0.7, rotate: -6, depth: 0.3, accent: "abisso" },
-  { fig: "FIG. 02", title: "Progetto B", subtitle: "Content Creation", x: 0.1, rotate: 4, depth: 0.6, accent: "adriatic" },
-  { fig: "FIG. 03", title: "Progetto C", subtitle: "Strategia & Ads", x: -0.2, rotate: -3, depth: 0.9, accent: "periwinkle" },
-  { fig: "FIG. 04", title: "Progetto D", subtitle: "Siti Web che convertono", x: 0.75, rotate: 7, depth: 0.45, accent: "abisso" },
-  { fig: "FIG. 05", title: "Progetto E", subtitle: "Social Media Management", x: 0.4, rotate: -5, depth: 0.75, accent: "adriatic" },
-];
+import { ChiSiamoSection } from "@/components/sections/ChiSiamoSection";
+import { ContactCTASection } from "@/components/sections/ContactCTASection";
 
 export default function Home() {
   return (
@@ -62,14 +54,19 @@ export default function Home() {
             Scorri per vedere i progetti prendere forma.
           </h2>
           <p className="mt-4 max-w-xl font-body text-body-m text-bianco/80">
-            Meccanica ispirata a karolortyl.com: carte in CSS 3D che si muovono a velocità diverse
-            durante lo scroll. Contenuti reali in Fase 3 — vedi MISSING-ASSETS.md.
+            Studio ancora giovane — questi sono i primi progetti reali, non un archivio di dieci
+            anni. Meccanica ispirata a karolortyl.com.
           </p>
         </div>
         <div className="mt-8">
-          <ScrollScatter cards={demoCards} />
+          <ScrollScatter cards={progettiCards} />
         </div>
       </section>
+
+      <TornEdge from="dark" to="blue" />
+      <ChiSiamoSection />
+
+      <ContactCTASection />
     </>
   );
 }

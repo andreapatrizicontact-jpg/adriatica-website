@@ -58,6 +58,17 @@ export const hero = {
   sub: "Uniamo strategia, contenuti e dati per far crescere davvero la tua presenza online.",
 };
 
+// "Chi siamo" — brief §5.1.7. Built from confirmed real facts only
+// (brand.foundedYear/teamFraming) — no invented headcount, years of
+// experience, or client counts. Founder portrait still missing
+// (MISSING-ASSETS.md), ships as an initials block until supplied.
+export const chiSiamo = {
+  eyebrow: "Chi siamo?",
+  heading: "Sono Andrea, e sono Adriatica.",
+  paragraph:
+    "Adriatica nasce nel 2026 a Roma. Non è un'agenzia con cinquanta persone in open space — sono io, Andrea Patrizi, più due collaboratori esterni per foto/video e sviluppo. Seguo personalmente ogni progetto dalla prima chiamata al report mensile: niente passaggi di mano, niente account manager tra te e chi lavora davvero.",
+};
+
 // rotates every 7s in the sticky bar, dismissible per-session (brief §6).
 // Original copy in the client's voice — not a client-supplied quote, flagged
 // for approval in DECISIONS.md.
@@ -256,5 +267,60 @@ export const nicheCategories: NicheCategory[] = [
       "Discoteche",
       "Airbnb",
     ],
+  },
+];
+
+// Real Progetti content for the home page ScrollScatter — see DECISIONS.md.
+// Nutriva and Rosso Pomodoro: both confirmed publishable (Rosso Pomodoro's
+// approval landed after an initial "no" — see DECISIONS.md #2 for the
+// timeline). La Tellina: real client, confirmed nameable, no deck yet —
+// shown honestly as "in arrivo" rather than invented. Closing slot is a
+// plain CTA, not a fabricated fourth project.
+export type ProgettoCard = {
+  fig: string;
+  title: string;
+  subtitle: string;
+  x: number;
+  rotate: number;
+  depth: number;
+  accent: "periwinkle" | "adriatic" | "abisso";
+};
+
+export const progettiCards: ProgettoCard[] = [
+  {
+    fig: "PROGETTO 01",
+    title: "Nutriva",
+    subtitle: "Brand identity — logo, palette, sistema visivo",
+    x: -0.6,
+    rotate: -5,
+    depth: 0.5,
+    accent: "adriatic",
+  },
+  {
+    fig: "PROGETTO 02",
+    title: "Rosso Pomodoro",
+    subtitle: "Brand identity per pizzeria — logo, packaging, menu",
+    x: 0.55,
+    rotate: 6,
+    depth: 0.65,
+    accent: "abisso",
+  },
+  {
+    fig: "PROGETTO 03",
+    title: "La Tellina",
+    subtitle: "Stabilimento, San Benedetto del Tronto — case study in arrivo",
+    x: -0.15,
+    rotate: -4,
+    depth: 0.85,
+    accent: "periwinkle",
+  },
+  {
+    fig: "PROSSIMO",
+    title: "Il prossimo progetto?",
+    subtitle: "Prenota una call gratuita e parliamone.",
+    x: -0.1,
+    rotate: -3,
+    depth: 0.35,
+    accent: "abisso",
   },
 ];

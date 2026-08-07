@@ -10,12 +10,15 @@ these lands. None are invented.
 
 1. ~~Primary base city~~ — **resolved**, Andrea confirmed Roma. Updated
    `contact.cityDisplay` from the dual-city placeholder to `"Roma"` alone.
-2. ~~Client names/case-study permission~~ — **resolved.** Nutriva: confirmed
-   publishable. **Rosso Pomodoro: confirmed NOT approved** ("i dont have
-   approval from rosso so dont put it") — this isn't a pending item waiting
-   on an answer, it's a real no. Content stays logged in DECISIONS.md only;
-   do not add it to `content/site.ts` or any page without Andrea saying
-   the approval situation has changed.
+2. ~~Client names/case-study permission~~ — **resolved, both approved.**
+   Nutriva confirmed publishable first. Rosso Pomodoro was confirmed NOT
+   approved shortly after ("i dont have approval from rosso so dont put
+   it") — then, later the same session, Andrea got the confirmation and
+   said to add it ("at the end u can add rosso pomodoro, i had the
+   confirmation"). Both now in `progettiCards`. Noting the reversal
+   explicitly here since a "no" changed to a "yes" mid-build — if a similar
+   flip happens in reverse, treat it the same way: real permission state
+   as of the most recent message, not the first answer given.
 3. ~~Real Google review score~~ — **resolved, staying off the site.** Andrea
    confirmed there's no real review score and suggested generating some
    anonymized ones for now. Declining that specifically — fabricated
@@ -69,8 +72,8 @@ these lands. None are invented.
     a pizzeria — wordmark ("ROSSO pomodoro." in a serif/script mix),
     red/cream checkered pattern, menu design, pizza-box packaging, a
     cartoon mascot. Same shape as Nutriva — brand/packaging work, not
-    growth metrics. **Not added to the site yet** — this is readability
-    only, not the separate publish approval item #2 still requires.
+    growth metrics. Publish approval landed separately — see item #2 — now
+    in `progettiCards`.
 14. **Third client named: La Tellina** — a stabilimento (beach club) in San
     Benedetto del Tronto. Andrea confirmed it can be added to the case
     studies and said he'll produce a presentation deck for it, same as
