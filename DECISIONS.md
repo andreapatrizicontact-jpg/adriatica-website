@@ -30,16 +30,12 @@ these lands. None are invented.
     assets). No margin decision has been made, so `/metodo`'s "Extra" section
     lists them with "su richiesta" instead of a number — needs a real
     client-facing price (or a standing markup rule) from Andrea.
-11. **Real logo file.** The invoice PDF (`Fattura 450 euro.pdf`) shows a
-    different, more finished wordmark than the story-slide reference used in
-    Phase 0 — all-caps "ADRIATICA." in a bold grotesk with a sparkle/star (✦)
-    accent glyph instead of a colored period, plus a small dark pill
-    secondary lockup. This looks like a real designed asset, not a draft —
-    worth asking whether a vector source file exists, since it would replace
-    the currently-missing `logo-adriatica.svg` in MISSING-ASSETS.md outright.
-    Not adopted for the live wordmark without confirmation — the two
-    references (story slides vs. this invoice) may be from different design
-    passes and I don't want to guess which one is current.
+11. ~~Real logo file~~ — **resolved**, Andrea confirmed the invoice wordmark
+    is current ("u can go ahead"). Adopted site-wide (see mid-build decisions
+    below). Still open: no vector source file — the sparkle icon is a
+    hand-built SVG approximation, not Andrea's original artwork, since only
+    the flattened PDF render was available. Would still like the real
+    `logo-adriatica.svg` if one exists, to replace the approximation.
 
 ## Decisions made without stopping (Phase 0)
 
@@ -160,3 +156,32 @@ these lands. None are invented.
   since they already appear as concrete deliverables inside the pricing
   plans' feature lists. Built `NicheSection` for the verticals. Both wired
   into the home page between the hero and the Progetti gallery.
+- **Wordmark switched to the real invoice logo.** Andrea confirmed the
+  all-caps "ADRIATICA." + sparkle-icon lockup from `Fattura 450 euro.pdf` is
+  current, replacing the colored-period version Phase 0 built from the story
+  slides. Rebuilt `ui/Wordmark.tsx`: uppercase via CSS (the underlying
+  `brand.wordmark` string stays `"Adriatica."`, unchanged, so it still reads
+  correctly anywhere it's used as plain text/metadata), and a hand-built SVG
+  sparkle (a standard four-point "twinkle" curve, not traced from the PDF —
+  no vector source was available, see open question #11) replacing the
+  periwinkle-period accent. Also swapped `OverlayNav`'s separate hardcoded
+  wordmark markup for the real `Wordmark` component, removing a duplicate.
+  The invoice also shows a second, mixed-case white-on-navy pill lockup
+  (footer stamp) — read as a compact secondary badge, not adopted as the
+  primary mark.
+- **Gradient pricing cards — a deliberate exception to the dark-world
+  "0 radius" rule.** Andrea pasted a Uiverse.io card snippet (Cobp) and said
+  to implement it for the pricing section. Its purple/violet gradient border
+  was swapped for periwinkle→adriatic→abisso→nero (fits the black+blue
+  system directly), and a matching `gradient` variant added to `Pill` for
+  its CTA (inset highlight + hover glow, adapted from the snippet's button).
+  This card is genuinely rounded (32px) — DESIGN-PLAN §1.4 says dark-world
+  cards are 0-radius, but the rounded corner *is* what was asked for here,
+  not decoration on top of it, so flattening it would mean not actually
+  building what Andrea pasted. Scoped narrowly: only the three pricing plan
+  cards use this treatment; the "Extra" add-on cards below them keep the
+  existing flat bordered style. All three plan cards now share one visual
+  treatment, which also simplified the component — the earlier
+  featured-vs-regular branching (different background, different button
+  variant per card) is gone, replaced by a small "Più scelto" badge in the
+  gradient header row.

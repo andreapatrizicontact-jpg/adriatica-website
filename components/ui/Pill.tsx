@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ComponentPropsWithoutRef } from "react";
 
 type PillOwnProps = {
-  variant?: "solid" | "ghost" | "chunky";
+  variant?: "solid" | "ghost" | "chunky" | "gradient";
 };
 
 type PillLinkProps = PillOwnProps &
@@ -34,6 +34,14 @@ const variants = {
     "rounded-full px-7 py-3.5 bg-periwinkle text-inchiostro " +
     "shadow-[0_4px_0_0_var(--color-abisso)] hover:brightness-105 " +
     "active:translate-y-[3px] active:shadow-[0_1px_0_0_var(--color-abisso)]",
+  // adapted from a Uiverse.io card-button snippet (Cobp) — the blue/violet
+  // gradient swapped for our own periwinkle→adriatic→abisso→nero run, an
+  // inset highlight standing in for the original's glossy top edge.
+  gradient:
+    "w-full rounded-lg px-4 py-2.5 text-bianco " +
+    "bg-[linear-gradient(4deg,var(--color-periwinkle),var(--color-adriatic)_40%,var(--color-abisso)_65%,var(--color-nero)_100%)] " +
+    "shadow-[inset_0_2px_4px_rgba(255,255,255,0.5)] " +
+    "hover:scale-[1.02] hover:[text-shadow:0_0_8px_var(--color-bianco)] active:scale-100",
 };
 
 // Note: `base` always sets display:inline-flex. To conditionally show/hide a

@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { mainNav } from "@/content/nav";
 import { contact, socials } from "@/content/site";
+import { Wordmark } from "@/components/ui/Wordmark";
 
 type OverlayNavProps = {
   isOpen: boolean;
@@ -68,9 +69,7 @@ export function OverlayNav({ isOpen, onClose }: OverlayNavProps) {
           className="fixed inset-0 z-[100] flex flex-col overflow-y-auto bg-abisso px-6 py-8 text-bianco sm:px-12 sm:py-12"
         >
           <div className="flex items-center justify-between">
-            <span className="font-display text-2xl font-black">
-              Adriatica<span className="text-periwinkle">.</span>
-            </span>
+            <Wordmark on="dark" />
             <button
               type="button"
               onClick={onClose}

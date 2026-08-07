@@ -44,6 +44,11 @@ export function PricingSection() {
 
         <p className="mt-3 max-w-xl font-body text-body-s text-bianco/60">{pricingNote}</p>
 
+        {/* gradient-border cards — adapted from a Uiverse.io snippet (Cobp),
+            pasted directly for this section. Deliberate exception to the
+            dark-world "0 radius" rule (DESIGN-PLAN §1.4): the rounded corner
+            is the card, not decoration, so flattening it would lose the
+            thing that was actually asked for — see DECISIONS.md. */}
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {pricingPlans.map((plan) => {
             // Full Service already bundles site management in its base
@@ -54,80 +59,53 @@ export function PricingSection() {
             return (
               <div
                 key={plan.name}
-                className={`flex flex-col gap-6 p-8 ${
-                  plan.featured
-                    ? "bg-periwinkle text-inchiostro"
-                    : "border-2 border-bianco/15 text-bianco"
-                }`}
+                className="rounded-[32px] bg-[linear-gradient(to_top_right,var(--color-periwinkle),var(--color-adriatic)_40%,var(--color-abisso)_65%,var(--color-nero)_100%)] p-1"
               >
-                <div>
-                  <span className="font-display text-2xl font-black">{plan.name}</span>
-                  <p
-                    className={`mt-2 font-body text-body-s ${
-                      plan.featured ? "text-inchiostro/75" : "text-bianco/70"
-                    }`}
-                  >
-                    {plan.tagline}
-                  </p>
-                </div>
-
-                <div>
-                  <div className="flex items-baseline gap-2">
-                    <span className="font-display text-display-m font-black">
-                      {currency.format(monthly)}
+                <div className="flex items-center justify-between px-6 pb-4 pt-5">
+                  <span className="font-display text-xl font-black text-bianco">{plan.name}</span>
+                  {plan.featured && (
+                    <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-bianco/90">
+                      Più scelto
                     </span>
-                    <span className="font-mono text-mono-label uppercase opacity-70">/ mese</span>
-                  </div>
-                  <p
-                    className={`mt-1 font-mono text-mono-label uppercase ${
-                      plan.featured ? "text-inchiostro/70" : "text-periwinkle"
-                    }`}
-                  >
-                    + {currency.format(plan.oneTime)} una tantum
-                  </p>
-                  {(addonApplies || plan.includesSite) && (
-                    <p
-                      className={`mt-1 font-body text-body-s ${
-                        plan.featured ? "text-inchiostro/70" : "text-bianco/60"
-                      }`}
-                    >
-                      {plan.includesSite
-                        ? `${siteManagementAddon.label} già inclusa`
-                        : `include ${siteManagementAddon.label.toLowerCase()}`}
-                    </p>
                   )}
                 </div>
 
-                <ul className="flex flex-1 flex-col gap-2">
-                  {plan.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className={`font-body text-body-s ${
-                        plan.featured ? "text-inchiostro/85" : "text-bianco/80"
-                      }`}
-                    >
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex flex-col gap-5 rounded-[28px] bg-nero p-6 text-bianco/60">
+                  <p className="font-body text-body-s">{plan.tagline}</p>
 
-                {plan.siteNote && (
-                  <p
-                    className={`-mt-2 font-body text-body-s italic ${
-                      plan.featured ? "text-inchiostro/60" : "text-bianco/50"
-                    }`}
-                  >
-                    {plan.siteNote}
-                  </p>
-                )}
+                  <div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-display text-display-m font-black text-bianco">
+                        {currency.format(monthly)}
+                      </span>
+                      <span className="font-mono text-mono-label uppercase opacity-70">/ mese</span>
+                    </div>
+                    <p className="mt-1 font-mono text-mono-label uppercase text-periwinkle">
+                      + {currency.format(plan.oneTime)} una tantum
+                    </p>
+                    {(addonApplies || plan.includesSite) && (
+                      <p className="mt-1 font-body text-body-s">
+                        {plan.includesSite
+                          ? `${siteManagementAddon.label} già inclusa`
+                          : `include ${siteManagementAddon.label.toLowerCase()}`}
+                      </p>
+                    )}
+                  </div>
 
-                {/* featured card is already periwinkle — a periwinkle chunky
-                    button on top of it would disappear, so it gets the
-                    underlined ghost treatment instead; regular cards get the
-                    chunky button so it pops against the dark/bordered card */}
-                <Pill href="/consulenza" variant={plan.featured ? "ghost" : "chunky"}>
-                  Parliamone
-                </Pill>
+                  <ul className="flex flex-1 flex-col gap-2">
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="font-body text-body-s">
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {plan.siteNote && <p className="-mt-2 font-body text-body-s italic">{plan.siteNote}</p>}
+
+                  <Pill href="/consulenza" variant="gradient">
+                    Parliamone
+                  </Pill>
+                </div>
               </div>
             );
           })}
