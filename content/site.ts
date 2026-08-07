@@ -32,6 +32,14 @@ export const cta = {
   secondary: "Guarda i progetti",
 };
 
+// brief §5.1 — the hero headline/sub are distinct from brand.positioning,
+// which is the separate manifesto-strip line further down the home page.
+export const hero = {
+  eyebrow: "Social Media Marketing & Comunicazione — Roma",
+  headline: "Trasformiamo brand in storie che le persone vogliono seguire.",
+  sub: "Uniamo strategia, contenuti e dati per far crescere davvero la tua presenza online.",
+};
+
 // rotates every 7s in the sticky bar, dismissible per-session (brief §6).
 // Original copy in the client's voice — not a client-supplied quote, flagged
 // for approval in DECISIONS.md.
@@ -42,8 +50,9 @@ export const provocations: string[] = [
 ];
 
 export const legal = {
-  // TODO_CLIENT: DECISIONS.md #5
-  piva: "TODO_CLIENT — P.IVA",
+  // Andrea confirmed no P.IVA yet — omitted from the site entirely rather
+  // than showing a placeholder. Revisit if/when one exists (DECISIONS.md #5).
+  piva: null as string | null,
   creditLine: `© ${new Date().getFullYear()} Adriatica — Marketing Studio. Tutti i diritti riservati.`,
 };
 

@@ -1,15 +1,13 @@
-import { brand } from "@/content/site";
+import { brand, cta, hero } from "@/content/site";
 import { Pill } from "@/components/ui/Pill";
-import { DominoLoader } from "@/components/ui/DominoLoader";
+import { TornEdge } from "@/components/ui/TornEdge";
+import { CausticsCanvas } from "@/components/hero/CausticsCanvas";
 import { ScrollScatter, type ScatterCard } from "@/components/sections/ScrollScatter";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { NicheSection } from "@/components/sections/NicheSection";
 
-// Placeholder for Phase 1 (chrome only) — the real hero/hero-shader/full page
-// composition lands in Phase 2 and Phase 3 per the brief's phase plan. The
-// scroll gallery and button/loader demos below are included early because
-// they were requested directly — real case-study content replaces the
-// placeholder cards once available (see MISSING-ASSETS.md).
+// Real case-study content still pending (see MISSING-ASSETS.md) — full
+// Progetti build lands in Phase 3.
 const demoCards: ScatterCard[] = [
   { fig: "FIG. 01", title: "Progetto A", subtitle: "Social Media Management", x: -0.7, rotate: -6, depth: 0.3, accent: "abisso" },
   { fig: "FIG. 02", title: "Progetto B", subtitle: "Content Creation", x: 0.1, rotate: 4, depth: 0.6, accent: "adriatic" },
@@ -23,46 +21,48 @@ export default function Home() {
     <>
       <section
         data-world="blue"
-        className="flex min-h-[70vh] items-center px-6 pt-40 pb-24 sm:px-10 sm:pt-48 sm:pb-32"
+        className="relative flex min-h-[90vh] items-center overflow-hidden px-6 pt-40 pb-24 sm:px-10 sm:pt-48 sm:pb-32"
       >
-        <div className="mx-auto max-w-[1400px]">
-          <p className="font-mono text-mono-label uppercase text-bianco/70">
-            Social Media Marketing &amp; Comunicazione — Roma
-          </p>
-          <h1 className="mt-4 font-display text-display-2xl font-black">
-            {brand.positioning}
-          </h1>
-          <p className="mt-6 max-w-xl font-body text-body-l text-bianco/85">
-            Fase 1 in corso: qui arriverà l&apos;hero con lo shader caustico
-            (Fase 2) e la composizione completa della home (Fase 3). Per ora
-            questa pagina verifica l&apos;impianto globale e le nuove
-            primitive — pulsante 3D, toggle tema, loader e la galleria
-            scroll qui sotto.
-          </p>
+        <CausticsCanvas />
+        <div className="relative mx-auto max-w-[1400px]">
+          <p className="font-mono text-mono-label uppercase text-bianco/70">{hero.eyebrow}</p>
+          <h1 className="mt-4 font-display text-display-2xl font-black">{hero.headline}</h1>
+          <p className="mt-6 max-w-xl font-body text-body-l text-bianco/85">{hero.sub}</p>
           <div className="mt-8 flex flex-wrap items-center gap-6">
             <Pill href="/consulenza" variant="chunky">
-              Prenota una call gratuita
+              {cta.primary}
             </Pill>
-            <DominoLoader />
+            <Pill href="#progetti" variant="ghost">
+              {cta.secondary}
+            </Pill>
           </div>
         </div>
       </section>
 
-      <ServicesSection />
-      <NicheSection />
+      <TornEdge from="blue" to="dark" />
 
-      <section data-world="dark" className="section-y-tight px-6 sm:px-10">
+      {/* manifesto strip — brand.positioning, distinct from the hero headline (brief §5.1.2) */}
+      <section data-world="dark" className="section-y-tight px-6 text-center sm:px-10">
+        <p className="mx-auto max-w-4xl font-display text-display-xl font-black">
+          {brand.positioning}
+        </p>
+      </section>
+
+      <ServicesSection />
+
+      <TornEdge from="dark" to="blue" />
+      <NicheSection />
+      <TornEdge from="blue" to="dark" />
+
+      <section id="progetti" data-world="dark" className="section-y-tight px-6 sm:px-10">
         <div className="mx-auto max-w-[1400px]">
-          <p className="font-mono text-mono-label uppercase text-bianco/60">
-            Progetti — bozza Fase 1
-          </p>
+          <p className="font-mono text-mono-label uppercase text-bianco/60">Progetti</p>
           <h2 className="mt-4 font-display text-display-l font-black">
             Scorri per vedere i progetti prendere forma.
           </h2>
           <p className="mt-4 max-w-xl font-body text-body-m text-bianco/80">
-            Meccanica ispirata a karolortyl.com: carte in CSS 3D che si
-            muovono a velocità diverse durante lo scroll. Contenuti reali in
-            Fase 3 — vedi MISSING-ASSETS.md.
+            Meccanica ispirata a karolortyl.com: carte in CSS 3D che si muovono a velocità diverse
+            durante lo scroll. Contenuti reali in Fase 3 — vedi MISSING-ASSETS.md.
           </p>
         </div>
         <div className="mt-8">

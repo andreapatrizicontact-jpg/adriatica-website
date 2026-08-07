@@ -19,7 +19,10 @@ these lands. None are invented.
 4. Founding year, and team size framing — copy currently says "un team di
    creativi e strateghi digitali" per the client's own Instagram copy (kept
    verbatim), confirm this still holds vs. "studio di una persona."
-5. P.IVA / legal entity name for footer + privacy policy.
+5. ~~P.IVA~~ — **resolved**, Andrea confirmed he doesn't have one yet.
+   Omitted from the footer entirely (`legal.piva` is `null`, only rendered
+   when set) rather than showing a placeholder. Legal entity name for the
+   future privacy policy is still open once one exists.
 6. Calendly (or equivalent) booking URL for `/consulenza`.
 7. Social handles — Instagram, TikTok, LinkedIn.
 8. Production domain, for canonicals/OG/sitemap.
@@ -225,3 +228,56 @@ these lands. None are invented.
   already owns bottom-right. Verified in-browser by faking `navigator.onLine`
   and dispatching real `online`/`offline` events, since there's no real
   network to pull.
+
+## Phase 2 — caustics hero, TornEdge, PaperCard
+
+- **Caustics hero shader built as originally scoped** (brief §3.3): R3F
+  orthographic full-bleed quad, custom GLSL (layered-sine caustics, not a
+  real light simulation, but cheap and convincing), pointer ripple that
+  decays over ~1.2s (JS-side exponential decay driving a uniform, not a
+  shader-side timer), scroll-depth darkening toward `--color-nero`. Colors
+  read live from the CSS custom properties at mount so the shader stays
+  driven by the token system. Gated per brief §10: static gradient poster
+  first (matches the shader's mood so there's no flash), canvas only mounts
+  after IntersectionObserver + requestIdleCallback, skipped entirely under
+  `prefers-reduced-motion`, `deviceMemory < 4`, or failed WebGL context
+  creation. `CausticsScene` is `next/dynamic` with `ssr:false` so the
+  three.js/R3F chunk doesn't ship on routes without it.
+- **Hero copy corrected against the brief.** The Phase-1 placeholder had
+  reused `brand.positioning` ("Non facciamo solo...") as the hero headline —
+  the brief actually specifies a different headline ("Trasformiamo brand in
+  storie...") with the positioning line reserved for a separate manifesto
+  strip further down. Added `hero.headline`/`hero.sub` to `content/site.ts`
+  and split the two apart; the manifesto strip now exists as its own
+  section. Wired up `cta.secondary` ("Guarda i progetti") too, which had
+  been defined since Phase 1 but never rendered anywhere — links to a new
+  `#progetti` anchor on the ScrollScatter section.
+- **Real bug found and fixed: `TornEdge`'s torn-paper "valleys" leaked the
+  page's base cream background.** The jagged path only fills part of its
+  bounding box by design (that's what makes it read as torn rather than a
+  solid rectangle) — the gaps need the *adjacent* section's color behind
+  them, not nothing. Original one-prop API (`fill`) couldn't express that;
+  changed to `from`/`to` (from = wrapper's own background, to = the jagged
+  shape torn through it) and updated all three call sites on the home page.
+- **Second real bug: Framer Motion's `whileInView` prop never fired** on the
+  `TornEdge` SVG in testing, even when the element was confirmed 100%
+  inside the viewport (checked via `getBoundingClientRect` and computed
+  `clip-path` directly in the browser — it stayed stuck at its `initial`
+  value regardless of scroll position or method). Switched to the
+  `useInView` hook against an explicit wrapper `ref` + a manual `animate`
+  prop instead, which fired correctly — confirmed for all three seams on
+  the home page after the fix. Root cause not fully isolated; noting the
+  pattern (hook + ref, not the `whileInView` prop) in case it recurs
+  elsewhere.
+- **`PaperCard` built as the general 3D-tilt primitive** (DESIGN-PLAN §3.4):
+  pointer-tracked rotateX/rotateY (max 9°, spring-smoothed), a translateZ-ish
+  layered back panel (`--color-abisso`) behind the content face
+  (`--color-adriatic`), a pointer-following radial sheen, tilt disabled
+  below 1024px and replaced with a touch press-scale, all skipped under
+  `prefers-reduced-motion`. Its originally-planned use case ("Cosa facciamo"
+  cards) was superseded by the more elaborate `ServiceCard3D` glass cards
+  built earlier from a direct Uiverse request — applied it instead to the
+  two "Extra" add-on cards in `/metodo`'s pricing section, so it's a real,
+  visible primitive rather than unused code. Expect further real
+  applications once Phase 3/4 build out the still-missing sections (Chi
+  siamo, testimonianze, Loro/Noi, vantaggi).

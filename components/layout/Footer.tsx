@@ -44,7 +44,7 @@ export function Footer() {
         <div className="mt-16 flex flex-col gap-4 border-t border-bianco/15 pt-8 font-body text-body-s text-bianco/60 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col gap-1 sm:flex-row sm:gap-6">
             <span>{legal.creditLine}</span>
-            <span>{legal.piva}</span>
+            {legal.piva && <span>{legal.piva}</span>}
           </div>
           {socials.length > 0 && (
             <div className="flex gap-4 font-mono text-mono-label uppercase">

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Pill } from "@/components/ui/Pill";
 import { Toggle3D } from "@/components/ui/Toggle3D";
+import { PaperCard } from "@/components/ui/PaperCard";
 import { addonServices, pricingNote, pricingPlans, siteManagementAddon } from "@/content/site";
 
 const currency = new Intl.NumberFormat("it-IT", {
@@ -113,17 +114,19 @@ export function PricingSection() {
 
         <div className="mt-12 border-t border-bianco/15 pt-8">
           <p className="font-mono text-mono-label uppercase text-bianco/60">Extra</p>
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div className="mt-6 grid gap-6 sm:grid-cols-2">
             {addonServices.map((addon) => (
-              <div key={addon.name} className="flex items-baseline justify-between gap-4 border-2 border-bianco/10 p-5">
-                <div>
-                  <span className="font-display text-lg font-black text-bianco">{addon.name}</span>
-                  <p className="mt-1 font-body text-body-s text-bianco/70">{addon.description}</p>
+              <PaperCard key={addon.name}>
+                <div className="flex items-baseline justify-between gap-4 p-5 text-bianco">
+                  <div>
+                    <span className="font-display text-lg font-black">{addon.name}</span>
+                    <p className="mt-1 font-body text-body-s text-bianco/75">{addon.description}</p>
+                  </div>
+                  <span className="shrink-0 font-mono text-mono-label uppercase text-bianco/60">
+                    su richiesta
+                  </span>
                 </div>
-                <span className="shrink-0 font-mono text-mono-label uppercase text-bianco/50">
-                  su richiesta
-                </span>
-              </div>
+              </PaperCard>
             ))}
           </div>
         </div>
