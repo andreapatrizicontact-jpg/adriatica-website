@@ -501,3 +501,49 @@ export const metodoSeo = {
     "Se cerchi un partner per la tua presenza online, la prima consulenza è sempre gratuita.",
   ],
 };
+
+export const analisi = {
+  eyebrow: "04 — Analisi social gratuita",
+  heading: "Scopri cosa frena il tuo profilo.",
+  sub: "Gratis, in 48 ore. Mandaci il tuo profilo e ti diciamo esattamente cosa non sta funzionando.",
+  formHeading: "Raccontaci del tuo profilo",
+  settoreOptions: [
+    "Fitness",
+    "Sanitario & Socio-Sanitario",
+    "Ristorazione",
+    "Altro",
+  ],
+  obiettivoOptions: [
+    "Più follower qualificati",
+    "Più contatti o prenotazioni",
+    "Brand awareness",
+    "Lanciare un nuovo progetto",
+    "Non lo so ancora — è per questo che scrivo",
+  ],
+  submitLabel: "Invia la mia richiesta",
+  confirmationHeading: "Cosa controlliamo davvero",
+  confirmationNote: "Ti rispondiamo entro 48 ore, via email.",
+  checklist: [
+    "Bio & posizionamento",
+    "Cadenza di pubblicazione",
+    "Mix dei formati (reel, carosello, statico)",
+    "Hook nei primi 3 secondi",
+    "Hashtag & SEO on-profile",
+    "Coerenza delle cover",
+    "CTA presenti nei contenuti",
+    "Tempo di risposta alla community",
+    "Advertising attivo sì/no",
+    "Distanza dai competitor diretti",
+    "Coerenza visiva del brand",
+    "Opportunità di crescita immediate",
+  ],
+};
+
+// SEO long-form for /analisi — same honest-labeling approach as metodoSeo.
+export const analisiSeo = {
+  eyebrow: "Per Google — SEO",
+  paragraphs: [
+    "Analisi social gratuita per aziende e professionisti: controlliamo bio, contenuti, cadenza di pubblicazione e posizionamento del tuo profilo Instagram o TikTok, e ti diciamo cosa cambiare per crescere davvero.",
+    "Non è un report automatico generato da un tool — è un'analisi fatta a mano da chi poi, se deciderai di lavorare con noi, seguirà davvero il tuo profilo.",
+  ],
+};

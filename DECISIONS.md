@@ -81,6 +81,15 @@ these lands. None are invented.
     city are confirmed real facts so far; not enough to build a full
     Progetti card, so not added to `content/site.ts` until the deck lands
     (or he confirms what to say about it in the meantime).
+15. **No Resend API key set — form submissions aren't reaching an inbox
+    yet.** `/contatti`, `/analisi`, and the home-page CTA form all POST to
+    working API routes (`lib/email.ts`), but with no `RESEND_API_KEY`
+    configured they only log to the server console (confirmed dev-fallback
+    behavior, not a bug) instead of emailing `andreapatrizicontact@gmail.com`.
+    Andrea asked directly where submitted data goes — told him plainly this
+    isn't wired to a real inbox yet. Needs a Resend account + API key set as
+    an env var on whatever host he deploys to, before launch, or a
+    different notification method if he'd rather not use Resend.
 
 ## Decisions made without stopping (Phase 0)
 
