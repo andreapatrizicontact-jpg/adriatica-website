@@ -62,11 +62,13 @@ these lands. None are invented.
     so `font-display` was switched from Archivo to Poppins site-wide. This
     is inference from two consistent real documents, not a "yes, use
     Poppins" from Andrea — worth a direct confirmation.
-13. **Rosso Pomodoro case study PDF unreadable** — 23.2MB, over the 20MB
-    read limit, and this machine has no PDF tooling (`pdftotext`, `qpdf`,
-    Python PDF libraries — none installed) to compress or extract pages.
-    Only Nutriva's case study content made it into the site. A smaller
-    export, individual page images, or a text summary would unblock this.
+13. ~~Rosso Pomodoro PDF unreadable~~ — **resolved**, Andrea sent a
+    compressed version (2.7MB) that read fine. Content: brand identity for
+    a pizzeria — wordmark ("ROSSO pomodoro." in a serif/script mix),
+    red/cream checkered pattern, menu design, pizza-box packaging, a
+    cartoon mascot. Same shape as Nutriva — brand/packaging work, not
+    growth metrics. **Not added to the site yet** — this is readability
+    only, not the separate publish approval item #2 still requires.
 14. **Third client named: La Tellina** — a stabilimento (beach club) in San
     Benedetto del Tronto. Andrea confirmed it can be added to the case
     studies and said he'll produce a presentation deck for it, same as
@@ -350,3 +352,29 @@ landed in `content/site.ts` as it arrived rather than being queued:
   profile), Calendly (`team_adriatica`), base city (Roma only), founding
   year (2026), and team framing (solo + 2 external collaborators) all
   confirmed directly — see resolved items #1, #4, #6, #7 above.
+
+## Follow-up round: reviews, photo pricing reverted, Rosso Pomodoro readable
+
+- **Reviews: built the honest placeholder Andrea asked for.** Confirmed
+  he'd rather show "Stiamo raccogliendo le prime recensioni" than
+  fabricated ones — added `trustNote` in `content/site.ts`, rendered under
+  the hero CTAs in place of the client-avatar-cluster + review-badge the
+  brief originally specified there.
+- **Photo shoot pricing reverted to "su richiesta."** Andrea had given real
+  client prices (€300/€400) last turn; this turn he said to leave it as
+  "su richiesta" after all. Reverted `PricingSection`'s addon card; the
+  €300/€400 figures stay as a code comment in `content/site.ts` in case he
+  wants them displayed later rather than re-asking.
+- **Rosso Pomodoro PDF now readable** — see resolved item #13. Content
+  logged, not yet added to the live site (separate publish approval still
+  needed, per item #2).
+- **Stale dev-server state caused a real-looking but fake bug.** After the
+  Poppins font rename a few turns back, the long-running dev server (alive
+  since before that commit, survived a machine sleep earlier in the
+  session) threw `ReferenceError: archivo is not defined` in the browser —
+  the old compiled chunk still referenced the renamed variable. Source had
+  no such reference; killing the process on port 3000, clearing `.next/`,
+  and restarting fixed it. Worth remembering: a long-lived dev server
+  across a big rename can serve stale compiled output even though the
+  source is correct — restart it after renames like that instead of
+  trusting Fast Refresh to fully recover.

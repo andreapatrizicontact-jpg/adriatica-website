@@ -44,6 +44,12 @@ export const cta = {
   secondary: "Guarda i progetti",
 };
 
+// brief §5.1 wanted a client-avatar cluster + review-score badge here.
+// Andrea confirmed there are no real reviews yet and asked for fabricated
+// ones — declined (DECISIONS.md #3): this honest line replaces both rather
+// than inventing a score or a follower count that isn't real either.
+export const trustNote = "Stiamo raccogliendo le prime recensioni.";
+
 // brief §5.1 — the hero headline/sub are distinct from brand.positioning,
 // which is the separate manifesto-strip line further down the home page.
 export const hero = {
@@ -161,16 +167,15 @@ export const pricingPlans: PricingPlan[] = [
 export const pricingNote =
   "Tariffe reali dei nostri progetti — ogni preventivo viene comunque calibrato dopo la consulenza gratuita.";
 
-// DECISIONS.md #10. Website editor is still Andrea's raw cost (€500–800,
-// no client markup set) — ships as "su richiesta." The photographer line
-// now has real client-facing prices he set directly (€300 in zona / €400
-// fuori regione), distinct from what it costs him (€180 / €250) — priceNote
-// is shown on-page; absence of priceNote still means "su richiesta."
+// DECISIONS.md #10. Website editor is Andrea's raw cost (€500–800, no
+// client markup set) — ships as "su richiesta." Photography has real
+// client prices too (€300 in zona / €400 fuori regione, vs. his own cost of
+// €180/€250) but Andrea asked to keep it as "su richiesta" on-page anyway —
+// kept here as a comment for reference, not wired to priceNote.
 export const addonServices: { name: string; description: string; priceNote?: string }[] = [
   {
     name: "Servizio fotografico",
     description: "Uno shooting dedicato di circa 4 ore, per 20–30 contenuti pronti da pubblicare.",
-    priceNote: "€300 in zona · €400 fuori regione",
   },
   {
     name: "Modifiche extra al sito",

@@ -1,4 +1,4 @@
-import { brand, cta, hero } from "@/content/site";
+import { brand, cta, hero, trustNote } from "@/content/site";
 import { Pill } from "@/components/ui/Pill";
 import { TornEdge } from "@/components/ui/TornEdge";
 import { CausticsCanvas } from "@/components/hero/CausticsCanvas";
@@ -36,6 +36,7 @@ export default function Home() {
               {cta.secondary}
             </Pill>
           </div>
+          <p className="mt-6 font-mono text-mono-label uppercase text-bianco/50">{trustNote}</p>
         </div>
       </section>
 
