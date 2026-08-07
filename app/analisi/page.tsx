@@ -9,6 +9,7 @@ import { analisi, cta } from "@/content/site";
 export const metadata: Metadata = {
   title: "Analisi social gratuita",
   description: "Scopri cosa frena il tuo profilo. Gratis, in 48 ore.",
+  alternates: { canonical: "/analisi" },
 };
 
 export default function Analisi() {

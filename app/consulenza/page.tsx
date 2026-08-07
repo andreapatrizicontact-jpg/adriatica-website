@@ -10,6 +10,7 @@ import { consulenza } from "@/content/site";
 export const metadata: Metadata = {
   title: "Consulenza gratuita",
   description: "Prenota una call gratuita di 30 minuti con Adriatica.",
+  alternates: { canonical: "/consulenza" },
 };
 
 export default function Consulenza() {

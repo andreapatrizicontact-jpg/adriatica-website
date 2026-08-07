@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   title: "Il Metodo",
   description:
     "Come lavoriamo davvero: Loro/Noi, il nostro processo in 6 passi, prezzi reali e le domande più frequenti.",
+  alternates: { canonical: "/metodo" },
 };
 
 const inPageNav = [

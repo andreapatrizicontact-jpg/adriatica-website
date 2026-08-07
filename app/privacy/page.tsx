@@ -5,6 +5,7 @@ import { privacyPolicy } from "@/content/site";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Come trattiamo i dati raccolti tramite questo sito.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function Privacy() {

@@ -7,6 +7,7 @@ import { contatti } from "@/content/site";
 export const metadata: Metadata = {
   title: "Contatti",
   description: "Scrivici o chiamaci — rispondiamo rapidamente.",
+  alternates: { canonical: "/contatti" },
 };
 
 export default function Contatti() {

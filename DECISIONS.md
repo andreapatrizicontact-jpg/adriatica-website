@@ -42,10 +42,11 @@ these lands. None are invented.
    nothing further to chase here. Note: the LinkedIn link is Andrea's
    personal profile, not a company page — used as-is since it's the only
    one he sent.
-8. **Production domain — still pending, not stuck.** Andrea confirmed
-   directly he's waiting to push the repo to GitHub before this is ready to
-   publish/get a domain — no action needed until he does.
-   Canonicals/OG/sitemap wiring in Phase 6 will need it once it exists.
+8. ~~Production domain~~ — **resolved**, Andrea bought `adriaticastudio.com`
+   on Namecheap. Wired into `metadataBase`, canonical URLs, `sitemap.ts`,
+   `robots.ts`, and the OG image (see Phase 6 entry below). Site isn't
+   deployed yet — still waiting on Andrea to push to GitHub and connect
+   Vercel — but the domain-dependent code is ready for when he does.
 9. ~~Real pricing~~ — **resolved**, real figures now sourced from Andrea's own
    invoices/proposals (see mid-build decisions below).
 10. ~~Markup on subcontractor costs~~ — **resolved for photography and

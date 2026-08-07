@@ -5,6 +5,7 @@ import { cookiePolicy } from "@/content/site";
 export const metadata: Metadata = {
   title: "Cookie Policy",
   description: "Quali cookie utilizza questo sito.",
+  alternates: { canonical: "/cookie-policy" },
 };
 
 export default function CookiePolicy() {

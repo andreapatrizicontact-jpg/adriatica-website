@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/nav/SiteHeader";
 import { Footer } from "@/components/layout/Footer";
 import { ContactRail } from "@/components/nav/ContactRail";
 import { OfflineBanner } from "@/components/OfflineBanner";
+import { siteUrl } from "@/content/site";
 
 // Switched from Archivo to Poppins — the confirmed "Adriatica." logo image
 // and the Nutriva case study (which documents Poppins by name as its
@@ -29,13 +30,33 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
+const defaultTitle = "Adriatica — Social Media Marketing & Comunicazione";
+const defaultDescription =
+  "Adriatica è uno studio di marketing e comunicazione. Trasformiamo brand in storie che le persone vogliono seguire.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Adriatica — Social Media Marketing & Comunicazione",
+    default: defaultTitle,
     template: "%s — Adriatica",
   },
-  description:
-    "Adriatica è uno studio di marketing e comunicazione. Trasformiamo brand in storie che le persone vogliono seguire.",
+  description: defaultDescription,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: defaultTitle,
+    description: defaultDescription,
+    url: siteUrl,
+    siteName: "Adriatica",
+    locale: "it_IT",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: defaultTitle,
+    description: defaultDescription,
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

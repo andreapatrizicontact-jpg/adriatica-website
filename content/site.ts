@@ -3,6 +3,11 @@
 // FAQ, cases, testimonials…) get added here phase by phase, not stubbed
 // ahead of time.
 
+// Real domain, bought by Andrea on Namecheap (DECISIONS.md #8). Site isn't
+// deployed there yet, but this drives metadataBase/canonicals/sitemap/OG
+// now so it's ready the moment it is.
+export const siteUrl = "https://adriaticastudio.com";
+
 export const brand = {
   name: "Adriatica",
   wordmark: "Adriatica.",
