@@ -10,10 +10,12 @@ these lands. None are invented.
 
 1. ~~Primary base city~~ — **resolved**, Andrea confirmed Roma. Updated
    `contact.cityDisplay` from the dual-city placeholder to `"Roma"` alone.
-2. ~~Client names/case-study permission~~ — **resolved for Nutriva**, Andrea
-   confirmed it can be published. **Rosso Pomodoro explicitly needs
-   approval** — not granted yet, don't publish even once the PDF is
-   readable (open question #13) without a separate yes.
+2. ~~Client names/case-study permission~~ — **resolved.** Nutriva: confirmed
+   publishable. **Rosso Pomodoro: confirmed NOT approved** ("i dont have
+   approval from rosso so dont put it") — this isn't a pending item waiting
+   on an answer, it's a real no. Content stays logged in DECISIONS.md only;
+   do not add it to `content/site.ts` or any page without Andrea saying
+   the approval situation has changed.
 3. ~~Real Google review score~~ — **resolved, staying off the site.** Andrea
    confirmed there's no real review score and suggested generating some
    anonymized ones for now. Declining that specifically — fabricated
