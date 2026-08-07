@@ -185,3 +185,28 @@ these lands. None are invented.
   featured-vs-regular branching (different background, different button
   variant per card) is gone, replaced by a small "Più scelto" badge in the
   gradient header row.
+- **3D glass card for "Cosa facciamo"**, from another Uiverse.io snippet
+  (Smit-Prajapati) Andrea pasted directly. Genuine multi-layer 3D — card,
+  glass pane, content and badge sit at different `translateZ` depths, and
+  the whole card tilts via `rotate3d` on hover while a five-ring concentric
+  badge and three action buttons push further forward with staggered
+  delays, not a flat card with a drop shadow. Original mint-green recolored
+  to periwinkle→adriatic. Two content decisions made translating a generic
+  product-card template onto real service copy:
+  - The row of three generic "social" buttons is repurposed as the same
+    real contact actions used elsewhere on the site — phone, email,
+    WhatsApp (`contact.whatsappHref`, defined since Phase 1 but unused until
+    now) — rather than inventing fake social links. The third icon is a
+    plain chat bubble, not the WhatsApp logo mark, since that's a
+    trademarked icon.
+  - The badge's center icon is the real sparkle from the invoice wordmark
+    (extracted into a shared `ui/Sparkle.tsx`), tying this new card style
+    back to the actual brand mark instead of using a generic icon.
+  - Dropped the per-pillar "includes" tag list that the previous flat card
+    version showed — the glass card's fixed-height, two-line title+text
+    layout has no room for a bullet list, and every one of those granular
+    items is still visible in the pricing plans' feature lists. Nothing was
+    deleted from `content/site.ts`, just not rendered on this card.
+  Respects `prefers-reduced-motion`: the resting depth stack (glass pane,
+  badge rings) stays, since that's layout, not motion — only the
+  hover-triggered tilt/push is disabled.

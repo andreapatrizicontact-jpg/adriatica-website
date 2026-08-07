@@ -1,4 +1,5 @@
 import { servicePillars } from "@/content/site";
+import { ServiceCard3D } from "@/components/ui/ServiceCard3D";
 
 export function ServicesSection() {
   return (
@@ -9,24 +10,9 @@ export function ServicesSection() {
           Cinque modi per far crescere il tuo brand.
         </h2>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {servicePillars.map((pillar) => (
-            <div key={pillar.name} className="flex flex-col gap-4 border-2 border-bianco/15 p-6 text-bianco">
-              <div>
-                <span className="font-display text-xl font-black">{pillar.name}</span>
-                <p className="mt-2 font-body text-body-s text-bianco/70">{pillar.description}</p>
-              </div>
-              <ul className="mt-auto flex flex-col gap-1.5 border-t border-bianco/10 pt-4">
-                {pillar.includes.map((item) => (
-                  <li
-                    key={item}
-                    className="font-mono text-[11px] uppercase tracking-[0.1em] text-periwinkle"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ServiceCard3D key={pillar.name} pillar={pillar} />
           ))}
         </div>
       </div>

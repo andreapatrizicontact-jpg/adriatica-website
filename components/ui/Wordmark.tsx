@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { brand } from "@/content/site";
+import { Sparkle } from "@/components/ui/Sparkle";
 
 type WordmarkProps = {
   /** which world the wordmark sits on (brief §3.2) */
@@ -7,20 +8,6 @@ type WordmarkProps = {
   withSubline?: boolean;
   className?: string;
 };
-
-// Four-point sparkle accent, matching the mark used on Andrea's own real
-// letterhead (Fattura 450 euro.pdf) — replaces the colored-period version
-// used in Phase 0, which was based on the story-slide reference instead.
-// Two real lockups exist in that document: this uppercase + sparkle
-// treatment (letterhead) and a mixed-case white-on-navy pill (footer stamp,
-// not adopted here — reads as a compact badge mark, not the primary logo).
-function Sparkle({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
-      <path d="M12 0c0 6.627 5.373 12 12 12-6.627 0-12 5.373-12 12 0-6.627-5.373-12-12-12 6.627 0 12-5.373 12-12z" />
-    </svg>
-  );
-}
 
 export function Wordmark({ on = "dark", withSubline = false, className = "" }: WordmarkProps) {
   const color = on === "dark" ? "text-bianco" : "text-abisso";

@@ -283,3 +283,237 @@ body {
     opacity: 0.85;
   }
 }
+
+/* Layered glass service card — adapted from a Uiverse.io snippet
+   (Smit-Prajapati), original mint-green gradient swapped for our own
+   periwinkle→adriatic run. Real multi-layer 3D: card/glass/content/badge
+   sit at increasing translateZ, and the whole card tilts on hover via
+   rotate3d while the badge's concentric circles and social buttons push
+   further forward — not a flat card with a fake shadow. */
+.svc3d-parent {
+  width: 100%;
+  height: 21rem;
+  perspective: 60rem;
+}
+
+.svc3d-card {
+  position: relative;
+  height: 100%;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, var(--color-periwinkle) 0%, var(--color-adriatic) 100%);
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+  transform-style: preserve-3d;
+  box-shadow: rgba(6, 6, 15, 0) 40px 50px 25px -40px, rgba(6, 6, 15, 0.3) 0px 25px 25px -5px;
+}
+
+.svc3d-glass {
+  transform-style: preserve-3d;
+  position: absolute;
+  inset: 0.5rem;
+  border-radius: 2.2rem;
+  border-top-right-radius: 100%;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.82) 100%);
+  transform: translate3d(0px, 0px, 25px);
+  border-left: 1px solid var(--color-bianco);
+  border-bottom: 1px solid var(--color-bianco);
+  transition: transform 0.5s ease-in-out;
+}
+
+.svc3d-content {
+  position: relative;
+  padding: 5.5rem 3rem 0 1.75rem;
+  transform: translate3d(0, 0, 26px);
+}
+
+.svc3d-title {
+  display: block;
+  color: var(--color-abisso);
+  font-weight: 900;
+  font-size: 1.15rem;
+}
+
+.svc3d-text {
+  display: block;
+  color: color-mix(in oklab, var(--color-abisso) 78%, transparent);
+  font-size: 0.85rem;
+  margin-top: 0.85rem;
+  line-height: 1.5;
+}
+
+.svc3d-bottom {
+  padding: 0.6rem 0.75rem;
+  transform-style: preserve-3d;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transform: translate3d(0, 0, 26px);
+}
+
+.svc3d-view-more {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--color-adriatic);
+  font-weight: 800;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: transform 0.2s ease-in-out;
+}
+
+.svc3d-view-more:hover {
+  transform: translate3d(0, 0, 10px);
+}
+
+.svc3d-view-more svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  fill: none;
+  stroke: var(--color-adriatic);
+  stroke-width: 3px;
+}
+
+.svc3d-socials {
+  display: flex;
+  gap: 0.5rem;
+  transform-style: preserve-3d;
+}
+
+.svc3d-social-btn {
+  width: 1.75rem;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  background: var(--color-bianco);
+  color: var(--color-adriatic);
+  box-shadow: rgba(6, 6, 15, 0.5) 0px 7px 5px -5px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.svc3d-social-btn:nth-child(1) {
+  transition: transform 0.2s ease-in-out 0.4s, box-shadow 0.2s ease-in-out 0.4s, background 0.15s ease, color 0.15s ease;
+}
+.svc3d-social-btn:nth-child(2) {
+  transition: transform 0.2s ease-in-out 0.6s, box-shadow 0.2s ease-in-out 0.6s, background 0.15s ease, color 0.15s ease;
+}
+.svc3d-social-btn:nth-child(3) {
+  transition: transform 0.2s ease-in-out 0.8s, box-shadow 0.2s ease-in-out 0.8s, background 0.15s ease, color 0.15s ease;
+}
+
+.svc3d-social-btn svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  fill: currentColor;
+}
+
+.svc3d-social-btn:hover {
+  background: var(--color-nero);
+  color: var(--color-bianco);
+}
+
+.svc3d-badge {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform-style: preserve-3d;
+}
+
+.svc3d-circle {
+  display: block;
+  position: absolute;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+  box-shadow: rgba(6, 6, 15, 0.15) -10px 10px 20px 0px;
+  backdrop-filter: blur(4px);
+  background: rgba(82, 113, 255, 0.22);
+  transition: transform 0.5s ease-in-out;
+}
+
+.svc3d-circle1 {
+  width: 9.5rem;
+  transform: translate3d(0, 0, 20px);
+  top: 0.4rem;
+  right: 0.4rem;
+}
+.svc3d-circle2 {
+  width: 7.6rem;
+  transform: translate3d(0, 0, 40px);
+  top: 0.55rem;
+  right: 0.55rem;
+  transition-delay: 0.4s;
+}
+.svc3d-circle3 {
+  width: 5.9rem;
+  transform: translate3d(0, 0, 60px);
+  top: 0.9rem;
+  right: 0.9rem;
+  transition-delay: 0.8s;
+}
+.svc3d-circle4 {
+  width: 4.2rem;
+  transform: translate3d(0, 0, 80px);
+  top: 1.2rem;
+  right: 1.2rem;
+  transition-delay: 1.2s;
+}
+.svc3d-circle5 {
+  width: 2.6rem;
+  transform: translate3d(0, 0, 100px);
+  top: 1.55rem;
+  right: 1.55rem;
+  display: grid;
+  place-content: center;
+  transition-delay: 1.6s;
+}
+.svc3d-circle5 svg {
+  width: 1.1rem;
+  color: var(--color-bianco);
+}
+
+.svc3d-parent:hover .svc3d-card {
+  transform: rotate3d(1, 1, 0, 22deg);
+  box-shadow: rgba(6, 6, 15, 0.3) 30px 50px 25px -40px, rgba(6, 6, 15, 0.15) 0px 25px 30px 0px;
+}
+.svc3d-parent:hover .svc3d-social-btn {
+  transform: translate3d(0, 0, 40px);
+  box-shadow: rgba(6, 6, 15, 0.25) -5px 20px 10px 0px;
+}
+.svc3d-parent:hover .svc3d-circle2 {
+  transform: translate3d(0, 0, 55px);
+}
+.svc3d-parent:hover .svc3d-circle3 {
+  transform: translate3d(0, 0, 75px);
+}
+.svc3d-parent:hover .svc3d-circle4 {
+  transform: translate3d(0, 0, 95px);
+}
+.svc3d-parent:hover .svc3d-circle5 {
+  transform: translate3d(0, 0, 115px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc3d-card,
+  .svc3d-glass,
+  .svc3d-view-more,
+  .svc3d-social-btn,
+  .svc3d-circle {
+    transition: none;
+  }
+  /* resting depth stack stays (it's not motion, just layout) — only the
+     hover-triggered tilt/push is what needs to disappear */
+  .svc3d-parent:hover .svc3d-card,
+  .svc3d-parent:hover .svc3d-social-btn,
+  .svc3d-parent:hover .svc3d-circle2,
+  .svc3d-parent:hover .svc3d-circle3,
+  .svc3d-parent:hover .svc3d-circle4,
+  .svc3d-parent:hover .svc3d-circle5 {
+    transform: none;
+  }
+}
