@@ -42,16 +42,19 @@ these lands. None are invented.
    nothing further to chase here. Note: the LinkedIn link is Andrea's
    personal profile, not a company page — used as-is since it's the only
    one he sent.
-8. **Production domain — known to be pending, not stuck.** Andrea doesn't
-   have one yet; he'll get one "the moment I put it inside GitHub." Nothing
-   to do until then — canonicals/OG/sitemap wiring in Phase 6 will need it.
+8. **Production domain — still pending, not stuck.** Andrea confirmed
+   directly he's waiting to push the repo to GitHub before this is ready to
+   publish/get a domain — no action needed until he does.
+   Canonicals/OG/sitemap wiring in Phase 6 will need it once it exists.
 9. ~~Real pricing~~ — **resolved**, real figures now sourced from Andrea's own
    invoices/proposals (see mid-build decisions below).
-10. ~~Markup on subcontractor costs~~ — **resolved for photography**:
-    Andrea set real client prices (€300 in zona / €400 fuori regione) and
-    confirmed "modifiche extra al sito" at €500 — both now shown on
-    `/metodo` instead of "su richiesta." **Website editor markup still
-    open** — only the raw cost (€500–800) is known, no client price set.
+10. ~~Markup on subcontractor costs~~ — **resolved for photography and
+    website edits.** Andrea set real client prices for photography (€300 in
+    zona / €400 fuori regione). For website edits, Andrea confirmed
+    directly the client price genuinely varies by the specific edit
+    requested — not one flat rate — so `addonServices` now shows
+    "da €500" (his real anchor figure, kept as a floor) instead of a flat
+    €500. Nothing further to chase here; "it depends" is the real answer.
 11. ~~Real logo~~ — **resolved again, superseding the previous "resolved"**:
     Andrea sent the actual PNG file (`LOGO ADRIATICA.png`, found on disk,
     cropped to `public/brand/logo-adriatica-chip.png`) — mixed-case
@@ -61,12 +64,9 @@ these lands. None are invented.
     not a gap to keep chasing, just a fact: the live wordmark stays typeset
     text (Poppins) rather than an embedded image, and the PNG is ready for
     Phase 6 favicon/OG generation as-is.
-12. **Font identity — high-confidence, not explicitly confirmed.** The
-    confirmed logo image's letterforms and the Nutriva case study (which
-    names Poppins directly as its typeface) both point the same direction,
-    so `font-display` was switched from Archivo to Poppins site-wide. This
-    is inference from two consistent real documents, not a "yes, use
-    Poppins" from Andrea — worth a direct confirmation.
+12. ~~Font identity~~ — **resolved, Andrea confirmed Poppins directly.**
+    Matches the inference already made from the logo image and the Nutriva
+    case study — no change needed, just now explicit rather than inferred.
 13. ~~Rosso Pomodoro PDF unreadable~~ — **resolved**, Andrea sent a
     compressed version (2.7MB) that read fine. Content: brand identity for
     a pizzeria — wordmark ("ROSSO pomodoro." in a serif/script mix),

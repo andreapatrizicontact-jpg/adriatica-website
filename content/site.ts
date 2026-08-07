@@ -178,11 +178,13 @@ export const pricingPlans: PricingPlan[] = [
 export const pricingNote =
   "Tariffe reali dei nostri progetti — ogni preventivo viene comunque calibrato dopo la consulenza gratuita.";
 
-// DECISIONS.md #10. Website editor is Andrea's raw cost (€500–800, no
-// client markup set) — ships as "su richiesta." Photography has real
-// client prices too (€300 in zona / €400 fuori regione, vs. his own cost of
-// €180/€250) but Andrea asked to keep it as "su richiesta" on-page anyway —
-// kept here as a comment for reference, not wired to priceNote.
+// DECISIONS.md #10. Photography has real client prices too (€300 in zona /
+// €400 fuori regione, vs. his own cost of €180/€250) but Andrea asked to
+// keep it as "su richiesta" on-page anyway — kept here as a comment for
+// reference, not wired to priceNote. Website edits: Andrea confirmed the
+// client price genuinely varies by the specific edit requested (not a
+// single flat rate) — "da €500" keeps his real anchor figure as a floor
+// rather than presenting it as one fixed price.
 export const addonServices: { name: string; description: string; priceNote?: string }[] = [
   {
     name: "Servizio fotografico",
@@ -191,7 +193,7 @@ export const addonServices: { name: string; description: string; priceNote?: str
   {
     name: "Modifiche extra al sito",
     description: "Interventi one-off fuori dal piano di gestione mensile.",
-    priceNote: "€500",
+    priceNote: "da €500",
   },
 ];
 
