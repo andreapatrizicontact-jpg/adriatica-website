@@ -547,3 +547,28 @@ export const analisiSeo = {
     "Non è un report automatico generato da un tool — è un'analisi fatta a mano da chi poi, se deciderai di lavorare con noi, seguirà davvero il tuo profilo.",
   ],
 };
+
+export const contatti = {
+  eyebrow: "05 — Contatti",
+  heading: "Parliamone.",
+  sub: "Scrivici, chiama, o passa direttamente al punto con una call gratuita.",
+  formHeading: "Scrivici",
+  budgetOptions: [
+    "Sotto i 500€/mese",
+    "500–1000€/mese",
+    "Oltre 1000€/mese",
+    "Non sono sicuro/a",
+  ],
+  directHeading: "Contatto diretto",
+  responseNote: "Rispondiamo entro 24 ore, dal lunedì al venerdì.",
+  faq: [
+    {
+      question: "Preferite email, telefono o WhatsApp?",
+      answer: "Va bene qualsiasi canale — rispondiamo tutti i giorni lavorativi, di solito entro 24 ore.",
+    },
+    {
+      question: "Rispondete anche nel weekend?",
+      answer: "Non sempre, ma se scrivi di venerdì sera non aspetterai fino a lunedì sera per una risposta.",
+    },
+  ],
+};
