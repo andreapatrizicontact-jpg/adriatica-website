@@ -45,7 +45,7 @@ export function StickyBar() {
   return (
     <div
       role="status"
-      className="relative z-50 flex items-center justify-center gap-4 bg-abisso px-4 py-2 text-center font-mono text-mono-label uppercase text-bianco"
+      className="relative z-50 flex items-center justify-center gap-4 bg-[var(--chrome-bg)] px-4 py-2 text-center font-mono text-mono-label uppercase text-bianco transition-colors duration-base ease-entrance"
     >
       <div className="relative h-4 w-full max-w-xl overflow-hidden">
         <AnimatePresence mode="wait">

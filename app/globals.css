@@ -7,15 +7,13 @@
   to match it exactly — no custom --spacing-* tokens needed.
 */
 @theme {
-  /* 1.1 color */
+  /* 1.1 color — black+blue system (green/kraft world retired, see DECISIONS.md) */
   --color-adriatic: #004aad;
   --color-abisso: #25227a;
-  --color-lime: #7ed957;
-  --color-lime-dim: #5fae3e;
+  --color-nero: #06060f;
   --color-periwinkle: #5271ff;
   --color-inchiostro: #0b0c2a;
   --color-carta: #f5f2ea;
-  --color-kraft: #bc9765;
   --color-bianco: #ffffff;
 
   /* fonts */
@@ -72,6 +70,15 @@
 
 :root {
   color-scheme: light;
+  /* neutral chrome accent (header/sticky-bar/contact-rail) — toggled via the
+     header's Toggle3D control, independent of each section's own
+     data-world. Not a full site re-theme: branded world sections keep their
+     authored colors regardless. */
+  --chrome-bg: var(--color-abisso);
+}
+
+:root[data-chrome-accent="dark"] {
+  --chrome-bg: var(--color-nero);
 }
 
 html,
@@ -86,9 +93,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* two-world rule — every <section data-world="blue|green"> reassigns the
+/* world rule — every <section data-world="blue|dark|paper"> reassigns the
    local surface/ink pair its children inherit, so components never
-   hardcode which world they're rendered in (DESIGN-PLAN §1.1) */
+   hardcode which world they're rendered in (DESIGN-PLAN §1.1).
+   "dark" replaced the original green/kraft paper-cutout world — retired in
+   favor of a mixed black+blue system, see DECISIONS.md. */
 [data-world="blue"] {
   --surface: var(--color-adriatic);
   --surface-deep: var(--color-abisso);
@@ -98,11 +107,14 @@ body {
   color: var(--ink);
 }
 
-[data-world="green"] {
-  --surface: var(--color-lime);
-  --ink: var(--color-inchiostro);
-  --accent: var(--color-inchiostro);
-  background: var(--surface);
+[data-world="dark"] {
+  --surface: var(--color-nero);
+  --ink: var(--color-bianco);
+  --accent: var(--color-periwinkle);
+  background:
+    radial-gradient(120% 90% at 12% -10%, color-mix(in oklab, var(--color-adriatic) 55%, transparent) 0%, transparent 60%),
+    radial-gradient(100% 80% at 100% 110%, color-mix(in oklab, var(--color-abisso) 65%, transparent) 0%, transparent 65%),
+    var(--color-nero);
   color: var(--ink);
 }
 
@@ -119,15 +131,15 @@ body {
   color: var(--color-bianco);
 }
 
-/* focus-visible rings — lime on dark grounds, periwinkle on light (brief §10) */
+/* focus-visible rings — periwinkle everywhere now that lime is retired */
 :focus-visible {
   outline: 3px solid var(--color-periwinkle);
   outline-offset: 3px;
 }
 
 [data-world="blue"] :focus-visible,
-[data-world="abisso"] :focus-visible {
-  outline-color: var(--color-lime);
+[data-world="dark"] :focus-visible {
+  outline-color: var(--color-bianco);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -138,5 +150,136 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* =====================================================================
+   Bespoke interactive primitives — Toggle3D and DominoLoader use real
+   pseudo-element 3D faces / staggered keyframe choreography that don't
+   translate cleanly to utility classes, so they live here as plain CSS,
+   built on the token system (no hardcoded hex). Adapted from Uiverse.io
+   community snippets (r7chardgh's switch, satyamchaudharydev's spinner),
+   re-skinned to the black+blue palette and made theme-token-driven.
+   ===================================================================== */
+
+.t3d-switch {
+  position: relative;
+  display: inline-flex;
+  width: 4.5em;
+  height: 2.25em;
+  font-size: 1em;
+}
+
+.t3d-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.t3d-track {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  display: flex;
+  border-radius: 0.15em;
+  overflow: hidden;
+  perspective: 12em;
+  background: var(--color-nero);
+  box-shadow:
+    -0.3em 0 0 0 var(--color-nero),
+    -0.3em 0.3em 0 0 var(--color-nero),
+    0.3em 0 0 0 var(--color-nero),
+    0.3em 0.3em 0 0 var(--color-nero),
+    0 0.3em 0 0 var(--color-nero);
+  transition: box-shadow var(--duration-fast) var(--ease-entrance);
+}
+
+.t3d-input:focus-visible + .t3d-track {
+  outline: 3px solid var(--color-periwinkle);
+  outline-offset: 4px;
+}
+
+.t3d-face {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.65em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--color-bianco);
+  color: var(--color-inchiostro);
+  transform-style: preserve-3d;
+  transition: transform 220ms ease, color 220ms ease;
+}
+
+.t3d-face--left {
+  left: 0;
+  transform-origin: right center;
+  transform: rotateY(0deg);
+}
+
+.t3d-face--right {
+  right: 0;
+  transform-origin: left center;
+  transform: rotateY(-55deg);
+  color: color-mix(in oklab, var(--color-inchiostro) 35%, var(--color-carta));
+}
+
+.t3d-input:checked ~ .t3d-track .t3d-face--left {
+  transform: rotateY(55deg);
+}
+
+.t3d-input:checked ~ .t3d-track .t3d-face--right {
+  transform: rotateY(0deg);
+  color: var(--color-periwinkle);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t3d-face {
+    transition: none;
+  }
+}
+
+.domino-loader {
+  position: relative;
+  width: 5.5rem;
+  height: 1.5rem;
+}
+
+.domino-loader span {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--i) * 0.85rem);
+  width: 1.9rem;
+  height: 0.4rem;
+  background: var(--color-bianco);
+  box-shadow: 0.1rem 0.1rem 0.15rem 0 var(--color-inchiostro);
+  animation: domino-fall 1s ease infinite;
+  animation-delay: calc(var(--i) * -0.125s + 1s);
+}
+
+@keyframes domino-fall {
+  50% {
+    opacity: 0.7;
+  }
+  75% {
+    transform: rotate(90deg);
+  }
+  80% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .domino-loader span {
+    animation: none;
+    opacity: 0.85;
   }
 }

@@ -69,7 +69,7 @@ export function OverlayNav({ isOpen, onClose }: OverlayNavProps) {
         >
           <div className="flex items-center justify-between">
             <span className="font-display text-2xl font-black">
-              Adriatica<span className="text-lime">.</span>
+              Adriatica<span className="text-periwinkle">.</span>
             </span>
             <button
               type="button"
@@ -92,7 +92,7 @@ export function OverlayNav({ isOpen, onClose }: OverlayNavProps) {
                   aria-current={active ? "page" : undefined}
                   className="group flex items-baseline gap-4 py-2 sm:gap-6"
                 >
-                  <span className="font-mono text-body-s text-lime">{item.number}</span>
+                  <span className="font-mono text-body-s text-periwinkle">{item.number}</span>
                   <span
                     className={`font-display text-[12vw] font-black leading-[0.95] tracking-tight transition-opacity sm:text-[6vw] ${
                       active ? "opacity-100" : "opacity-90 group-hover:opacity-100"
@@ -107,17 +107,17 @@ export function OverlayNav({ isOpen, onClose }: OverlayNavProps) {
 
           <div className="mt-16 flex flex-col gap-4 border-t border-bianco/15 pt-8 font-body text-body-m sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-col gap-2 sm:flex-row sm:gap-6">
-              <a href={contact.phoneHref} className="hover:text-lime">
+              <a href={contact.phoneHref} className="hover:text-periwinkle">
                 {contact.phone}
               </a>
-              <a href={contact.emailHref} className="hover:text-lime">
+              <a href={contact.emailHref} className="hover:text-periwinkle">
                 {contact.email}
               </a>
             </div>
             {socials.length > 0 && (
               <div className="flex gap-4 font-mono text-mono-label uppercase">
                 {socials.map((s) => (
-                  <a key={s.label} href={s.href} className="hover:text-lime">
+                  <a key={s.label} href={s.href} className="hover:text-periwinkle">
                     {s.label}
                   </a>
                 ))}

@@ -4,25 +4,32 @@ Phase 0 deliverable. Covers the token system, a wireframe of every page and ever
 piece of global chrome, and the justification for the signature element. Nothing
 below gets built until this is approved.
 
+> **Revision note (post-approval, mid-build):** the original green/kraft
+> paper-cutout world (§1.1) was retired at the client's request in favor of a
+> mixed black+blue system, and a karolortyl.com-inspired scroll-driven 3D card
+> gallery, a 3D flip-switch toggle, and a domino-style loader were added. See
+> DECISIONS.md for the full record. The wireframes below use `[[DARK]]` where
+> `[[GREEN]]` originally stood — same section structure, new palette.
+
 ---
 
 ## 1. Token system
 
 ### 1.1 Color
 
-Base palette is fixed by the brief (§3.1) — sampled from the client's own business
-card and Instagram assets. Tailwind v4 `@theme` tokens, no arbitrary hex in
-components:
+Base palette sampled from the client's own business card and Instagram assets
+(brief §3.1). The original green/lime + kraft-cardboard second world was
+retired mid-build — see DECISIONS.md — in favor of a mixed black+blue "dark"
+world. Tailwind v4 `@theme` tokens, no arbitrary hex in components:
 
 ```css
 @theme {
   --color-adriatic:    #004AAD;  /* primary brand blue */
   --color-abisso:       #25227A;  /* deep navy — dark sections */
-  --color-lime:          #7ED957;  /* acid lime — services world */
-  --color-periwinkle: #5271FF;  /* CTA pill fill */
+  --color-nero:           #06060F;  /* near-black — dark-world base */
+  --color-periwinkle: #5271FF;  /* CTA pill fill, accent-on-dark */
   --color-inchiostro: #0B0C2A;  /* text on light / text in pills */
   --color-carta:          #F5F2EA;  /* off-white paper */
-  --color-kraft:          #BC9765;  /* torn cardboard edge */
   --color-bianco:        #FFFFFF;
 }
 ```
@@ -34,14 +41,16 @@ palette doesn't drift into "generic SaaS with 40 shades of blue":
   darkest depth and for glass/overlay panels only.
 - `--color-inchiostro-70` — body copy on `--carta` (never pure black — softer,
   matches the off-white paper).
-- `--color-lime-dim` (`#5FAE3E`) — hover/pressed state for lime elements, not a
-  lighter tint (light tints of lime go pastel and lose the "acid" quality).
+- The "dark" world's background isn't a flat `--color-nero` fill — it's two
+  radial `color-mix()` gradients (adriatic and abisso) bleeding into nero, a
+  literal mixed black+blue pattern rather than a solid tone. See globals.css
+  `[data-world="dark"]`.
 
-Two-world rule (brief §3.1) is enforced structurally, not just visually: every
-`<section>` carries a `data-world="blue" | "green"` attribute that drives which
-token set is active for children (`--surface`, `--ink`, `--accent` get reassigned
-per world), so a component like `PaperCard` or `Pill` never hardcodes which world
-it's in — it inherits.
+World rule (brief §3.1, revised) is enforced structurally, not just visually:
+every `<section>` carries a `data-world="blue" | "dark" | "paper"` attribute
+that drives which token set is active for children (`--surface`, `--ink`,
+`--accent` get reassigned per world), so a component like `PaperCard` or
+`Pill` never hardcodes which world it's in — it inherits.
 
 ### 1.2 Type scale
 
@@ -92,14 +101,17 @@ default the brief explicitly forbids.
   earned, not decorative. Everything else in the blue world — panels, the
   founder-portrait frame, the contact card — is **rectangular, 0 radius**. No
   intermediate `rounded-lg` anywhere.
-- **Green world** (services, process, cases): 0 radius, full stop. These are
-  paper cutouts — paper doesn't have `border-radius: 16px`, it has a torn or
-  scissor edge. Corners are either square or literally torn (SVG mask).
-- **No blur shadows, anywhere.** Depth in the green world comes from a layered
-  "print misregistration" offset instead: a `PaperCard` is three flat layers
-  (kraft backing, lime face, `--inchiostro` type) offset by 3–5px on `translateZ`,
-  the way an off-register screen print looks. Depth in the blue world comes from
-  the shader's own darkening-with-depth, not from `box-shadow`.
+- **Dark world** (services, process, cases): 0 radius, full stop — the mixed
+  black+blue background carries the visual interest, cards stay geometric.
+- **No blur shadows on flat surfaces.** Depth in the blue world still comes
+  from the shader's own darkening-with-depth, not from `box-shadow`. Two
+  exceptions, both deliberate: the chunky `Pill` variant uses a hard, non-blur
+  offset shadow (`0 4px 0 0 var(--color-abisso)`) as a keycap edge, not a soft
+  shadow; and `ScrollScatter`'s cards — which genuinely float and parallax in
+  simulated 3D space rather than sitting flat — use a soft shadow to ground
+  them, since a flat "no blur" card reads as pasted-on once it's actually
+  moving in three dimensions. The rule was written for flat paper-cutout
+  cards; it doesn't fight cards that are no longer flat.
 - Borders where they appear are **2px solid `--inchiostro`**, mimicking the
   thick-marker outline visible on the client's own cutout-arrow assets — never a
   1px hairline `border-gray-200`.
@@ -124,7 +136,7 @@ but the specific fallback described per-effect in brief §3.4.
 
 Not named in the brief's token list but present in the client's own Instagram
 assets (the marker-outlined, tape-textured arrow cutouts) and reused throughout
-the green world as the scroll-cue and list-marker system — `ui/PaperCutout.tsx`,
+the dark world as the scroll-cue and list-marker system — `ui/PaperCutout.tsx`,
 an SVG primitive parameterized by rotation and direction (down/right), with a
 torn-paper fill and two diagonal "tape" rects at fixed offsets. This keeps a
 second, consistent hand-made mark in the system instead of a generic chevron or
@@ -134,7 +146,7 @@ Lucide arrow icon.
 
 ## 2. Wireframes
 
-Legend: `[[BLUE]]` = `--adriatic`/`--abisso` world, `[[GREEN]]` = `--lime`/`--kraft`
+Legend: `[[BLUE]]` = `--adriatic`/`--abisso` world, `[[DARK]]` = mixed
 world, `≈≈≈` = torn-edge transition.
 
 ### 2.0 Global chrome (present on every page)
@@ -195,8 +207,8 @@ Overlay nav (triggered by `[≡ 01]`), full-bleed `--abisso`:
 │      Non facciamo solo social media marketing.                 │
 │      Costruiamo ‾‾connessioni‾‾.        (display-xl, 8vw)      │
 └─────────────────────────────────────────────────────────────┘
-≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈ torn edge, kraft → lime ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
-[[GREEN — cosa facciamo]]
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈ torn edge, abisso → nero/mixed ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+[[DARK — cosa facciamo]]
 ┌─────────────────────────────────────────────────────────────┐
 │  COSA FACCIAMO  (mono eyebrow)                                 │
 │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐          │
@@ -206,7 +218,7 @@ Overlay nav (triggered by `[≡ 01]`), full-bleed `--abisso`:
 │  │ ment     │ │          │ │          │ │          │           │
 │  └──────────┘ └──────────┘ └──────────┘ └──────────┘          │
 └─────────────────────────────────────────────────────────────┘
-[[GREEN — progetti]]
+[[DARK — progetti]]
 ┌─────────────────────────────────────────────────────────────┐
 │  PROGETTI                                                       │
 │  ┌───────┐  cliente: TODO   [ 6 mesi | 3→500 | +140 pag.1 ]    │
@@ -214,13 +226,13 @@ Overlay nav (triggered by `[≡ 01]`), full-bleed `--abisso`:
 │  │ video │                                                      │
 │  └───────┘  (×3, stacked mobile / row desktop)                 │
 └─────────────────────────────────────────────────────────────┘
-[[GREEN — logo wall, 3D depth marquee]]
+[[DARK — logo wall, 3D depth marquee]]
 ┌─────────────────────────────────────────────────────────────┐
 │ row1 →→→ logo logo logo logo   (translateZ 0, fast)            │
 │ row2 ←←← logo logo logo logo   (translateZ -40, mid)           │
 │ row3 →→→ logo logo logo logo   (translateZ -80, slow)          │
 └─────────────────────────────────────────────────────────────┘
-≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈ torn edge, lime → abisso ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈ torn edge, nero/mixed → abisso ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
 [[BLUE — chi siamo]]
 ┌─────────────────────────────────────────────────────────────┐
 │  ┌─────────┐   Chi siamo? 👋                                   │
@@ -247,8 +259,8 @@ Overlay nav (triggered by `[≡ 01]`), full-bleed `--abisso`:
                                                   │ 02 Processo    in-page
                                                   │ 03 Vantaggi    TOC,
                                                   │ 04 FAQ         active-highlight)
-≈≈≈ torn → green ≈≈≈
-[[GREEN — Loro / Noi]]
+≈≈≈ torn → dark/mixed ≈≈≈
+[[DARK — Loro / Noi]]
 ┌───────────────────────┬───────────────────────┐
 │ LORO           (carta)│ NOI          (adriatic)│
 │ grey type              │ white type              │
@@ -258,7 +270,7 @@ Overlay nav (triggered by `[≡ 01]`), full-bleed `--abisso`:
 │                        │   prenotazioni, vendite  │
 │ …×8 rows, staggered-in │                          │
 └───────────────────────┴───────────────────────┘
-[[GREEN — il processo, numbered accordion]]
+[[DARK — il processo, numbered accordion]]
 01 Analisi ▾        [open: 3–4 sub-bullets]
 02 Strategia ▸
 03 Produzione ▸
@@ -266,11 +278,11 @@ Overlay nav (triggered by `[≡ 01]`), full-bleed `--abisso`:
 05 Community ▸
 06 Report & iterazione ▸
 [[ABISSO — founder pull-quote]]
-   " ... " — large, lime on abisso        — Andrea Patrizi
-[[GREEN — vantaggi]]  [card][card][card]
+   " ... " — large, periwinkle on abisso   — Andrea Patrizi
+[[DARK — vantaggi]]  [card][card][card]
                        [card][card][card]
-[[GREEN/CARTA — FAQ]]  8-item accordion
-[[GREEN — PER GOOGLE — SEO]]  (mono eyebrow, long-form block, muted)
+[[DARK/CARTA — FAQ]]  8-item accordion
+[[DARK — PER GOOGLE — SEO]]  (mono eyebrow, long-form block, muted)
 [[BLUE — CTA]]
 ```
 
@@ -280,9 +292,9 @@ Overlay nav (triggered by `[≡ 01]`), full-bleed `--abisso`:
 minimal header: Adriatica.                          ☎ +39 349 244 2534
 [[BLUE hero]] La tua prima mossa è gratis.
   3 bullet: cosa copriamo · quanto costa (niente) · cosa NON è (una vendita)
-[[GREEN]] come funziona — 3 step, numbered
+[[DARK]] come funziona — 3 step, numbered
 [[BLUE]] credibility block — Andrea, mini-bio, TODO_CLIENT stat
-[[GREEN]] FAQ (4)
+[[DARK]] FAQ (4)
 [[CARTA/BLUE]] booking:
   ┌──────────────────────────────┐
   │  Calendly embed (env URL)    │  ← fallback: native form → /api/contatti
@@ -298,14 +310,14 @@ minimal header: Adriatica.                          ☎ +39 349 244 2534
   nome · email · telefono (opz.) · [ ] consenso GDPR → /privacy
   [ Invia la mia richiesta ]
        ↓ on submit
-[[GREEN confirmation]]
+[[DARK confirmation]]
   ✓ Bio & posizionamento   ✓ Cadenza pubblicazione   ✓ Mix formati
   ✓ Hook / primi 3 sec.    ✓ Hashtag & SEO           ✓ Coerenza cover
   ✓ CTA presenti           ✓ Tempo risposta community ✓ Ads sì/no
   ✓ Delta competitor        ✓ …            (12 total)
   "Ti rispondiamo entro 48 ore."
-[[GREEN]] before/after ×3 (growth examples)
-[[GREEN]] PER GOOGLE — SEO long-form
+[[DARK]] before/after ×3 (growth examples)
+[[DARK]] PER GOOGLE — SEO long-form
 ```
 
 ### 2.5 `/contatti` — Contatti

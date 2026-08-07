@@ -18,11 +18,11 @@ export default function Contatti() {
         <h1 className="mt-4 font-display text-display-xl font-black">Parliamone.</h1>
         <p className="mt-6 max-w-xl font-body text-body-l text-bianco/85">
           Pagina completa in arrivo — Fase 5. Nel frattempo:{" "}
-          <a href={contact.phoneHref} className="underline hover:text-lime">
+          <a href={contact.phoneHref} className="underline hover:text-periwinkle">
             {contact.phone}
           </a>{" "}
           ·{" "}
-          <a href={contact.emailHref} className="underline hover:text-lime">
+          <a href={contact.emailHref} className="underline hover:text-periwinkle">
             {contact.email}
           </a>
         </p>

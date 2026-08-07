@@ -9,7 +9,7 @@ type WordmarkProps = {
 };
 
 export function Wordmark({ on = "dark", withSubline = false, className = "" }: WordmarkProps) {
-  const periodColor = on === "dark" ? "text-lime" : "text-adriatic";
+  const periodColor = on === "dark" ? "text-periwinkle" : "text-adriatic";
 
   return (
     <Link href="/" className={`inline-flex flex-col leading-none ${className}`}>

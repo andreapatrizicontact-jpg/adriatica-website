@@ -14,14 +14,14 @@ export function ContactRail() {
       >
         <a
           href={contact.phoneHref}
-          className="flex items-center gap-2 rounded-full bg-inchiostro px-4 py-3 font-body text-body-s text-bianco shadow-none hover:bg-adriatic sm:px-5"
+          className="flex items-center gap-2 rounded-full bg-[var(--chrome-bg)] px-4 py-3 font-body text-body-s text-bianco transition-colors duration-base ease-entrance hover:bg-periwinkle hover:text-inchiostro sm:px-5"
         >
           <span aria-hidden>☎</span>
           <span className="hidden sm:inline">{contact.phone}</span>
         </a>
         <a
           href={contact.emailHref}
-          className="flex items-center gap-2 rounded-full bg-inchiostro px-4 py-3 font-body text-body-s text-bianco hover:bg-adriatic sm:px-5"
+          className="flex items-center gap-2 rounded-full bg-[var(--chrome-bg)] px-4 py-3 font-body text-body-s text-bianco transition-colors duration-base ease-entrance hover:bg-periwinkle hover:text-inchiostro sm:px-5"
         >
           <span aria-hidden>✉</span>
           <span className="hidden sm:inline">{contact.email}</span>

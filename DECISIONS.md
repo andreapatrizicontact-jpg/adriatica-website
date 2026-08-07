@@ -35,3 +35,70 @@ these lands. None are invented.
   (`ui/PaperCutout.tsx`) — not spelled out token-by-token in the brief, but
   present in the client's own story assets and reused for scroll cues / list
   markers instead of a generic icon set.
+
+## Decisions made without stopping (mid-build, post Phase 1)
+
+- **Project moved into `ADRIATICA DATA/`.** Andrea asked the work be moved
+  into `Desktop/COMPANIES/ADRIATICA SOCIAL MEDIA AGENCY/ADRIATICA DATA/` — the
+  client's own asset folder. Real assets found there (business card, all 11
+  IG story slides, 3 highlight-cover icons) were pulled into
+  `public/brand/source/`; gap list in MISSING-ASSETS.md. An unrelated older
+  static `index.html` draft in that folder (navy/indigo/Sora palette) was
+  checked for facts only (phone/email matched, nothing new) — not used as a
+  design basis, since it predates and conflicts with the approved DESIGN-PLAN.
+- **Node.js installed as a portable, project-local binary.** The Mac had no
+  Node/npm/Homebrew at all. With Andrea's explicit go-ahead, downloaded the
+  official Node v24.19.0 LTS darwin-arm64 tarball from nodejs.org (checksum
+  verified), extracted to `.tools/node/` inside the project (gitignored, not
+  system-wide).
+- **Green/kraft world retired for a mixed black+blue system.** Andrea asked
+  directly, referencing karolortyl.com as a technique reference and asking to
+  "remove the green pattern and mix a black and blue pattern." Removed
+  `--color-lime` / `--color-lime-dim` / `--color-kraft` entirely; added
+  `--color-nero` (`#06060F`). `data-world="green"` renamed to
+  `data-world="dark"`, background is now two `color-mix()` radial gradients
+  (adriatic + abisso) bled into nero — a literal mixed pattern, not a flat
+  swap to a different flat color. Every component that referenced lime
+  (Wordmark period, OverlayNav accents, Pill hover, footer link hovers) was
+  swept to periwinkle. Full reasoning in DESIGN-PLAN.md §1.1/§1.4.
+- **Researched karolortyl.com directly** (Andrea's reference link) rather than
+  guessing at "3D animation." Inspected the DOM/computed styles instead of
+  assuming WebGL: it's plain CSS `matrix3d` transforms on absolutely-positioned
+  card wrappers, scroll-driven, built in Framer — not Three.js. Reproduced the
+  same technique natively with `motion`'s `useScroll`/`useTransform` as
+  `components/sections/ScrollScatter.tsx`: per-card differential scroll speed
+  by depth, a left-side "FIG. 01 / FIG. 02…" index rail that highlights the
+  active card, full static-grid fallback under `prefers-reduced-motion`. Wired
+  into the home page's Progetti section with placeholder cards — real case
+  content still pending Phase 3 (MISSING-ASSETS.md).
+- **Two Uiverse.io snippets adapted into the token system**, pasted directly
+  by Andrea: a 3D flip-switch (`ui/Toggle3D.tsx`, r7chardgh) and a falling-
+  domino loader (`ui/DominoLoader.tsx`, satyamchaudharydev). Both re-skinned
+  from the originals' hardcoded greys to `--color-*` tokens, and both respect
+  `prefers-reduced-motion`. Toggle3D is a real `role="switch"` checkbox, not a
+  div — the snippet's raw HTML wasn't accessible as given.
+- **"Chunky" 3D variant added to `Pill`** for action buttons (Andrea asked for
+  the 3D-button language on CTAs generally, e.g. "start a call"), using the
+  same stacked hard-edge-shadow depth logic as Toggle3D's track, not the
+  flip-switch mechanic itself — a CTA is a single action, not a binary state,
+  so it keeps real button/link semantics rather than reusing the checkbox
+  structure.
+- **Scoped the "change the theme" request deliberately, rather than building
+  a full site-wide light/dark mode.** Andrea's message named it as one example
+  use for the 3D toggle, alongside "start a call" — not a full spec. Built
+  Toggle3D wired to a real, visible, low-risk effect: a `data-chrome-accent`
+  attribute (persisted for the session) that swaps the *neutral chrome only*
+  (header-on-scroll, sticky bar, contact rail) between abisso-blue and nero,
+  via one `--chrome-bg` custom property. Each page's branded `data-world`
+  sections keep their authored colors regardless of the toggle — a full
+  re-theme of the hero/dark/paper worlds would be a real design exercise
+  (what does "light mode" mean for a caustics shader hero?), not something to
+  invent silently. Flagging this back to Andrea rather than building it
+  further without direction.
+- Two Tailwind cascade-order bugs found and fixed live in the browser, both
+  the same category: a component's own base class sets `display` (or, for
+  Toggle3D, a raw non-Tailwind CSS rule sets it), and passing `hidden` through
+  `className` doesn't reliably win since Tailwind's utility order isn't
+  string order. Fixed both by wrapping in a container that controls display
+  instead of overriding it through the component's own className. Documented
+  inline on `Pill` and `Toggle3D` so it isn't rediscovered a third time.

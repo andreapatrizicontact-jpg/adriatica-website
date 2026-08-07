@@ -13,10 +13,10 @@ export function Footer() {
               {brand.positioning}
             </p>
             <div className="mt-6 flex flex-col gap-1 font-body text-body-s text-bianco/80">
-              <a href={contact.phoneHref} className="hover:text-lime">
+              <a href={contact.phoneHref} className="hover:text-periwinkle">
                 {contact.phone}
               </a>
-              <a href={contact.emailHref} className="hover:text-lime">
+              <a href={contact.emailHref} className="hover:text-periwinkle">
                 {contact.email}
               </a>
               <span>{contact.cityDisplay}</span>
@@ -31,7 +31,7 @@ export function Footer() {
               <ul className="mt-4 flex flex-col gap-2">
                 {group.links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="font-body text-body-s hover:text-lime">
+                    <a href={link.href} className="font-body text-body-s hover:text-periwinkle">
                       {link.label}
                     </a>
                   </li>
@@ -49,7 +49,7 @@ export function Footer() {
           {socials.length > 0 && (
             <div className="flex gap-4 font-mono text-mono-label uppercase">
               {socials.map((s) => (
-                <a key={s.label} href={s.href} className="hover:text-lime">
+                <a key={s.label} href={s.href} className="hover:text-periwinkle">
                   {s.label}
                 </a>
               ))}
