@@ -9,6 +9,12 @@ export const brand = {
   subline: "MARKETING STUDIO",
   positioning: "Non facciamo solo social media marketing. Costruiamo connessioni.",
   founder: "Andrea Patrizi",
+  // Confirmed by Andrea directly (DECISIONS.md #4). Real framing is
+  // solo-founder + 2 external collaborators, not a "team" in the sense the
+  // Instagram-derived copy implied — "Chi siamo" copy (not yet built)
+  // should read that way rather than overstating headcount.
+  foundedYear: 2026,
+  teamFraming: "Andrea, più due collaboratori esterni per foto/video e sviluppo.",
 };
 
 export const contact = {
@@ -17,15 +23,21 @@ export const contact = {
   email: "andreapatrizicontact@gmail.com",
   emailHref: "mailto:andreapatrizicontact@gmail.com",
   whatsappHref: "https://wa.me/393492442534",
-  // TODO_CLIENT: base city unconfirmed — business card says San Benedetto del
-  // Tronto, brief text says Roma. Showing both pending confirmation
-  // (DECISIONS.md #1).
-  cityDisplay: "Roma · San Benedetto del Tronto",
+  // Confirmed by Andrea directly — Roma is the base city (DECISIONS.md #1).
+  cityDisplay: "Roma",
 };
 
-// TODO_CLIENT: no handles found in ADRIATICA DATA — DECISIONS.md #7.
-// Nav/footer render nothing for a channel until its href is filled in here.
-export const socials: { label: string; href: string }[] = [];
+// Instagram + LinkedIn confirmed by Andrea directly (DECISIONS.md #7).
+// TikTok still open — nav/footer render nothing for a channel until its
+// href is set. LinkedIn is Andrea's personal profile, not a company page —
+// the only one he sent, so used as-is rather than inventing a company page.
+export const socials: { label: string; href: string }[] = [
+  { label: "Instagram", href: "https://www.instagram.com/adriaticacomunicazione/" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/andrea-patrizi-126491379" },
+];
+
+// Real Calendly link, confirmed by Andrea directly (DECISIONS.md #6).
+export const calendlyUrl = "https://calendly.com/team_adriatica";
 
 export const cta = {
   primary: "Prenota una call gratuita",

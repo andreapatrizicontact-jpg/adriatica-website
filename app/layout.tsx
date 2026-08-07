@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Archivo, Instrument_Sans, Geist_Mono } from "next/font/google";
+import { Poppins, Instrument_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { StickyBar } from "@/components/nav/StickyBar";
 import { SiteHeader } from "@/components/nav/SiteHeader";
@@ -8,9 +8,15 @@ import { Footer } from "@/components/layout/Footer";
 import { ContactRail } from "@/components/nav/ContactRail";
 import { OfflineBanner } from "@/components/OfflineBanner";
 
-const archivo = Archivo({
+// Switched from Archivo to Poppins — the confirmed "Adriatica." logo image
+// and the Nutriva case study (which documents Poppins by name as its
+// typeface) both point the same direction. Poppins only ships as static
+// weight files (not variable), so request exactly the weights the type
+// scale uses. See DECISIONS.md.
+const poppins = Poppins({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-archivo",
+  weight: ["700", "800", "900"],
+  variable: "--font-poppins",
 });
 
 const instrumentSans = Instrument_Sans({
@@ -36,7 +42,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="it"
-      className={`${archivo.variable} ${instrumentSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${poppins.variable} ${instrumentSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         {/* fixed together so the header floats transparently over each

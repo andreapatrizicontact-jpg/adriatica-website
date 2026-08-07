@@ -8,23 +8,30 @@ Running log of calls made without stopping to ask, and open questions that
 Placeholders in the site are marked `TODO_CLIENT` at the exact spot each of
 these lands. None are invented.
 
-1. **Primary base city.** Business card says San Benedetto del Tronto; brief
-   text says Roma. Placeholder copy defaults to `Roma · San Benedetto del
-   Tronto` pending confirmation — swap to a single city if the client wants one.
-2. Real client names/logos for the logo wall and case studies, and whether
-   case-study metrics (the "3→500", "+140 in prima pagina" style stats) can be
-   published as-is or need to be genericized.
+1. ~~Primary base city~~ — **resolved**, Andrea confirmed Roma. Updated
+   `contact.cityDisplay` from the dual-city placeholder to `"Roma"` alone.
+2. Real client names/logos for the logo wall, and whether case-study metrics
+   can be published as-is. Partially informed by the two real case studies
+   Andrea sent (Nutriva, Rosso Pomodoro) — see mid-build decisions — but
+   explicit go-ahead to publish client names/work publicly hasn't been asked
+   for separately; assuming yes since he sent them for this purpose, flagging
+   in case that assumption is wrong.
 3. Real Google review score/count. No "5.0 su Google" ships until this is
    confirmed with a source.
-4. Founding year, and team size framing — copy currently says "un team di
-   creativi e strateghi digitali" per the client's own Instagram copy (kept
-   verbatim), confirm this still holds vs. "studio di una persona."
+4. ~~Founding year / team framing~~ — **resolved**, Andrea confirmed 2026 and
+   "solo + 2 collaboratori esterni." Added to `brand.foundedYear` /
+   `brand.teamFraming` — supersedes the Instagram-derived "un team di
+   creativi e strateghi digitali" phrasing, which overstated headcount.
 5. ~~P.IVA~~ — **resolved**, Andrea confirmed he doesn't have one yet.
    Omitted from the footer entirely (`legal.piva` is `null`, only rendered
    when set) rather than showing a placeholder. Legal entity name for the
    future privacy policy is still open once one exists.
-6. Calendly (or equivalent) booking URL for `/consulenza`.
-7. Social handles — Instagram, TikTok, LinkedIn.
+6. ~~Calendly~~ — **resolved**, `calendlyUrl` set to
+   `calendly.com/team_adriatica`.
+7. ~~Social handles~~ — **mostly resolved**, Instagram and LinkedIn
+   confirmed and added to `socials`. TikTok still open. Note: the LinkedIn
+   link is Andrea's personal profile, not a company page — used as-is since
+   it's the only one he sent.
 8. Production domain, for canonicals/OG/sitemap.
 9. ~~Real pricing~~ — **resolved**, real figures now sourced from Andrea's own
    invoices/proposals (see mid-build decisions below).
@@ -33,12 +40,25 @@ these lands. None are invented.
     assets). No margin decision has been made, so `/metodo`'s "Extra" section
     lists them with "su richiesta" instead of a number — needs a real
     client-facing price (or a standing markup rule) from Andrea.
-11. ~~Real logo file~~ — **resolved**, Andrea confirmed the invoice wordmark
-    is current ("u can go ahead"). Adopted site-wide (see mid-build decisions
-    below). Still open: no vector source file — the sparkle icon is a
-    hand-built SVG approximation, not Andrea's original artwork, since only
-    the flattened PDF render was available. Would still like the real
-    `logo-adriatica.svg` if one exists, to replace the approximation.
+11. ~~Real logo~~ — **resolved, superseding an earlier "resolved"**: the
+    invoice's all-caps + sparkle version (adopted first) was itself
+    superseded by a third reference — a plain image Andrea sent captioned
+    "this one is the logo": mixed-case "Adriatica.", no icon, white text on
+    a black→blue gradient chip. Adopted as current (see mid-build decisions).
+    Still open: no vector source file for any version — every treatment so
+    far has come from a flattened raster (PDF or PNG), never original
+    artwork. Would still like a real `.svg`/`.ai` file if one exists.
+12. **Font identity — high-confidence, not explicitly confirmed.** The
+    confirmed logo image's letterforms and the Nutriva case study (which
+    names Poppins directly as its typeface) both point the same direction,
+    so `font-display` was switched from Archivo to Poppins site-wide. This
+    is inference from two consistent real documents, not a "yes, use
+    Poppins" from Andrea — worth a direct confirmation.
+13. **Rosso Pomodoro case study PDF unreadable** — 23.2MB, over the 20MB
+    read limit, and this machine has no PDF tooling (`pdftotext`, `qpdf`,
+    Python PDF libraries — none installed) to compress or extract pages.
+    Only Nutriva's case study content made it into the site. A smaller
+    export, individual page images, or a text summary would unblock this.
 
 ## Decisions made without stopping (Phase 0)
 
@@ -281,3 +301,37 @@ these lands. None are invented.
   visible primitive rather than unused code. Expect further real
   applications once Phase 3/4 build out the still-missing sections (Chi
   siamo, testimonianze, Loro/Noi, vantaggi).
+
+## Rapid-fire real facts (same session, post Phase 2)
+
+Andrea sent a batch of real facts and assets in quick succession; each
+landed in `content/site.ts` as it arrived rather than being queued:
+
+- **Logo — third and current version.** An image captioned "this one is the
+  logo": mixed-case "Adriatica.", no sparkle, on a black→blue gradient chip.
+  `ui/Wordmark.tsx` rewritten to drop the uppercase transform and the
+  sparkle icon entirely (the `ui/Sparkle.tsx` component now only used by
+  `ServiceCard3D`'s badge, not the wordmark). The gradient-chip background
+  itself wasn't applied to the inline header/footer wordmark — that chip
+  reads as a standalone badge treatment (social avatar, favicon-style use),
+  not something to wrap around text that already sits on our own colored
+  world backgrounds everywhere it appears.
+- **Font switched from Archivo to Poppins**, site-wide (`--font-display`).
+  Two independent real documents pointed the same way: the confirmed logo's
+  rounder letterforms, and the Nutriva case study, which documents Poppins
+  by name as its typeface. High-confidence inference, not a direct "yes,
+  Poppins" from Andrea — see open question #12.
+- **Real case study: Nutriva.** A healthy-food brand-identity project — logo,
+  palette (Terracotta/Salvia/Senape/Crema/Espresso), Poppins typography,
+  app-icon mockups. This is a brand-identity case study, not a social-growth
+  one — no follower counts or "before/after" metrics to show, which matters
+  for Phase 3's Progetti section: the stat-trio format DESIGN-PLAN §3.4
+  describes (count-up numbers like "da 3 a +500") doesn't fit this project
+  and shouldn't be forced onto it once real Progetti cards replace
+  `ScrollScatter`'s placeholders.
+- **Second case study, Rosso Pomodoro, not yet readable** — see open
+  question #13.
+- Instagram (`adriaticacomunicazione`), LinkedIn (Andrea's personal
+  profile), Calendly (`team_adriatica`), base city (Roma only), founding
+  year (2026), and team framing (solo + 2 external collaborators) all
+  confirmed directly — see resolved items #1, #4, #6, #7 above.
