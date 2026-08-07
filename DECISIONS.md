@@ -392,3 +392,17 @@ landed in `content/site.ts` as it arrived rather than being queued:
   across a big rename can serve stale compiled output even though the
   source is correct — restart it after renames like that instead of
   trusting Fast Refresh to fully recover.
+- **Built `/privacy` and `/cookie-policy`, not requested but blocking every
+  form on the site.** Every consent checkbox (home CTA, `/consulenza`,
+  `/analisi`, `/contatti`) already linked to `/privacy`, and the footer
+  already linked to both — both were 404s until now. Content is an honest,
+  accurate description of how the site's forms *actually* work today
+  (Resend as the only data processor, Calendly as a separate third party on
+  `/consulenza`, no analytics/tracking cookies at all, Andrea named as an
+  individual with no P.IVA yet — consistent with item #5). This is **not
+  professional legal review** — worth having a lawyer confirm it once the
+  P.IVA situation resolves, especially the retention/rights language.
+  Cookie Policy correctly states no tracking cookies exist, so no
+  cookie-consent banner is legally needed yet — but if analytics get added
+  later (Vercel Analytics, GA, etc.), both this page and a consent banner
+  will need building then.

@@ -572,3 +572,91 @@ export const contatti = {
     },
   ],
 };
+
+// Real, accurate description of how this site's forms actually work
+// (Resend for delivery, no other processors, no P.IVA yet — see
+// DECISIONS.md #5/#15). Not a substitute for professional legal review,
+// especially once Andrea registers a P.IVA — flagged there too.
+export const privacyPolicy = {
+  eyebrow: "Legale",
+  heading: "Privacy Policy",
+  updated: "7 agosto 2026",
+  sections: [
+    {
+      heading: "Titolare del trattamento",
+      paragraphs: [
+        `Il titolare del trattamento dei dati raccolti tramite questo sito è ${brand.founder}, che opera come libero professionista con base a ${contact.cityDisplay}. Al momento l'attività non ha ancora una partita IVA attiva. Per qualsiasi richiesta relativa ai tuoi dati puoi scrivere a ${contact.email}.`,
+      ],
+    },
+    {
+      heading: "Quali dati raccogliamo",
+      paragraphs: [
+        "Raccogliamo solo i dati che inserisci volontariamente nei moduli del sito (pagine Contatti, Consulenza gratuita e Analisi social gratuita): nome, email, telefono ed azienda se forniti, budget indicativo se selezionato, e — nel modulo di analisi — il tuo handle social e il sito web da analizzare.",
+        "Non usiamo cookie di tracciamento né raccogliamo dati di navigazione — vedi la Cookie Policy per i dettagli.",
+      ],
+    },
+    {
+      heading: "Perché li raccogliamo",
+      paragraphs: [
+        "Usiamo questi dati esclusivamente per risponderti, preparare un preventivo, oppure svolgere l'analisi social gratuita che hai richiesto. Non li usiamo per finalità di marketing non richieste e non li vendiamo né condividiamo con terzi a scopo commerciale.",
+      ],
+    },
+    {
+      heading: "Base giuridica",
+      paragraphs: [
+        "Il trattamento si basa sul consenso esplicito che dai selezionando la casella \"Accetto l'informativa privacy\" al momento dell'invio di un modulo.",
+      ],
+    },
+    {
+      heading: "Chi riceve i tuoi dati",
+      paragraphs: [
+        "I moduli del sito inviano i dati via email tramite Resend (resend.com), un servizio di invio email usato solo come infrastruttura tecnica di consegna — non ha altri usi. Nessun altro fornitore terzo riceve i dati che invii tramite i moduli.",
+        "La pagina Consulenza gratuita include inoltre un embed di Calendly per la prenotazione delle call: se prenoti una call, i dati che inserisci in quel calendario (nome, email, orario) sono gestiti direttamente da Calendly secondo la loro informativa privacy, non dalla nostra.",
+      ],
+    },
+    {
+      heading: "Conservazione",
+      paragraphs: [
+        "Conserviamo i tuoi dati solo per il tempo necessario a gestire la tua richiesta e l'eventuale collaborazione successiva, salvo diversi obblighi di legge.",
+      ],
+    },
+    {
+      heading: "I tuoi diritti",
+      paragraphs: [
+        `Puoi chiedere in qualsiasi momento di accedere ai tuoi dati, correggerli o farli cancellare, scrivendo a ${contact.email}.`,
+      ],
+    },
+    {
+      heading: "Modifiche a questa informativa",
+      paragraphs: [
+        "Questa informativa verrà aggiornata se cambiano gli strumenti usati dal sito o la struttura legale dell'attività (ad esempio con l'attivazione di una partita IVA).",
+      ],
+    },
+  ],
+};
+
+export const cookiePolicy = {
+  eyebrow: "Legale",
+  heading: "Cookie Policy",
+  updated: "7 agosto 2026",
+  sections: [
+    {
+      heading: "Cookie utilizzati da questo sito",
+      paragraphs: [
+        "Questo sito non utilizza cookie di tracciamento, profilazione o marketing, e non installa strumenti di analytics.",
+      ],
+    },
+    {
+      heading: "Servizi di terze parti",
+      paragraphs: [
+        "La pagina Consulenza gratuita include un calendario Calendly incorporato per prenotare una call. Calendly può impostare i propri cookie tecnici secondo la propria informativa, indipendente da questo sito.",
+      ],
+    },
+    {
+      heading: "Aggiornamenti futuri",
+      paragraphs: [
+        "Se in futuro aggiungeremo strumenti di analisi del traffico (ad esempio per capire quali pagine funzionano meglio), questa pagina verrà aggiornata di conseguenza — e, se necessario, verrà aggiunto un banner di consenso.",
+      ],
+    },
+  ],
+};
