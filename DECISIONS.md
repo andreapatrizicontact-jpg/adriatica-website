@@ -23,6 +23,12 @@ these lands. None are invented.
 6. Calendly (or equivalent) booking URL for `/consulenza`.
 7. Social handles — Instagram, TikTok, LinkedIn.
 8. Production domain, for canonicals/OG/sitemap.
+9. **Real pricing.** The `/metodo` pricing section (3 plans, monthly/annual
+   toggle) ships with placeholder figures (€490/€990/€1.890 per month) — round,
+   plausible numbers picked to make the UI demonstrable, not real rates. Needs
+   either real numbers from Andrea or a decision to keep it custom-quote-only
+   (common for agencies, and arguably the more honest choice given "ogni
+   progetto riceve un preventivo su misura" is already the framing).
 
 ## Decisions made without stopping (Phase 0)
 
@@ -102,3 +108,13 @@ these lands. None are invented.
   string order. Fixed both by wrapping in a container that controls display
   instead of overriding it through the component's own className. Documented
   inline on `Pill` and `Toggle3D` so it isn't rediscovered a third time.
+- **Pricing toggle, not a checkout.** Andrea pasted the same Toggle3D switch
+  snippet again saying "this code can be used for payment section." The brief
+  has no pricing/e-commerce anywhere, and "payment section" is genuinely
+  ambiguous between a pricing-plan toggle (safe, pure UI) and a real charge
+  going through (which needs a proper processor and Andrea's own account, not
+  something to hand-roll or wire up unattended) — asked directly rather than
+  guessing given how different the two builds are. Confirmed: pricing toggle
+  only. Built `PricingSection` on `/metodo` (3 plans × monthly/annual via
+  Toggle3D, "Mese"/"Anno" — his original left/right labels wouldn't fit the
+  switch's width) with placeholder figures, see open question #9 above.
