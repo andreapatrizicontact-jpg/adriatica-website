@@ -12,11 +12,19 @@ Tracks brief §8's asset list against what actually exists in `ADRIATICA DATA`
 | Story-slide backgrounds/copy | `source/stories-presentazione/1.png`–`11.png` | These are the actual Instagram story slides — confirmed source for the exact `--adriatic`/`--lime`/`--kraft` tones, the torn-cardboard texture, the taped-arrow cutout motif, and several copy lines already quoted verbatim into DESIGN-PLAN/brief (§5). Used as the visual reference for `TornEdge` and `PaperCutout` builds in Phase 2, not sliced directly (they're flattened story exports, not layered source files). |
 | IG highlight-cover icons | `source/3.png`, `4.png`, `5.png` (compass rose on `--adriatic`, 3375×4219) | Not used in the site build — highlight covers, not site assets. Kept for reference only. |
 
+## Found later in the build (raster logo)
+
+| Brief asset | Source file | Notes |
+|---|---|---|
+| Real logo, raster | `public/brand/logo-adriatica-chip.png` (1000×310, cropped from `LOGO ADRIATICA.png`, original in `source/logo-full-canvas.png`) | Andrea confirmed this as "the logo" — mixed-case "Adriatica.", white text on a black→blue gradient chip, Poppins-like rounded font. Superseded two earlier in-repo wordmark treatments (story-slide colored-period version, then the invoice's all-caps + sparkle version) — see DECISIONS.md. Ready for Phase 6 (favicon/OG generation) once that phase starts. |
+
 ## Still missing — no source found anywhere in `ADRIATICA DATA`
 
-- `logo-adriatica.svg` / `logo-adriatica-blue.svg` — true vector wordmark. Until
-  supplied, favicon/OG generation and any place a vector (not typeset text) is
-  required will use a generated placeholder built from the typeset wordmark.
+- **Vector logo** (`.svg`/`.ai`) — still none. Every wordmark reference so far
+  (story slides, invoice PDF, this PNG) has been a flattened raster. The live
+  site wordmark stays typeset text (Poppins Black, matching the confirmed
+  PNG) rather than an embedded image, so this only matters for favicon/OG
+  generation in Phase 6, which can work from the PNG in the meantime.
 - `andrea.jpg` — founder portrait for "Chi siamo" and `/consulenza`. Placeholder
   block (initials monogram on `--abisso`) ships until a real photo is supplied.
 - `kraft-edge.png/svg` as a standalone cutout asset — being built as a custom

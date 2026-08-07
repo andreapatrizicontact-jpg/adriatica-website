@@ -10,14 +10,17 @@ these lands. None are invented.
 
 1. ~~Primary base city~~ — **resolved**, Andrea confirmed Roma. Updated
    `contact.cityDisplay` from the dual-city placeholder to `"Roma"` alone.
-2. Real client names/logos for the logo wall, and whether case-study metrics
-   can be published as-is. Partially informed by the two real case studies
-   Andrea sent (Nutriva, Rosso Pomodoro) — see mid-build decisions — but
-   explicit go-ahead to publish client names/work publicly hasn't been asked
-   for separately; assuming yes since he sent them for this purpose, flagging
-   in case that assumption is wrong.
-3. Real Google review score/count. No "5.0 su Google" ships until this is
-   confirmed with a source.
+2. ~~Client names/case-study permission~~ — **resolved for Nutriva**, Andrea
+   confirmed it can be published. **Rosso Pomodoro explicitly needs
+   approval** — not granted yet, don't publish even once the PDF is
+   readable (open question #13) without a separate yes.
+3. ~~Real Google review score~~ — **resolved, staying off the site.** Andrea
+   confirmed there's no real review score and suggested generating some
+   anonymized ones for now. Declining that specifically — fabricated
+   reviews presented as real customer feedback are misleading regardless of
+   whether a name is attached, and it's exactly what brief §11 already rules
+   out ("do not fabricate a 5.0 su Google"). No review section ships until
+   real reviews exist; told Andrea directly rather than building it quietly.
 4. ~~Founding year / team framing~~ — **resolved**, Andrea confirmed 2026 and
    "solo + 2 collaboratori esterni." Added to `brand.foundedYear` /
    `brand.teamFraming` — supersedes the Instagram-derived "un team di
@@ -28,26 +31,31 @@ these lands. None are invented.
    future privacy policy is still open once one exists.
 6. ~~Calendly~~ — **resolved**, `calendlyUrl` set to
    `calendly.com/team_adriatica`.
-7. ~~Social handles~~ — **mostly resolved**, Instagram and LinkedIn
-   confirmed and added to `socials`. TikTok still open. Note: the LinkedIn
-   link is Andrea's personal profile, not a company page — used as-is since
-   it's the only one he sent.
-8. Production domain, for canonicals/OG/sitemap.
+7. ~~Social handles~~ — **resolved as final**, Instagram and LinkedIn
+   confirmed and added to `socials`. Andrea confirmed directly there's no
+   TikTok — not a gap, just not applicable; nothing renders for it and
+   nothing further to chase here. Note: the LinkedIn link is Andrea's
+   personal profile, not a company page — used as-is since it's the only
+   one he sent.
+8. **Production domain — known to be pending, not stuck.** Andrea doesn't
+   have one yet; he'll get one "the moment I put it inside GitHub." Nothing
+   to do until then — canonicals/OG/sitemap wiring in Phase 6 will need it.
 9. ~~Real pricing~~ — **resolved**, real figures now sourced from Andrea's own
    invoices/proposals (see mid-build decisions below).
-10. **Markup on subcontractor costs.** Andrea gave costs, not prices, for two
-    add-ons: website editor (€500–800) and photographer (€200–350/shoot → 20–30
-    assets). No margin decision has been made, so `/metodo`'s "Extra" section
-    lists them with "su richiesta" instead of a number — needs a real
-    client-facing price (or a standing markup rule) from Andrea.
-11. ~~Real logo~~ — **resolved, superseding an earlier "resolved"**: the
-    invoice's all-caps + sparkle version (adopted first) was itself
-    superseded by a third reference — a plain image Andrea sent captioned
-    "this one is the logo": mixed-case "Adriatica.", no icon, white text on
-    a black→blue gradient chip. Adopted as current (see mid-build decisions).
-    Still open: no vector source file for any version — every treatment so
-    far has come from a flattened raster (PDF or PNG), never original
-    artwork. Would still like a real `.svg`/`.ai` file if one exists.
+10. ~~Markup on subcontractor costs~~ — **resolved for photography**:
+    Andrea set real client prices (€300 in zona / €400 fuori regione) and
+    confirmed "modifiche extra al sito" at €500 — both now shown on
+    `/metodo` instead of "su richiesta." **Website editor markup still
+    open** — only the raw cost (€500–800) is known, no client price set.
+11. ~~Real logo~~ — **resolved again, superseding the previous "resolved"**:
+    Andrea sent the actual PNG file (`LOGO ADRIATICA.png`, found on disk,
+    cropped to `public/brand/logo-adriatica-chip.png`) — mixed-case
+    "Adriatica.", no icon, white text on a black→blue gradient chip. This
+    confirms the image reference from the previous entry was pixel-accurate,
+    not just a mockup. Andrea confirmed directly there's no vector file —
+    not a gap to keep chasing, just a fact: the live wordmark stays typeset
+    text (Poppins) rather than an embedded image, and the PNG is ready for
+    Phase 6 favicon/OG generation as-is.
 12. **Font identity — high-confidence, not explicitly confirmed.** The
     confirmed logo image's letterforms and the Nutriva case study (which
     names Poppins directly as its typeface) both point the same direction,
@@ -59,6 +67,13 @@ these lands. None are invented.
     Python PDF libraries — none installed) to compress or extract pages.
     Only Nutriva's case study content made it into the site. A smaller
     export, individual page images, or a text summary would unblock this.
+14. **Third client named: La Tellina** — a stabilimento (beach club) in San
+    Benedetto del Tronto. Andrea confirmed it can be added to the case
+    studies and said he'll produce a presentation deck for it, same as
+    Nutriva/Rosso Pomodoro. No deck yet — only name, business type, and
+    city are confirmed real facts so far; not enough to build a full
+    Progetti card, so not added to `content/site.ts` until the deck lands
+    (or he confirms what to say about it in the meantime).
 
 ## Decisions made without stopping (Phase 0)
 

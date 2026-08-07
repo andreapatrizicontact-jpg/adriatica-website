@@ -82,6 +82,8 @@ export type PricingPlan = {
    * 200 sito, per the real proposal) — the +Sito toggle must skip it rather
    * than adding another 200 on top. */
   includesSite?: boolean;
+  /** oneTime is the top of a real range Andrea gave, not a fixed figure — render as "a partire da" */
+  fromPrice?: boolean;
   featured?: boolean;
 };
 
@@ -137,7 +139,12 @@ export const pricingPlans: PricingPlan[] = [
   {
     name: "Full Service",
     tagline: "Per brand che vogliono sito e social insieme.",
-    oneTime: 2500,
+    // Andrea confirmed a real site-build range (€1.800–2.000 for "un sito
+    // complesso e pronto") — using the low end + brand identity (500) as an
+    // honest "a partire da" floor rather than the flat 2.500 (2.000+500)
+    // this used to show.
+    oneTime: 2300,
+    fromPrice: true,
     monthly: 500,
     features: [
       "Tutto il piano Crescita",
@@ -154,19 +161,21 @@ export const pricingPlans: PricingPlan[] = [
 export const pricingNote =
   "Tariffe reali dei nostri progetti — ogni preventivo viene comunque calibrato dopo la consulenza gratuita.";
 
-// TODO_CLIENT (DECISIONS.md): these are Andrea's own subcontractor COSTS
-// (website editor €500–800, photographer €200–350/shoot for 20–30 assets),
-// not client-facing prices — no markup/margin decision has been made, so no
-// price ships for these yet. Rendered as "price on request" until Andrea
-// sets one.
-export const addonServices: { name: string; description: string }[] = [
+// DECISIONS.md #10. Website editor is still Andrea's raw cost (€500–800,
+// no client markup set) — ships as "su richiesta." The photographer line
+// now has real client-facing prices he set directly (€300 in zona / €400
+// fuori regione), distinct from what it costs him (€180 / €250) — priceNote
+// is shown on-page; absence of priceNote still means "su richiesta."
+export const addonServices: { name: string; description: string; priceNote?: string }[] = [
   {
     name: "Servizio fotografico",
-    description: "Uno shooting dedicato per 20–30 contenuti pronti da pubblicare.",
+    description: "Uno shooting dedicato di circa 4 ore, per 20–30 contenuti pronti da pubblicare.",
+    priceNote: "€300 in zona · €400 fuori regione",
   },
   {
     name: "Modifiche extra al sito",
     description: "Interventi one-off fuori dal piano di gestione mensile.",
+    priceNote: "€500",
   },
 ];
 

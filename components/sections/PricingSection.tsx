@@ -82,7 +82,8 @@ export function PricingSection() {
                       <span className="font-mono text-mono-label uppercase opacity-70">/ mese</span>
                     </div>
                     <p className="mt-1 font-mono text-mono-label uppercase text-periwinkle">
-                      + {currency.format(plan.oneTime)} una tantum
+                      + {plan.fromPrice ? "a partire da " : ""}
+                      {currency.format(plan.oneTime)} una tantum
                     </p>
                     {(addonApplies || plan.includesSite) && (
                       <p className="mt-1 font-body text-body-s">
@@ -122,8 +123,8 @@ export function PricingSection() {
                     <span className="font-display text-lg font-black">{addon.name}</span>
                     <p className="mt-1 font-body text-body-s text-bianco/75">{addon.description}</p>
                   </div>
-                  <span className="shrink-0 font-mono text-mono-label uppercase text-bianco/60">
-                    su richiesta
+                  <span className="shrink-0 text-right font-mono text-mono-label uppercase text-bianco/60">
+                    {addon.priceNote ?? "su richiesta"}
                   </span>
                 </div>
               </PaperCard>
