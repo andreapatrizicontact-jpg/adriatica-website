@@ -324,3 +324,140 @@ export const progettiCards: ProgettoCard[] = [
     accent: "abisso",
   },
 ];
+
+// /metodo (brief §5.2). Positioning copy (Loro/Noi, vantaggi, FAQ) is
+// opinion/brand voice, not factual claims about competitors — written to
+// match confirmed real facts (solo + 2 collaboratori, no contracts data,
+// real pricing already on this page) rather than inventing stats or client
+// counts. Founder pull-quote is original, not a client-supplied quote.
+export const loroNoi: { loro: string; noi: string }[] = [
+  { loro: "Ti vendono un pacchetto standard.", noi: "Partiamo da una consulenza gratuita per capire cosa ti serve davvero." },
+  { loro: "Contano i like.", noi: "Contiamo richieste, prenotazioni, vendite." },
+  { loro: "Un account manager tra te e chi lavora.", noi: "Parli direttamente con chi crea i contenuti." },
+  { loro: "Contratti lunghi, uscita difficile.", noi: "Nessun vincolo nascosto — restiamo se il lavoro funziona." },
+  { loro: "Contenuti generici, uguali per ogni cliente.", noi: "Ogni piano editoriale parte dal tuo settore specifico." },
+  { loro: "I file restano loro.", noi: "Tutto quello che creiamo è tuo, sempre." },
+  { loro: "Report trimestrali, se va bene.", noi: "Report mensile, con dati veri — non vanity metrics." },
+  { loro: "Team enorme, comunicazione lenta.", noi: "Studio piccolo — io più due collaboratori — risposte rapide." },
+];
+
+export type ProcessoStep = { title: string; bullets: string[] };
+
+export const processoSteps: ProcessoStep[] = [
+  {
+    title: "Analisi",
+    bullets: [
+      "Studio del tuo settore e dei competitor",
+      "Audit dei canali social e del sito esistenti",
+      "Individuazione del pubblico reale",
+    ],
+  },
+  {
+    title: "Strategia",
+    bullets: [
+      "Obiettivi concreti, non vanity metrics",
+      "Piano editoriale su misura",
+      "Selezione dei canali giusti, non tutti",
+    ],
+  },
+  {
+    title: "Produzione",
+    bullets: [
+      "Foto, video, grafiche e copy",
+      "Format pensati per come le persone guardano davvero i social",
+      "Revisione prima della pubblicazione",
+    ],
+  },
+  {
+    title: "Distribuzione",
+    bullets: [
+      "Calendario di pubblicazione",
+      "Ads mirate quando ha senso, non sempre",
+      "Ottimizzazione di orari e formati",
+    ],
+  },
+  {
+    title: "Community",
+    bullets: [
+      "Risposta a commenti e messaggi",
+      "Gestione di recensioni e situazioni delicate",
+      "Costruzione di relazioni reali, non solo numeri",
+    ],
+  },
+  {
+    title: "Report & iterazione",
+    bullets: [
+      "Report mensile con dati veri",
+      "Call di allineamento",
+      "Aggiustamenti basati su cosa funziona davvero",
+    ],
+  },
+];
+
+export const founderQuote = {
+  quote:
+    "Non voglio gestire il tuo profilo social. Voglio essere il motivo per cui i tuoi clienti scelgono te invece del tuo concorrente.",
+  attribution: brand.founder,
+};
+
+export const vantaggi: { title: string; description: string }[] = [
+  { title: "Zero intermediari", description: "Parli sempre con chi lavora davvero sul tuo progetto." },
+  { title: "Preventivo chiaro", description: "Tariffe reali, nessuna sorpresa dopo la firma." },
+  { title: "Contenuti su misura", description: "Pensati per il tuo settore, non template riciclati." },
+  { title: "Report mensile", description: "Dati veri, non screenshot di vanity metrics." },
+  { title: "Nessun vincolo nascosto", description: "Restiamo insieme finché il lavoro ha senso per entrambi." },
+  { title: "Consulenza gratuita", description: "Sempre, prima di qualsiasi impegno." },
+];
+
+export const metodoFaq: { question: string; answer: string }[] = [
+  {
+    question: "Quanto costa lavorare con voi?",
+    answer:
+      "Dipende dal servizio e dal piano — trovi le tariffe reali qui sopra. Ogni preventivo viene comunque calibrato dopo la consulenza gratuita.",
+  },
+  {
+    question: "Quanto dura un contratto?",
+    answer: "Non ci sono vincoli nascosti. Restiamo se il lavoro funziona, non perché sei legato a un contratto lungo.",
+  },
+  {
+    question: "Lavorate anche fuori Roma?",
+    answer:
+      "Sì, con clienti in tutta Italia. Per gli shooting fotografici fuori regione i costi di trasferta sono inclusi nel preventivo.",
+  },
+  {
+    question: "Chi crea davvero i contenuti?",
+    answer:
+      "Andrea, più due collaboratori esterni per foto/video e sviluppo. Nessun team enorme, nessun passaggio di mano.",
+  },
+  {
+    question: "Cosa succede se non siete la soluzione giusta per me?",
+    answer:
+      "Te lo diciamo nella consulenza gratuita, senza girarci intorno — non ha senso iniziare una collaborazione che non funziona.",
+  },
+  {
+    question: "Gestite anche le campagne pubblicitarie (Ads)?",
+    answer:
+      "Sì — la gestione è inclusa nei piani, il budget pubblicitario resta a tuo carico, così sai sempre dove va ogni euro.",
+  },
+  {
+    question: "Posso vedere dei lavori reali?",
+    answer:
+      "Trovi i nostri progetti nella sezione Progetti in home page. Lo studio è giovane — ogni caso pubblicato è reale, non un archivio gonfiato.",
+  },
+  {
+    question: "Come iniziamo?",
+    answer:
+      "Prenoti una call gratuita di 30 minuti, ci raccontiamo la situazione, e se ha senso ti mandiamo un preventivo su misura.",
+  },
+];
+
+// SEO long-form — brief §5.2 target keywords, honestly labeled on-page as
+// written for search rather than pretending it's more editorial copy.
+export const metodoSeo = {
+  eyebrow: "Per Google — SEO",
+  paragraphs: [
+    "Cerchi un'agenzia social media marketing a Roma? Adriatica è uno studio di comunicazione digitale che segue aziende, professionisti e attività locali nella gestione social, nella creazione di contenuti e nello sviluppo di siti web che convertono davvero.",
+    "Ci occupiamo di gestione social aziende in settori diversi — dal fitness alla ristorazione, dal socio-sanitario all'ospitalità — con un approccio diretto: niente report gonfiati, niente vanity metrics. Come social media manager a Roma lavoriamo su strategia, contenuti e dati insieme, non uno alla volta.",
+    "Se cerchi un partner per la tua presenza online, la prima consulenza è sempre gratuita.",
+  ],
+};
