@@ -2,6 +2,8 @@ import { brand } from "@/content/site";
 import { Pill } from "@/components/ui/Pill";
 import { DominoLoader } from "@/components/ui/DominoLoader";
 import { ScrollScatter, type ScatterCard } from "@/components/sections/ScrollScatter";
+import { ServicesSection } from "@/components/sections/ServicesSection";
+import { NicheSection } from "@/components/sections/NicheSection";
 
 // Placeholder for Phase 1 (chrome only) — the real hero/hero-shader/full page
 // composition lands in Phase 2 and Phase 3 per the brief's phase plan. The
@@ -45,6 +47,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ServicesSection />
+      <NicheSection />
 
       <section data-world="dark" className="section-y-tight px-6 sm:px-10">
         <div className="mx-auto max-w-[1400px]">

@@ -23,12 +23,23 @@ these lands. None are invented.
 6. Calendly (or equivalent) booking URL for `/consulenza`.
 7. Social handles — Instagram, TikTok, LinkedIn.
 8. Production domain, for canonicals/OG/sitemap.
-9. **Real pricing.** The `/metodo` pricing section (3 plans, monthly/annual
-   toggle) ships with placeholder figures (€490/€990/€1.890 per month) — round,
-   plausible numbers picked to make the UI demonstrable, not real rates. Needs
-   either real numbers from Andrea or a decision to keep it custom-quote-only
-   (common for agencies, and arguably the more honest choice given "ogni
-   progetto riceve un preventivo su misura" is already the framing).
+9. ~~Real pricing~~ — **resolved**, real figures now sourced from Andrea's own
+   invoices/proposals (see mid-build decisions below).
+10. **Markup on subcontractor costs.** Andrea gave costs, not prices, for two
+    add-ons: website editor (€500–800) and photographer (€200–350/shoot → 20–30
+    assets). No margin decision has been made, so `/metodo`'s "Extra" section
+    lists them with "su richiesta" instead of a number — needs a real
+    client-facing price (or a standing markup rule) from Andrea.
+11. **Real logo file.** The invoice PDF (`Fattura 450 euro.pdf`) shows a
+    different, more finished wordmark than the story-slide reference used in
+    Phase 0 — all-caps "ADRIATICA." in a bold grotesk with a sparkle/star (✦)
+    accent glyph instead of a colored period, plus a small dark pill
+    secondary lockup. This looks like a real designed asset, not a draft —
+    worth asking whether a vector source file exists, since it would replace
+    the currently-missing `logo-adriatica.svg` in MISSING-ASSETS.md outright.
+    Not adopted for the live wordmark without confirmation — the two
+    references (story slides vs. this invoice) may be from different design
+    passes and I don't want to guess which one is current.
 
 ## Decisions made without stopping (Phase 0)
 
@@ -118,3 +129,34 @@ these lands. None are invented.
   only. Built `PricingSection` on `/metodo` (3 plans × monthly/annual via
   Toggle3D, "Mese"/"Anno" — his original left/right labels wouldn't fit the
   switch's width) with placeholder figures, see open question #9 above.
+- **Pricing rebuilt with real figures from three actual client documents**
+  Andrea attached (`Fattura 450 euro.pdf`, `Proposta Aniela Corsisi.pdf`,
+  `fattura_proforma_servizi_digitali_8_rate.pdf`), replacing the placeholder
+  numbers entirely. This also surfaced that the "monthly/annual" toggle
+  framing I'd invented doesn't match how Andrea actually prices anything —
+  none of the three real documents show an annual-prepay discount. Repurposed
+  Toggle3D instead for something evidenced: the Aniela proposal treats
+  "gestione sito web" (€200/mese) as a separate line from "gestione social"
+  (€300/mese), so the toggle now adds/removes that real add-on rate across
+  tiers. Used the invoice's *list* price for brand identity (€500), not the
+  €350 one-off negotiated discount on that specific job — a discount given to
+  one client isn't a standing rate. Caught and fixed a real bug before
+  shipping: the toggle was double-charging Full Service, since that tier's
+  base €500/mese already bundles site management (300+200) per the real
+  proposal — added `includesSite` to skip the addon there instead of adding
+  it on top (would've shown €700 instead of the correct €500).
+- **Photographer/website-editor costs kept out of client-facing prices.**
+  Andrea labeled these explicitly as costs ("the cost I have"), not prices —
+  mixing his subcontractor cost with a client rate without a margin decision
+  would either underprice the service or fabricate a markup he never set. The
+  two "Extra" line items ship with "su richiesta" instead of a number; see
+  open question #10.
+- **Real services and target niches added.** Andrea listed the full service
+  catalogue (15 items) and three target verticals (Fitness; Sanitario &
+  Socio-Sanitario; Ristorazione, the last one covering hotels, discoteche and
+  Airbnb too based on where he added them). Grouped the 15 services into 5
+  pillars for `ServicesSection` — the granular ones (report mensile, analisi
+  competitor, impostazione profili…) weren't repeated as their own cards
+  since they already appear as concrete deliverables inside the pricing
+  plans' feature lists. Built `NicheSection` for the verticals. Both wired
+  into the home page between the hero and the Progetti gallery.
