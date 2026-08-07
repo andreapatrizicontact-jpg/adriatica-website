@@ -8,7 +8,7 @@ Tracks brief §8's asset list against what actually exists in `ADRIATICA DATA`
 | Brief asset | Source file | Notes |
 |---|---|---|
 | Wordmark reference | `source/business-card.png` (1050×600) | Raster only. Per DESIGN-PLAN §1/brief §3.2 the `Adriatica.` wordmark is typeset live in Archivo Black (`components/hero/Wordmark.tsx`), not an image, so this PNG is reference-only for exact color/spacing, not a shipped asset. |
-| `andrea.jpg` (founder portrait) | not present | still missing — see below |
+| `andrea-patrizi.jpg` (founder portrait) | `public/team/andrea-patrizi.jpg` | Real photo, supplied by Andrea directly in chat (casual portrait, Colosseum). In use on the home page "Chi siamo" section. |
 | Story-slide backgrounds/copy | `source/stories-presentazione/1.png`–`11.png` | These are the actual Instagram story slides — confirmed source for the exact `--adriatic`/`--lime`/`--kraft` tones, the torn-cardboard texture, the taped-arrow cutout motif, and several copy lines already quoted verbatim into DESIGN-PLAN/brief (§5). Used as the visual reference for `TornEdge` and `PaperCutout` builds in Phase 2, not sliced directly (they're flattened story exports, not layered source files). |
 | IG highlight-cover icons | `source/3.png`, `4.png`, `5.png` (compass rose on `--adriatic`, 3375×4219) | Not used in the site build — highlight covers, not site assets. Kept for reference only. |
 
@@ -25,8 +25,6 @@ Tracks brief §8's asset list against what actually exists in `ADRIATICA DATA`
   site wordmark stays typeset text (Poppins Black, matching the confirmed
   PNG) rather than an embedded image, so this only matters for favicon/OG
   generation in Phase 6, which can work from the PNG in the meantime.
-- `andrea.jpg` — founder portrait for "Chi siamo" and `/consulenza`. Placeholder
-  block (initials monogram on `--abisso`) ships until a real photo is supplied.
 - `kraft-edge.png/svg` as a standalone cutout asset — being built as a custom
   SVG path in `ui/TornEdge.tsx` instead (procedural, not a bitmap), styled to
   match the texture visible in the story slides.

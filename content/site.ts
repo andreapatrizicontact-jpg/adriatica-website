@@ -451,6 +451,46 @@ export const metodoFaq: { question: string; answer: string }[] = [
   },
 ];
 
+export const consulenza = {
+  eyebrow: "03 — Consulenza",
+  heading: "30 minuti, gratis, senza impegno.",
+  sub: "Una call diretta con Andrea per capire se ha senso lavorare insieme — prima ancora di parlare di prezzi.",
+  coversHeading: "Cosa copriamo nella call",
+  covers: [
+    "La situazione attuale del tuo brand: cosa funziona, cosa no, cosa manca.",
+    "Un'idea concreta di strategia — non generica, calibrata sul tuo settore.",
+    "Tempi e costi reali, così sai già a cosa vai incontro prima di decidere.",
+  ],
+  isNotHeading: "Cosa NON è",
+  isNot: "Non è una call di vendita a pressione. Se non ha senso lavorare insieme, te lo diciamo — gratis, senza secondi fini.",
+  stepsHeading: "Come funziona",
+  steps: [
+    { title: "Prenoti", description: "Scegli il giorno e l'ora che preferisci dal calendario qui sotto." },
+    { title: "Ci sentiamo", description: "30 minuti al telefono o in videocall, direttamente con Andrea." },
+    { title: "Ricevi un piano", description: "Se ha senso proseguire, ti mandiamo un preventivo su misura entro pochi giorni." },
+  ],
+  formHeading: "Preferisci scriverci prima?",
+  formSub: "Lasciaci due righe e ti rispondiamo entro 24 ore per fissare la call.",
+  faq: [
+    {
+      question: "La call è davvero gratuita?",
+      answer: "Sì, sempre. Nessuna carta di credito, nessun impegno.",
+    },
+    {
+      question: "Con chi parlo?",
+      answer: "Direttamente con Andrea Patrizi, il fondatore — non con un commerciale.",
+    },
+    {
+      question: "Devo prepararmi qualcosa?",
+      answer: "No, basta che tu sappia dirci a grandi linee di cosa si occupa il tuo brand. Al resto pensiamo insieme in call.",
+    },
+    {
+      question: "E se dopo la call decido di non proseguire?",
+      answer: "Nessun problema — la consulenza resta gratuita in ogni caso, senza vincoli.",
+    },
+  ],
+};
+
 // SEO long-form — brief §5.2 target keywords, honestly labeled on-page as
 // written for search rather than pretending it's more editorial copy.
 export const metodoSeo = {
