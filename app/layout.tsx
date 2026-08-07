@@ -6,6 +6,7 @@ import { StickyBar } from "@/components/nav/StickyBar";
 import { SiteHeader } from "@/components/nav/SiteHeader";
 import { Footer } from "@/components/layout/Footer";
 import { ContactRail } from "@/components/nav/ContactRail";
+import { OfflineBanner } from "@/components/OfflineBanner";
 
 const archivo = Archivo({
   subsets: ["latin", "latin-ext"],
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <main className="flex-1">{children}</main>
         <Footer />
         <ContactRail />
+        <OfflineBanner />
       </body>
     </html>
   );

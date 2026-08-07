@@ -210,3 +210,18 @@ these lands. None are invented.
   Respects `prefers-reduced-motion`: the resting depth stack (glass pane,
   badge rings) stays, since that's layout, not motion — only the
   hover-triggered tilt/push is disabled.
+- **Offline mascot, built as a real connection-status banner.** Andrea's
+  snippet (preet_7613) was CSS-only — no HTML/SVG was pasted with it, so
+  `ui/OfflineFace.tsx` is a reconstruction built to match the given
+  keyframes' intent (blink, wandering pupils, a mouth that draws itself in),
+  not a pixel copy of artwork that was never provided. Wired to a real
+  `navigator.onLine` + `online`/`offline` listener (`lib/onlineStatus.ts`,
+  same `useSyncExternalStore` pattern as StickyBar/chromeAccent) rather than
+  just being a static decoration. Made it a non-blocking bottom-left toast
+  instead of a full-screen takeover — already-loaded pages keep working
+  offline, so blocking the whole screen would overstate the problem; it
+  auto-clears the instant the browser fires `online` again. Positioned
+  bottom-left specifically to avoid colliding with `ContactRail`, which
+  already owns bottom-right. Verified in-browser by faking `navigator.onLine`
+  and dispatching real `online`/`offline` events, since there's no real
+  network to pull.

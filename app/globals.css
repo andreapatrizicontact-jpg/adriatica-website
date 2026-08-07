@@ -517,3 +517,136 @@ body {
     transform: none;
   }
 }
+
+/* Offline-connection mascot — adapted from a Uiverse.io snippet
+   (preet_7613), which was CSS-only. The original's exact markup wasn't
+   pasted, so the SVG in ui/OfflineFace.tsx is a reconstruction built to
+   match these keyframes' intent (blink, wandering pupils, a mouth that
+   draws itself in), not a pixel copy of an artwork we never had. */
+.face__eyes,
+.face__eye-lid,
+.face__mouth-left,
+.face__mouth-right,
+.face__nose,
+.face__pupil {
+  animation: eyes 1s 0.3s forwards;
+}
+
+.face__eye-lid,
+.face__pupil {
+  animation-duration: 4s;
+  animation-delay: 1.3s;
+  animation-iteration-count: infinite;
+}
+
+.face__eye-lid {
+  animation-name: eye-lid;
+}
+.face__mouth-left {
+  animation-name: mouth-left;
+}
+.face__mouth-right {
+  animation-name: mouth-right;
+}
+.face__nose {
+  animation-name: nose;
+}
+.face__pupil {
+  animation-name: pupil;
+}
+
+@keyframes eye-lid {
+  0%,
+  40%,
+  45%,
+  100% {
+    transform: translateY(0);
+  }
+  42.5% {
+    transform: translateY(17.5px);
+  }
+}
+
+@keyframes eyes {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pupil {
+  0%,
+  37.5%,
+  40%,
+  45%,
+  87.5%,
+  100% {
+    stroke-dashoffset: 0;
+    transform: translate(0, 0);
+  }
+  12.5%,
+  25%,
+  62.5%,
+  75% {
+    transform: translate(-6px, 0);
+  }
+  42.5% {
+    stroke-dashoffset: 35;
+    transform: translate(0, 3px);
+  }
+}
+
+@keyframes mouth-left {
+  from,
+  50% {
+    stroke-dashoffset: -102;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes mouth-right {
+  from,
+  50% {
+    stroke-dashoffset: 102;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes nose {
+  from {
+    transform: translate(0, -4px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 0.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .face__eyes,
+  .face__eye-lid,
+  .face__mouth-left,
+  .face__mouth-right,
+  .face__nose,
+  .face__pupil {
+    animation: none;
+  }
+  /* land in the resting "settled" pose instead of the mid-blink/mid-look
+     frame an animation freeze could land on */
+  .face__mouth-left,
+  .face__mouth-right {
+    stroke-dashoffset: 0;
+  }
+  .face__nose {
+    opacity: 0.6;
+  }
+}
