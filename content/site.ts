@@ -25,8 +25,8 @@ export const brand = {
 export const contact = {
   phone: "+39 352 271 0721",
   phoneHref: "tel:+393522710721",
-  email: "andreapatrizicontact@gmail.com",
-  emailHref: "mailto:andreapatrizicontact@gmail.com",
+  email: "contact.adriaticastudio@gmail.com",
+  emailHref: "mailto:contact.adriaticastudio@gmail.com",
   whatsappHref: "https://wa.me/393522710721",
   // Confirmed by Andrea directly — Roma is the base city (DECISIONS.md #1).
   cityDisplay: "Roma",
