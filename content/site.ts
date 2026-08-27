@@ -37,7 +37,7 @@ export const contact = {
 // href is set. LinkedIn is Andrea's personal profile, not a company page —
 // the only one he sent, so used as-is rather than inventing a company page.
 export const socials: { label: string; href: string }[] = [
-  { label: "Instagram", href: "https://www.instagram.com/adriaticacomunicazione/" },
+  { label: "Instagram", href: "https://www.instagram.com/adriaticastudio" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/andrea-patrizi-126491379" },
 ];
 

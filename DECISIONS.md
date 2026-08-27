@@ -41,7 +41,9 @@ these lands. None are invented.
    TikTok — not a gap, just not applicable; nothing renders for it and
    nothing further to chase here. Note: the LinkedIn link is Andrea's
    personal profile, not a company page — used as-is since it's the only
-   one he sent.
+   one he sent. **Update:** Instagram handle changed from
+   `adriaticacomunicazione` to `adriaticastudio` (matches the domain name),
+   updated in `socials`.
 8. ~~Production domain~~ — **resolved**, Andrea bought `adriaticastudio.com`
    on Namecheap. Wired into `metadataBase`, canonical URLs, `sitemap.ts`,
    `robots.ts`, and the OG image (see Phase 6 entry below). Site isn't
