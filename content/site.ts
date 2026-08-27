@@ -39,6 +39,7 @@ export const contact = {
 export const socials: { label: string; href: string }[] = [
   { label: "Instagram", href: "https://www.instagram.com/adriaticastudio" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/andrea-patrizi-126491379" },
+  { label: "Google", href: "https://share.google/GDU4L3LF8hgRYi9Gg" },
 ];
 
 // Real Calendly link, confirmed by Andrea directly (DECISIONS.md #6).
