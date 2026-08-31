@@ -93,115 +93,86 @@ export const legal = {
 
 export type PricingPlan = {
   name: string;
+  price: number;
+  unit: "mese" | "una tantum";
   tagline: string;
-  /** one-time setup/build cost */
-  oneTime: number;
-  /** recurring monthly management fee, social-only */
-  monthly: number;
   features: string[];
-  /** shown only for Avvio — a separately-rateized one-time cost, not part of the +Sito toggle */
-  siteNote?: string;
-  /** Full Service's `monthly` already bundles site management (300 social +
-   * 200 sito, per the real proposal) — the +Sito toggle must skip it rather
-   * than adding another 200 on top. */
-  includesSite?: boolean;
-  /** oneTime is the top of a real range Andrea gave, not a fixed figure — render as "a partire da" */
-  fromPrice?: boolean;
+  /** shown only for Plus — the Meta ads-budget clarification */
+  note?: string;
   featured?: boolean;
 };
 
-// Real rates, taken directly from Andrea's own documents (not placeholders):
-// - "Fattura 450 euro.pdf" — Guida creazione brand €450
-// - "Proposta Aniela Corsisi.pdf" — sito custom €2.000 una tantum, brand
-//   identity €500 una tantum (list; €350 was a one-off negotiated discount,
-//   not used here), gestione social €300/mese, gestione sito €200/mese
-// - "fattura_proforma_servizi_digitali_8_rate.pdf" — the launch-tier
-//   structure: €140 una tantum (setup IG+FB+TikTok+studio competitor),
-//   €430/mese canone (dal 9° mese), €500 modifica sito rateizzata in 8×€62,50
-// The "+ Gestione Sito" toggle applies Andrea's own €200/mese site-management
-// rate (from the Aniela proposal) uniformly across tiers as a standard
-// add-on — not fabricated, but generalized from one real quote to a
-// repeatable rate; flagged in DECISIONS.md in case that's not what he wants.
-export const siteManagementAddon = {
-  monthly: 200,
-  label: "Gestione e aggiornamento sito web",
-};
+// Replaces the earlier Avvio/Crescita/Full Service structure and the
+// €200/mese site-management toggle entirely — a full pricing-model
+// change Andrea gave directly, not an incremental tweak (DECISIONS.md).
+// Capped at 9 clients at a time, stated on-page as a real constraint, not
+// scarcity marketing.
+export const pricingHeading = "Tre modi di lavorare insieme";
+export const pricingSub =
+  "Prendo un massimo di nove clienti alla volta. Non è una politica commerciale: è il numero oltre il quale non riesco più a seguire nessuno come si deve.";
 
 export const pricingPlans: PricingPlan[] = [
   {
-    name: "Avvio",
-    tagline: "La tariffa di lancio per chi parte adesso.",
-    oneTime: 140,
-    monthly: 430,
+    name: "Base",
+    price: 550,
+    unit: "mese",
+    tagline: "Per chi vuole un profilo curato davvero, senza pubblicità a pagamento.",
     features: [
-      "Impostazione profili Instagram, Facebook e TikTok",
-      "Studio competitor iniziale",
-      "2 post + 1 reel a settimana su Instagram",
-      "Locandine eventi settimanali",
-      "Gestione campagne Ads (budget escluso)",
-      "Community management e messaggistica",
-      "Report settimanale",
+      "10 contenuti e 2 reel al mese su Instagram",
+      "Calendario editoriale condiviso in anticipo",
+      "Profilo Google aggiornato, risposta a tutte le recensioni",
+      "Risposta a messaggi e commenti",
+      "Report mensile: cosa ha funzionato e cosa cambia il mese dopo",
     ],
-    siteNote: "Modifica sito a parte, da €500 (rateizzabile in 8 mesi)",
   },
   {
-    name: "Crescita",
-    tagline: "Il piano più scelto da chi vuole risultati costanti.",
-    oneTime: 500,
-    monthly: 300,
+    name: "Plus",
+    price: 700,
+    unit: "mese",
+    tagline: "Per chi ha serate o periodi vuoti da riempire e vuole andare oltre chi già lo conosce.",
     features: [
-      "Brand identity completa — logo, palette, sistema visivo",
-      "Creazione e gestione contenuti social",
-      "Piano editoriale mensile",
-      "Gestione campagne Ads (budget escluso)",
-      "Community management",
-      "Monitoraggio e ottimizzazione continua",
+      "Tutto quello che c'è nel piano Base",
+      "Campagne Meta: creatività dedicate, targeting, ottimizzazione continua",
+      "Piano editoriale mensile costruito sugli obiettivi del periodo",
+      "Report con costo per contatto, non solo copertura",
     ],
+    note: "Il budget delle campagne è a parte e si paga direttamente a Meta. L'account resta intestato a te.",
     featured: true,
   },
   {
-    name: "Full Service",
-    tagline: "Per brand che vogliono sito e social insieme.",
-    // Andrea confirmed a real site-build range (€1.800–2.000 for "un sito
-    // complesso e pronto") — using the low end + brand identity (500) as an
-    // honest "a partire da" floor rather than the flat 2.500 (2.000+500)
-    // this used to show.
-    oneTime: 2300,
-    fromPrice: true,
-    monthly: 500,
+    name: "Identità",
+    price: 1200,
+    unit: "una tantum",
+    tagline: "Il marchio e il sistema visivo. Si fa una volta e resta tuo, anche se poi non lavoriamo più insieme.",
     features: [
-      "Tutto il piano Crescita",
-      "Sito web professionale su misura",
-      "UX/UI design responsive",
-      "SEO on-page di base",
-      "Database, automazioni ed export anagrafica clienti",
-      "Gestione e aggiornamento continuo del sito incluso",
+      "Logo principale e versione per usi ridotti",
+      "Palette colori con codici per stampa e digitale",
+      "Caratteri tipografici e regole d'uso",
+      "Kit social: copertine, formati post e storie",
+      "Consegna in 2–3 settimane",
     ],
-    includesSite: true,
   },
 ];
 
-export const pricingNote =
-  "Tariffe reali dei nostri progetti — ogni preventivo viene comunque calibrato dopo la consulenza gratuita.";
-
-// DECISIONS.md #10. Photography has real client prices too (€300 in zona /
-// €400 fuori regione, vs. his own cost of €180/€250) but Andrea asked to
-// keep it as "su richiesta" on-page anyway — kept here as a comment for
-// reference, not wired to priceNote. Website edits: Andrea confirmed the
-// client price genuinely varies by the specific edit requested (not a
-// single flat rate) — "da €500" keeps his real anchor figure as a floor
-// rather than presenting it as one fixed price.
-export const addonServices: { name: string; description: string; priceNote?: string }[] = [
+export const pricingExtras: { name: string; description: string; priceNote: string }[] = [
   {
-    name: "Servizio fotografico",
-    description: "Uno shooting dedicato di circa 4 ore, per 20–30 contenuti pronti da pubblicare.",
+    name: "Sito web",
+    description:
+      "Progettazione su misura, responsive, SEO di base, automazioni ed export anagrafica. Manutenzione: due ore al mese incluse, le successive si concordano.",
+    priceNote: "da 2.000 €",
   },
   {
-    name: "Modifiche extra al sito",
-    description: "Interventi one-off fuori dal piano di gestione mensile.",
-    priceNote: "da €500",
+    name: "Giornata di riprese",
+    description:
+      "Foto e video in loco. Sempre una voce separata dal canone, mai inclusa: il materiale girato copre circa tre mesi di pubblicazioni.",
+    priceNote: "100 €",
   },
 ];
+
+export const pricingGuarantee = {
+  heading: "Il tuo profilo pubblica anche se io non ci sono",
+  body: "Ogni cliente riceve fin dal primo mese un calendario già prodotto che copre quattro-sei settimane. Se resto irraggiungibile per più di dieci giorni consecutivi e il calendario non esce come previsto, quel mese non lo paghi.",
+};
 
 export type ServicePillar = {
   name: string;

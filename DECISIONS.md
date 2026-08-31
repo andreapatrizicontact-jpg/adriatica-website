@@ -409,3 +409,16 @@ landed in `content/site.ts` as it arrived rather than being queued:
   cookie-consent banner is legally needed yet — but if analytics get added
   later (Vercel Analytics, GA, etc.), both this page and a consent banner
   will need building then.
+- **Full pricing-model replacement on `/metodo`, given directly by Andrea.**
+  Replaces Avvio/Crescita/Full Service (and the €200/mese site-management
+  toggle) with three flat plans — Base (€550/mese), Plus (€700/mese,
+  featured, includes Meta ads management with budget billed separately to
+  Meta), Identità (€1.200 una tantum, brand/visual identity only). Website
+  build moved out of the plans entirely into a one-off Extra ("da 2.000 €",
+  corrected down from an initial "da 2.300 €" in the same message — used
+  the final figure). Photography addon renamed "Giornata di riprese" at a
+  flat €100 (previously "su richiesta"). New: a stated 9-client cap and a
+  real guarantee (no charge for a month if unreachable 10+ consecutive days
+  and the client's content calendar slips). Shipped an offline Artifact
+  preview first per Andrea's explicit request before touching the live
+  site — approved with the one price correction above.
