@@ -18,7 +18,7 @@ export default function Home() {
         <CausticsCanvas />
         <div className="relative mx-auto max-w-[1400px]">
           <p className="font-mono text-mono-label uppercase text-bianco/70">{hero.eyebrow}</p>
-          <h1 className="mt-4 font-display text-display-2xl font-black">{hero.headline}</h1>
+          <h1 className="mt-4 break-words font-display text-display-2xl font-black">{hero.headline}</h1>
           <p className="mt-6 max-w-xl font-body text-body-l text-bianco/85">{hero.sub}</p>
           <div className="mt-8 flex flex-wrap items-center gap-6">
             <Pill href="/consulenza" variant="chunky">

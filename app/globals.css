@@ -22,7 +22,12 @@
   --font-mono: var(--font-geist-mono);
 
   /* 1.2 type scale */
-  --text-display-2xl: clamp(3.5rem, 11vw, 11rem);
+  /* Floor lowered from 3.5rem: at that floor the 11vw preferred value never
+     won on any phone width (it only overtakes the floor above ~509px), so
+     the headline sat flat at 56px on every phone regardless of screen size
+     — wide enough that "Trasformiamo" alone couldn't fit a 375px screen and
+     got cut off. 2.25rem lets it actually scale down on real phone widths. */
+  --text-display-2xl: clamp(2.25rem, 11vw, 11rem);
   --text-display-2xl--line-height: 0.88;
   --text-display-2xl--letter-spacing: -0.03em;
 
