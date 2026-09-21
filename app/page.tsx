@@ -5,6 +5,8 @@ import { CausticsCanvas } from "@/components/hero/CausticsCanvas";
 import { ScrollScatter } from "@/components/sections/ScrollScatter";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { NicheSection } from "@/components/sections/NicheSection";
+import { BollinoSection } from "@/components/sections/BollinoSection";
+import { RecensioniSection } from "@/components/sections/RecensioniSection";
 import { ChiSiamoSection } from "@/components/sections/ChiSiamoSection";
 import { ContactCTASection } from "@/components/sections/ContactCTASection";
 
@@ -47,6 +49,8 @@ export default function Home() {
       <NicheSection />
       <TornEdge from="blue" to="dark" />
 
+      <BollinoSection />
+
       <section id="progetti" data-world="dark" className="section-y-tight px-6 sm:px-10">
         <div className="mx-auto max-w-[1400px]">
           <p className="font-mono text-mono-label uppercase text-bianco/60">Progetti</p>
@@ -63,7 +67,9 @@ export default function Home() {
         </div>
       </section>
 
-      <TornEdge from="dark" to="blue" />
+      <TornEdge from="dark" to="paper" />
+      <RecensioniSection />
+      <TornEdge from="paper" to="blue" />
       <ChiSiamoSection />
 
       <ContactCTASection />

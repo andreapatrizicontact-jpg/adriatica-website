@@ -62,7 +62,7 @@ export function ServiceCard3D({ pillar }: { pillar: ServicePillar }) {
         </div>
 
         <div className="svc3d-bottom">
-          <Link href="/consulenza" className="svc3d-view-more">
+          <Link href={pillar.href ?? "/consulenza"} className="svc3d-view-more">
             Parliamone
             <ArrowIcon />
           </Link>

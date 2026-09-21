@@ -22,6 +22,7 @@ export const footerLinkGroups: FooterLinkGroup[] = [
   {
     title: "Servizi",
     links: [
+      { label: "Il bollino trovabile", href: "/#bollino" },
       { label: "Social Media Management", href: "/metodo#servizi" },
       { label: "Content Creation", href: "/metodo#servizi" },
       { label: "Strategia & Ads", href: "/metodo#servizi" },

@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
+import { WipBadge } from "@/components/ui/WipBadge";
 
 export type ScatterCard = {
   fig: string;
@@ -14,6 +15,10 @@ export type ScatterCard = {
   /** 0 (far/slow) .. 1 (near/fast) — drives scroll speed, scale and z-order */
   depth: number;
   accent: "periwinkle" | "adriatic" | "abisso";
+  /** optional cover image — cards without one stay text-only, exactly as before */
+  image?: string;
+  /** shows the reusable WipBadge in the card's corner */
+  wip?: boolean;
 };
 
 const accentClasses: Record<ScatterCard["accent"], string> = {
@@ -21,6 +26,25 @@ const accentClasses: Record<ScatterCard["accent"], string> = {
   adriatic: "bg-adriatic text-bianco",
   abisso: "bg-abisso text-bianco",
 };
+
+function CardFace({ card }: { card: ScatterCard }) {
+  return (
+    <>
+      {card.wip && <WipBadge className="absolute right-3 top-3 z-10" />}
+      {card.image && (
+        <div className="relative aspect-[4/3] w-full overflow-hidden">
+          {/* plain img, not next/image: these are placeholder SVGs, and
+              Next's image optimizer refuses SVGs by default (security) */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={card.image} alt="" loading="lazy" className="h-full w-full object-cover" />
+        </div>
+      )}
+      <span className="font-mono text-[10px] uppercase tracking-[0.18em] opacity-70">{card.fig}</span>
+      <span className="font-display text-xl font-black leading-tight">{card.title}</span>
+      <span className="font-body text-body-s opacity-80">{card.subtitle}</span>
+    </>
+  );
+}
 
 // Only ever rendered from ScrollScatter's motion branch — the parent
 // substitutes a static grid entirely when prefers-reduced-motion is set, so
@@ -37,14 +61,10 @@ function Card({ card, progress }: { card: ScatterCard; progress: MotionValue<num
       style={{ x: `calc(${card.x * 32}vw - 50%)`, y, rotate, scale }}
     >
       <div
-        className={`flex w-[13rem] flex-col gap-3 rounded-none p-5 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] sm:w-[16rem] ${accentClasses[card.accent]}`}
+        className={`relative flex w-[13rem] flex-col gap-3 rounded-none p-5 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] sm:w-[16rem] ${accentClasses[card.accent]}`}
         style={{ zIndex: Math.round(card.depth * 10) }}
       >
-        <span className="font-mono text-[10px] uppercase tracking-[0.18em] opacity-70">
-          {card.fig}
-        </span>
-        <span className="font-display text-xl font-black leading-tight">{card.title}</span>
-        <span className="font-body text-body-s opacity-80">{card.subtitle}</span>
+        <CardFace card={card} />
       </div>
     </motion.div>
   );
@@ -68,13 +88,9 @@ export function ScrollScatter({ cards }: { cards: ScatterCard[] }) {
         {cards.map((card) => (
           <div
             key={card.fig}
-            className={`flex flex-col gap-3 p-5 ${accentClasses[card.accent]}`}
+            className={`relative flex flex-col gap-3 p-5 ${accentClasses[card.accent]}`}
           >
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] opacity-70">
-              {card.fig}
-            </span>
-            <span className="font-display text-xl font-black leading-tight">{card.title}</span>
-            <span className="font-body text-body-s opacity-80">{card.subtitle}</span>
+            <CardFace card={card} />
           </div>
         ))}
       </div>

@@ -179,6 +179,8 @@ export type ServicePillar = {
   description: string;
   /** the granular real deliverables Andrea listed, grouped under this pillar */
   includes: string[];
+  /** overrides ServiceCard3D's default "/consulenza" link — used by Bollino to point at #bollino instead */
+  href?: string;
 };
 
 // Andrea's full real service list, grouped into 5 pillars so "Cosa facciamo"
@@ -220,6 +222,13 @@ export const servicePillars: ServicePillar[] = [
     name: "Automazione & AI",
     description: "Bot e automazioni che fanno risparmiare tempo a te e al tuo team.",
     includes: ["AI automation", "Bot WhatsApp e Instagram"],
+  },
+  {
+    name: "Il bollino trovabile",
+    description:
+      "Dodici controlli sulla tua scheda Google, dagli orari a quello che risponde ChatGPT quando qualcuno cerca un locale come il tuo. Sistemiamo quello che non va e, quando li passi tutti, ricevi l'adesivo da mettere in vetrina.",
+    includes: ["Controllo scheda Google", "Sistemazione", "Bollino annuale"],
+    href: "#bollino",
   },
 ];
 
@@ -263,6 +272,10 @@ export type ProgettoCard = {
   rotate: number;
   depth: number;
   accent: "periwinkle" | "adriatic" | "abisso";
+  /** optional cover image — existing real cards stay text-only, new placeholder cards use this */
+  image?: string;
+  /** shows the reusable "Work in progress" badge (components/ui/WipBadge.tsx) */
+  wip?: boolean;
 };
 
 export const progettiCards: ProgettoCard[] = [
@@ -292,6 +305,31 @@ export const progettiCards: ProgettoCard[] = [
     rotate: -4,
     depth: 0.85,
     accent: "periwinkle",
+  },
+  {
+    // Numeri reali, dagli insight Instagram di Andrea (2026-09-21): +52,4%
+    // follower in 30 giorni, un post da 204.575 visualizzazioni/1.772
+    // follow. Niente immagine di copertina: come Nutriva/Rosso Pomodoro/La
+    // Tellina, testo reale invece di uno screenshot della dashboard.
+    fig: "PROGETTO 04",
+    title: "Personal brand",
+    subtitle: "+52% di follower in un mese, un post da oltre 200 mila visualizzazioni",
+    x: 0.7,
+    rotate: -6,
+    depth: 0.55,
+    accent: "adriatic",
+  },
+  {
+    // TODO(andrea): real photo + description coming — see public/projects/README.md
+    fig: "PROGETTO 05",
+    title: "Pilates studio",
+    subtitle: "In lavorazione — descrizione e immagini in arrivo",
+    x: -0.4,
+    rotate: 5,
+    depth: 0.75,
+    accent: "abisso",
+    image: "/projects/pilates-studio-placeholder.svg",
+    wip: true,
   },
   {
     fig: "PROSSIMO",
@@ -638,4 +676,49 @@ export const cookiePolicy = {
       ],
     },
   ],
+};
+
+// Home page — "Il bollino trovabile", brief dato da Andrea, 2026-09-20.
+// Copy sua, verbatim dove possibile; i 3 step sono lo stesso testo suo
+// spezzato in titolo/descrizione per lo stesso pattern di ComeFunzionaSection.
+export const bollino = {
+  label: "Il bollino trovabile",
+  heading: "Il bollino per i locali che si trovano davvero",
+  intro:
+    "Prima di venire da te, molti ti cercano su Google o chiedono a ChatGPT. Controlliamo la tua scheda su dodici punti, sistemiamo quello che non va e, quando li passi tutti, ricevi il bollino da mettere in vetrina. Vale un anno: poi rifacciamo i controlli e lo rinnoviamo.",
+  checksHeading: "I dodici controlli",
+  checks: [
+    "Orari corretti",
+    "Posizione corretta sulla mappa",
+    "Belle foto del locale",
+    "Recensioni buone, con le risposte del titolare",
+    "Numero di telefono",
+    "Sito",
+    "Profili social collegati",
+    "Presenza su TheFork, TripAdvisor e portali simili",
+    "Prezzi giusti e aggiornati",
+    "Menu",
+    "Pagina per prenotare",
+    "ChatGPT e la ricerca AI di Google ti nominano tra i primi",
+  ],
+  stepsHeading: "Come funziona",
+  steps: [
+    {
+      title: "Controllo",
+      description: "Verifichiamo la tua scheda Google sui dodici punti e ti diciamo cosa manca.",
+    },
+    {
+      title: "Sistemazione",
+      description: "Correggiamo quello che non passa.",
+    },
+    {
+      title: "Bollino",
+      description:
+        "Quando passi tutti e dodici i controlli, ricevi l'adesivo per la vetrina. Ogni anno rifacciamo i controlli e lo rinnoviamo.",
+    },
+  ],
+  priceHeading: "Il prezzo",
+  price: "€650 il primo anno, tutto compreso: controllo, sistemazione e bollino. Il rinnovo annuale costa €250.",
+  preCta: "Prova adesso: cerca su Google il tipo di locale che hai e la tua città, e guarda in che posizione esci.",
+  ctaLabel: "Richiedi il controllo",
 };
