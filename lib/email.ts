@@ -15,9 +15,16 @@ import { contact } from "@/content/site";
   tested without a network. sendNotificationEmail is the only impure part.
 */
 
-/** Same sender and recipient the previous site used. */
-export const EMAIL_FROM = "Adriatica — Sito Web <onboarding@resend.dev>";
-export const EMAIL_TO = contact.email;
+/**
+ * Sender and recipient of the notification. Until the domain adriaticastudio.com is verified
+ * at resend.com/domains, Resend only lets its test sender (onboarding@resend.dev) write to the
+ * Resend account owner, so those are the defaults. After verifying the domain set, in Vercel:
+ *   FORM_FROM      = Adriatica — Sito Web <noreply@adriaticastudio.com>
+ *   FORM_NOTIFY_TO = contact@adriaticastudio.com
+ * (the address shown on the site is contact.email in content/site.ts).
+ */
+export const EMAIL_FROM = process.env.FORM_FROM || "Adriatica — Sito Web <onboarding@resend.dev>";
+export const EMAIL_TO = process.env.FORM_NOTIFY_TO || "andreapatrizicontact@gmail.com";
 
 /** The provider must answer within this time, otherwise the visitor gets an honest "not sent". */
 export const DELIVERY_TIMEOUT_MS = 10_000;

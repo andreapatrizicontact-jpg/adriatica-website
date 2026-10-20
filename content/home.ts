@@ -155,7 +155,7 @@ export const contactSection = {
   status: {
     pending: "Invio in corso…",
     success: "Grazie, ho ricevuto la tua richiesta. Ti risponderò all’email che hai indicato.",
-    error: "L’invio non è riuscito. Riprova oppure scrivimi a contact.adriaticastudio@gmail.com.",
+    error: "L’invio non è riuscito. Riprova oppure scrivimi a contact@adriaticastudio.com.",
     validation: "Controlla i campi richiesti e inserisci un indirizzo email valido.",
   },
 } as const;
