@@ -1,0 +1,140 @@
+/* Direct-contact block on the blue ground: thin cream rules, mono labels, no boxes. */
+
+.direct {
+  min-width: 0;
+}
+
+.label {
+  margin-bottom: 22px;
+  font: 400 11px/1.6 var(--font-mono);
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.channels {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(245, 242, 234, 0.55);
+  list-style: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 4px 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(245, 242, 234, 0.35);
+}
+
+a.row {
+  transition: padding-left 0.18s;
+}
+
+a.row:hover {
+  padding-left: 8px;
+}
+
+.rowLabel {
+  font: 400 11px/1.6 var(--font-mono);
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.rowValue {
+  min-width: 0;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+
+.arrow {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.note {
+  max-width: 340px;
+  margin-top: 26px;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.online {
+  margin-top: 40px;
+}
+
+.online .label {
+  margin-bottom: 14px;
+}
+
+.profiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profile {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .label {
+    font-size: 10px;
+    margin-bottom: 18px;
+  }
+  /* label + arrow on the first line, the value gets the full width on the second
+     (the email is 33 characters: it must not wrap on a 320px screen) */
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 16px 0;
+  }
+  .rowLabel {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 10px;
+  }
+  .arrow {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+  }
+  .rowValue {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    font-size: clamp(15px, 4.9vw, 18px);
+  }
+  .note {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.row {
+    transition: none;
+  }
+  a.row:hover {
+    padding-left: 0;
+  }
+}

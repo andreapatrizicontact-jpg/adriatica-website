@@ -1,0 +1,37 @@
+/* One blue panel, like the kit's dominant service card: the price is the statement. */
+
+.panel {
+  padding: 48px;
+  background: var(--blue);
+  color: var(--paper);
+}
+
+.price {
+  max-width: 880px;
+  font-size: clamp(26px, 3vw, 44px);
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.035em;
+}
+
+.amount {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+
+@media (max-width: 850px) {
+  .panel {
+    padding: 36px 27px;
+  }
+}
+
+@media (max-width: 600px) {
+  .panel {
+    padding: 28px 24px;
+  }
+  .price {
+    font-size: 26px;
+  }
+}

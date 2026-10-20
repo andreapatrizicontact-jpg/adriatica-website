@@ -1,0 +1,118 @@
+.head,
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.head span {
+  padding: 18px 32px;
+  font: 400 11px/1.6 var(--font-mono);
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.head .headLoro {
+  padding-left: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.head .headNoi {
+  background: var(--blue);
+  color: var(--paper);
+}
+
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.loro,
+.noi {
+  position: relative;
+  min-width: 0;
+  padding: 24px 32px;
+  line-height: 1.35;
+}
+
+.loro {
+  padding-left: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 19px;
+}
+
+.noi {
+  background: var(--blue);
+  border-bottom: 1px solid rgba(245, 242, 234, 0.28);
+  color: var(--paper);
+  font-size: 20px;
+}
+
+.row:last-child .noi {
+  border-bottom: 0;
+}
+
+.tag {
+  display: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 850px) {
+  .head span {
+    padding: 16px 22px;
+  }
+  .loro,
+  .noi {
+    padding: 20px 22px;
+  }
+  .loro {
+    padding-left: 0;
+    font-size: 17px;
+  }
+  .noi {
+    font-size: 18px;
+  }
+}
+
+/* phones: each pair becomes a small stack — the "Loro" line above its blue "Noi" answer */
+@media (max-width: 600px) {
+  .head {
+    display: none;
+  }
+  .row {
+    display: block;
+    margin-bottom: 14px;
+  }
+  .row:last-child {
+    margin-bottom: 0;
+  }
+  .loro {
+    padding: 18px 18px 16px;
+    border: 1px solid var(--line);
+    border-bottom: 0;
+    font-size: 16px;
+  }
+  .noi {
+    padding: 16px 18px 20px;
+    border-bottom: 0;
+    font-size: 17px;
+  }
+  .tag {
+    display: block;
+    margin-bottom: 8px;
+    font: 400 10px/1.6 var(--font-mono);
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+    opacity: 0.75;
+  }
+}

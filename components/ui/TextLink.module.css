@@ -1,0 +1,15 @@
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 36px;
+  width: fit-content;
+  font-size: 16px;
+  font-weight: 500;
+  padding-bottom: 6px;
+  border-bottom: 1px solid currentColor;
+}
+
+.link span {
+  font-size: 22px;
+}

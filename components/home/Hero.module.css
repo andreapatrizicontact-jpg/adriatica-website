@@ -1,0 +1,182 @@
+/*
+  Hero (#inizio). The photo is the top half; its carpet is a flat blue (#0148b0),
+  which continues as the hero background so photo and field read as one picture.
+*/
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 760px;
+  height: 100svh;
+  max-height: 1100px;
+  overflow: hidden;
+  color: var(--paper);
+  background: #0148b0;
+}
+
+.photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1672 / 941;
+  object-fit: cover;
+}
+
+/* ---------- content column ---------- */
+
+.content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.label {
+  margin-bottom: 26px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 36px;
+  padding-bottom: 52px;
+}
+
+/* family: Instrument Sans 600, as the wordmark of the kit */
+.title {
+  font: 600 clamp(52px, 6.9vw, 118px) / 1.12 var(--font-body);
+  letter-spacing: -0.055em;
+}
+
+.title:focus,
+.title:focus-visible {
+  outline: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.offer {
+  flex: none;
+  width: min(330px, 30vw);
+  min-width: 270px;
+}
+
+.offer p {
+  font-size: 18px;
+  line-height: 1.35;
+  margin-bottom: 24px;
+}
+
+.cta {
+  width: 100%;
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0 26px;
+  border-top: 1px solid rgba(245, 242, 234, 0.4);
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+.foot ul {
+  display: flex;
+  gap: 36px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-body);
+  font-size: 15px;
+}
+
+.n {
+  margin-right: 6px;
+  font: 400 11px / 1 var(--font-mono);
+  opacity: 0.6;
+}
+
+/* ---------- tablet ---------- */
+
+@media (max-width: 850px) {
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+
+  .offer {
+    width: 100%;
+    max-width: 380px;
+  }
+}
+
+/* ---------- phones ---------- */
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 680px;
+    max-height: 920px;
+  }
+
+  .photo {
+    height: 46svh;
+    aspect-ratio: auto;
+    object-position: 50% 0;
+  }
+
+  .label {
+    font-size: 10px;
+    margin-bottom: 18px;
+  }
+
+  .title {
+    font-size: clamp(46px, 15vw, 64px);
+  }
+
+  .row {
+    padding-bottom: 34px;
+    gap: 22px;
+  }
+
+  .offer p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .offer {
+    min-width: 0;
+    max-width: none;
+  }
+
+  .foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 16px 0 20px;
+  }
+
+  .foot ul {
+    gap: 18px;
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 360px) {
+  .title {
+    font-size: 44px;
+  }
+}

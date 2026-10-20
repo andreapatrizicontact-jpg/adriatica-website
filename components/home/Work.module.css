@@ -1,0 +1,179 @@
+/*
+  #direzione — measures taken 1:1 from the approved kit (style.css:
+  .work, .work-heading, .post-board, .post, .board-note, .work-caption).
+  Breakpoints: 850 (tablet) · 600 (phone). The board is overflow:hidden, so the
+  rotated posts can never create horizontal scroll.
+*/
+
+.work {
+  padding-block: var(--section-y);
+  background: var(--work-bg);
+}
+
+/* ---------- Heading row ---------- */
+.heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  margin-bottom: 46px;
+}
+
+.heading .headingEyebrow {
+  margin-bottom: 23px;
+}
+
+.description {
+  max-width: 320px;
+  font-size: 20px;
+}
+
+/* ---------- Post board ---------- */
+.board {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  min-height: 420px;
+  padding: 52px 7% 60px;
+  overflow: hidden;
+  background: var(--post-board);
+}
+
+.post {
+  width: 29%;
+  max-width: 320px;
+  box-shadow: 0 18px 32px rgba(11, 12, 42, 0.09);
+}
+
+.postOne {
+  transform: rotate(-6deg) translateY(5px);
+}
+
+.postTwo {
+  transform: rotate(3deg) translateY(-3px);
+}
+
+.postThree {
+  transform: rotate(-2deg) translateY(4px);
+}
+
+/* `.board .boardNote` outranks the shared Eyebrow font shorthand */
+.board .boardNote {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  color: var(--blue);
+  font-size: 14px;
+  transform: rotate(-3deg);
+}
+
+/* ---------- Caption row ---------- */
+.caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.caption h3 {
+  margin-bottom: 6px;
+  font-size: 24px;
+}
+
+.captionText {
+  font-size: 13px;
+  color: var(--muted-2);
+}
+
+.caption .captionLink {
+  font-size: 14px;
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 850px) {
+  .board {
+    gap: 20px;
+    min-height: 350px;
+    padding: 38px 5% 50px;
+  }
+}
+
+/* ---------- Phone: two posts, stacked heading and caption ---------- */
+@media (max-width: 600px) {
+  .heading {
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .heading .headingEyebrow {
+    margin-bottom: 18px;
+    font-size: 10px;
+  }
+
+  .heading h2 {
+    font-size: 46px;
+  }
+
+  .description {
+    margin-top: 22px;
+    font-size: 17px;
+  }
+
+  .board {
+    justify-content: center;
+    gap: 17px;
+    min-height: 310px;
+    padding: 34px 26px 47px;
+  }
+
+  .post {
+    width: 46%;
+    max-width: none;
+  }
+
+  .postThree {
+    display: none;
+  }
+
+  .postOne {
+    transform: rotate(-7deg);
+  }
+
+  .postTwo {
+    transform: rotate(5deg);
+  }
+
+  .board .boardNote {
+    bottom: 14px;
+    font-size: 10px;
+  }
+
+  .caption {
+    display: block;
+    margin-top: 23px;
+  }
+
+  .caption h3 {
+    font-size: 23px;
+  }
+
+  .captionText {
+    max-width: 310px;
+    font-size: 12px;
+  }
+
+  .caption .captionLink {
+    margin-top: 16px;
+  }
+}
+
+/* Not in the kit: below ~346px the 46px title no longer fits and
+   "forme diverse." would break into three lines. */
+@media (max-width: 345px) {
+  .heading h2 {
+    font-size: 41px;
+  }
+}

@@ -1,0 +1,5 @@
+.wrap {
+  width: calc(100% - var(--wrap-margin) * 2);
+  max-width: var(--wrap-max);
+  margin: auto;
+}

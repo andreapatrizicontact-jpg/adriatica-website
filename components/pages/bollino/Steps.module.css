@@ -1,0 +1,52 @@
+/* The kit's `.method` language: thin top rule, blue mono label, Instrument Sans title. */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  min-width: 0;
+  padding-top: 26px;
+  border-top: 1px solid var(--ink);
+}
+
+.number {
+  color: var(--blue);
+}
+
+.step h3 {
+  margin: 16px 0 14px;
+  font-size: clamp(28px, 2.5vw, 36px);
+}
+
+.step p {
+  max-width: 400px;
+  color: var(--muted-2);
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+@media (max-width: 850px) {
+  .steps {
+    gap: 28px;
+  }
+}
+
+@media (max-width: 700px) {
+  .steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+  .step {
+    padding-top: 22px;
+  }
+  .step h3 {
+    margin: 12px 0 10px;
+    font-size: 30px;
+  }
+}

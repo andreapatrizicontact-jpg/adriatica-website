@@ -422,3 +422,12 @@ landed in `content/site.ts` as it arrived rather than being queued:
   and the client's content calendar slips). Shipped an offline Artifact
   preview first per Andrea's explicit request before touching the live
   site — approved with the one price correction above.
+
+## 2026-10 — Site renewal (design kit implementation)
+
+Full rebuild of the site from the approved Adriatica design kit; see `RINNOVO-2026-10.md` for the route map, the contact backend contract, what was
+verified and the open decisions. Highlights: six-block homepage with the opening video and the draggable cartellino; old design/code deleted from the
+working tree (kept on tag `old-site-2026-10-19` and branch `backup/old-site-with-farsi-wip`); Tailwind / three.js / lenis / motion / react-hook-form removed;
+`/progetti` and `/bollino` created so no existing content was lost; forms confirm only after the provider really accepts the email; `/farsi-trovare` (never
+published) not carried over. Not published: waiting for Andrea's review.
+

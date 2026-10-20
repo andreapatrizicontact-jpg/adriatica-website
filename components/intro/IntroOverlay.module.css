@@ -1,0 +1,56 @@
+/*
+  Opening video. Measures come from the kit (.intro rules in style.css).
+  Never set `display` on .intro: a closed <dialog> must stay display:none so it
+  can't affect layout; the UA stylesheet shows it only while [open].
+*/
+
+.intro {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.intro::backdrop {
+  background: var(--paper);
+}
+
+/* the whole logo is always visible, also on phones */
+.video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--paper);
+}
+
+.skip {
+  position: absolute;
+  right: max(34px, env(safe-area-inset-right));
+  bottom: max(32px, env(safe-area-inset-bottom));
+  border: 1px solid rgba(11, 12, 42, 0.2);
+  border-radius: 30px;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 13px 19px;
+  font: 400 14px/1.45 var(--font-body);
+}
+
+.skip span {
+  margin-left: 30px;
+}
+
+@media (max-width: 600px) {
+  .skip {
+    right: max(20px, env(safe-area-inset-right));
+    bottom: max(24px, env(safe-area-inset-bottom));
+  }
+}

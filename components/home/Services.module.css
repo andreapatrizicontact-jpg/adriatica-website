@@ -1,0 +1,257 @@
+/*
+  #servizi — measures taken 1:1 from the approved kit (style.css:
+  .section, .section-heading, .service-layout, .main-service, .secondary-service…).
+  Breakpoints: 850 (tablet) · 600 (phone) · 360 (small phone).
+  Side margins come from <Container> (--wrap-margin), vertical rhythm from --section-y.
+*/
+
+.services {
+  padding-block: var(--section-y);
+}
+
+/* ---------- Heading: eyebrow / h2 / description ---------- */
+.heading {
+  display: grid;
+  grid-template-columns: 1fr 1.55fr 1fr;
+  align-items: start;
+  gap: 32px;
+  margin-bottom: 46px;
+}
+
+.headingEyebrow {
+  padding-top: 8px;
+}
+
+.description {
+  font-size: 20px;
+  line-height: 1.35;
+  padding-top: 8px;
+}
+
+/* ---------- Layout: main card + secondary column ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 56px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 540px;
+  padding: 36px;
+  background: var(--blue);
+  color: var(--paper);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.spark {
+  font-family: Arial, sans-serif;
+  font-size: 62px;
+  line-height: 0.8;
+  transform: rotate(10deg);
+}
+
+.mainTitle {
+  margin: 6px 0 24px;
+  font-size: clamp(38px, 4.3vw, 64px);
+}
+
+.mainText {
+  max-width: 430px;
+  font-size: 19px;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 26px 0 32px;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+}
+
+.pills li {
+  padding: 7px 11px;
+  border: 1px solid rgba(245, 242, 234, 0.6);
+  border-radius: 20px;
+}
+
+/* `.main .mainLink` outranks the shared TextLink rule (width: fit-content)
+   whatever the order the CSS chunks load in. */
+.main .mainLink {
+  width: 100%;
+  margin-top: auto;
+}
+
+/* The global accent ring (#5271FF) is only ~2:1 against the blue card; the kit
+   already switches to paper on blue (contact form), so do the same here. */
+.main .mainLink:focus-visible {
+  outline-color: var(--paper);
+}
+
+/* ---------- Secondary services ---------- */
+.secondary {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.secondaryItem {
+  padding: 0 0 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.secondaryItem + .secondaryItem {
+  padding-top: 28px;
+}
+
+.miniSymbol {
+  color: var(--blue);
+  font-size: 34px;
+  line-height: 1;
+}
+
+.secondaryItem .top {
+  margin-bottom: 13px;
+}
+
+.secondaryItem h3 {
+  margin-bottom: 14px;
+  font-size: 36px;
+}
+
+/*
+  Mirrors the kit's `.secondary-service p`: the selector also reaches the
+  eyebrow <p> inside .top, which is why the approved previews show those labels
+  muted (and larger on tablet/phone). Kept on purpose to match the design.
+*/
+.secondaryItem p {
+  max-width: 410px;
+  margin-bottom: 16px;
+  color: var(--muted);
+}
+
+.secondaryItem .secondaryLink {
+  width: 100%;
+  padding-bottom: 0;
+  border-bottom: 0;
+  font-size: 14px;
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 850px) {
+  .heading {
+    grid-template-columns: 1fr 1.5fr;
+    gap: 25px;
+  }
+
+  .description {
+    grid-column: 2;
+    font-size: 18px;
+  }
+
+  .layout {
+    gap: 30px;
+  }
+
+  .main {
+    min-height: 560px;
+    padding: 27px;
+  }
+
+  .mainTitle {
+    font-size: 42px;
+  }
+
+  .secondaryItem h3 {
+    font-size: 31px;
+  }
+
+  .secondaryItem p {
+    font-size: 16px;
+  }
+}
+
+/* ---------- Phone ---------- */
+@media (max-width: 600px) {
+  .heading {
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .heading h2 {
+    margin: 18px 0 20px;
+    font-size: 48px;
+  }
+
+  .description {
+    padding: 0;
+    font-size: 18px;
+  }
+
+  .layout {
+    display: block;
+  }
+
+  .main {
+    min-height: 480px;
+    padding: 27px;
+  }
+
+  .mainTitle {
+    font-size: 45px;
+  }
+
+  .mainText {
+    font-size: 18px;
+  }
+
+  .pills {
+    gap: 6px;
+    margin: 24px 0 35px;
+    font-size: 11px;
+  }
+
+  .secondary {
+    margin-top: 32px;
+  }
+
+  .secondaryItem .top {
+    margin-bottom: 16px;
+  }
+
+  .secondaryItem h3 {
+    font-size: 34px;
+  }
+
+  .secondaryItem p {
+    font-size: 17px;
+  }
+
+  .secondaryItem + .secondaryItem {
+    padding-top: 26px;
+  }
+}
+
+/* ---------- Small phone ---------- */
+@media (max-width: 360px) {
+  .mainTitle {
+    font-size: 40px;
+  }
+}
+
+/* Not in the kit: at 320px the kit's 40px title no longer fits its card and
+   "con un piano." would break into three lines. */
+@media (max-width: 340px) {
+  .mainTitle {
+    font-size: 37px;
+  }
+}

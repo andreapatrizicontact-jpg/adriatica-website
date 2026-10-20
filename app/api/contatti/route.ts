@@ -1,36 +1,48 @@
-import { NextResponse } from "next/server";
-import { contattiSchema } from "@/lib/validation";
-import { sendNotificationEmail } from "@/lib/email";
+import { formatFieldLines, formatMessageBlock, httpResultFor, sanitizeHeaderValue, sendNotificationEmail } from "@/lib/email";
+import { createFormGuard, formResponse, guardFormRequest } from "@/lib/rateLimit";
+import { serviceOptions } from "@/lib/services";
+import { contattiSchema, toFieldErrors } from "@/lib/validation";
+
+// Contact form (home block + /contatti page).
+// POST JSON -> 200 {ok:true} only if the email was really accepted (or the dev
+// fallback logged it) · 400 validation · 413 > 10KB · 429 rate limit · 503 not delivered.
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+const guard = createFormGuard("contatti");
 
 export async function POST(request: Request) {
-  const body = await request.json().catch(() => null);
-  const parsed = contattiSchema.safeParse(body);
+  const guarded = await guardFormRequest(request, guard);
+  if ("response" in guarded) return guarded.response;
 
+  const parsed = contattiSchema.safeParse(guarded.body);
   if (!parsed.success) {
-    return NextResponse.json(
-      { ok: false, errors: parsed.error.flatten().fieldErrors },
-      { status: 400 }
-    );
+    guarded.noteRejected();
+    return formResponse({ ok: false, errors: toFieldErrors(parsed.error) }, 400);
   }
 
-  const { nome, azienda, email, telefono, budget, messaggio } = parsed.data;
+  guarded.noteDelivery();
+  const { servizio, nome, email, messaggio, azienda, telefono, budget } = parsed.data;
+  const servizioLabel = serviceOptions.find((option) => option.id === servizio)?.label;
 
-  await sendNotificationEmail({
-    subject: `Nuovo contatto dal sito — ${nome}`,
+  const result = await sendNotificationEmail({
+    subject: sanitizeHeaderValue(`Nuovo contatto dal sito — ${nome}`),
     text: [
-      `Nome: ${nome}`,
-      azienda ? `Azienda: ${azienda}` : null,
-      `Email: ${email}`,
-      telefono ? `Telefono: ${telefono}` : null,
-      budget ? `Budget: ${budget}` : null,
+      ...formatFieldLines([
+        ["Servizio", servizioLabel],
+        ["Nome", nome],
+        ["Email", email],
+        ["Telefono", telefono],
+        ["Azienda", azienda],
+        ["Budget", budget],
+      ]),
       "",
       "Messaggio:",
-      messaggio,
-    ]
-      .filter(Boolean)
-      .join("\n"),
+      formatMessageBlock(messaggio),
+    ].join("\n"),
     replyTo: email,
   });
 
-  return NextResponse.json({ ok: true });
+  const { status, body } = httpResultFor(result);
+  return formResponse(body, status);
 }

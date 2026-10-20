@@ -1,0 +1,13 @@
+.skip {
+  position: fixed;
+  top: -100px;
+  left: 20px;
+  z-index: 2147483001;
+  padding: 12px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.skip:focus {
+  top: 20px;
+}

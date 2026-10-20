@@ -1,0 +1,49 @@
+/*
+  The sticker beside the hero: laid over the hero's right-hand side above 1000px
+  (the title is capped at 14ch and the intro at 620px, so they never reach it),
+  in the page flow under the intro below that.
+*/
+
+.wrap {
+  position: relative;
+}
+
+.stickerRow {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.sticker {
+  width: clamp(200px, 18vw, 256px);
+  height: auto;
+  transform: rotate(-6deg);
+}
+
+/* `.wrap .stickerRow`: wins over the Container's own `margin: auto` whatever the CSS order */
+@media (max-width: 1000px) {
+  .wrap .stickerRow {
+    position: static;
+    justify-content: flex-start;
+    margin-top: -36px;
+    padding-bottom: 52px;
+    pointer-events: auto;
+  }
+  .sticker {
+    width: 168px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrap .stickerRow {
+    margin-top: -28px;
+    padding-bottom: 44px;
+  }
+  .sticker {
+    width: 144px;
+  }
+}

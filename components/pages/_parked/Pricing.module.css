@@ -1,0 +1,279 @@
+/*
+  #prezzi — calm bordered cards; the plan the content marks as featured is the
+  one blue panel (kit: a single dominant card). No scale, no gradient, no badge
+  beyond the label the content already carried.
+*/
+
+.intro {
+  max-width: 640px;
+  margin: -14px 0 44px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plan {
+  /* two rows (header, body) shared by the three cards through subgrid:
+     titles, prices and feature lists line up even when a tagline wraps */
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+  min-width: 0;
+  padding: 32px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+
+.featured {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--paper);
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+}
+
+.titleRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.titleRow h3 {
+  font-size: clamp(30px, 2.8vw, 40px);
+}
+
+.titleRow span {
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tagline {
+  margin: 14px 0 28px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.featured .tagline {
+  color: var(--paper);
+}
+
+.price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin-top: auto;
+}
+
+.amount {
+  font: 700 clamp(46px, 4.2vw, 62px) / 1 var(--font-display);
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+
+.unit {
+  text-transform: uppercase;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.features {
+  margin: 28px 0 24px;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.features li {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.featured .features,
+.featured .features li {
+  border-color: rgba(245, 242, 234, 0.35);
+}
+
+.note {
+  margin: -4px 0 24px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.body .cta {
+  width: 100%;
+  margin-top: auto;
+}
+
+/* ---------- Extras ---------- */
+.extras {
+  margin-top: 64px;
+}
+
+.extrasLabel {
+  padding-bottom: 14px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--ink);
+  color: var(--blue);
+}
+
+.extrasList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.extra {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.extra h4 {
+  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.extra p {
+  max-width: 460px;
+  color: var(--muted-2);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.extra .extraPrice {
+  flex: none;
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+/* ---------- Guarantee ---------- */
+.guarantee {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: 40px;
+  margin-top: 40px;
+  padding: 36px;
+  border: 1px solid var(--ink);
+}
+
+.guarantee h3 {
+  max-width: 460px;
+  font-size: clamp(26px, 2.6vw, 36px);
+}
+
+.guarantee p {
+  max-width: 600px;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1000px) {
+  .plans {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .plan {
+    grid-row: auto;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: none;
+    gap: 40px;
+  }
+  .price {
+    margin-top: 0;
+  }
+  .extrasList {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 850px) {
+  .intro {
+    margin-top: -8px;
+    font-size: 18px;
+  }
+  .plan {
+    padding: 27px;
+    gap: 32px;
+  }
+  .guarantee {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding: 27px;
+  }
+}
+
+/* ---------- Phone ---------- */
+@media (max-width: 600px) {
+  .intro {
+    margin: -4px 0 32px;
+    font-size: 17px;
+  }
+  .plans {
+    gap: 16px;
+  }
+  .plan {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 24px;
+  }
+  .tagline {
+    margin-bottom: 24px;
+  }
+  .body {
+    margin-top: 0;
+  }
+  .extras {
+    margin-top: 48px;
+  }
+  .extra {
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px 0;
+  }
+  .extra h4 {
+    font-size: 22px;
+  }
+  .guarantee {
+    margin-top: 32px;
+    padding: 24px;
+  }
+  .guarantee p {
+    font-size: 17px;
+  }
+}

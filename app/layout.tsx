@@ -1,38 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Poppins, Instrument_Sans, Geist_Mono } from "next/font/google";
+import { preload } from "react-dom";
 import "./globals.css";
-import { StickyBar } from "@/components/nav/StickyBar";
-import { SiteHeader } from "@/components/nav/SiteHeader";
 import { Footer } from "@/components/layout/Footer";
-import { ContactRail } from "@/components/nav/ContactRail";
-import { OfflineBanner } from "@/components/OfflineBanner";
+import { HashRedirect } from "@/components/layout/HashRedirect";
+import { SkipLink } from "@/components/layout/SkipLink";
 import { siteUrl } from "@/content/site";
+import { introBootScript } from "@/lib/intro";
 
-// Switched from Archivo to Poppins — the confirmed "Adriatica." logo image
-// and the Nutriva case study (which documents Poppins by name as its
-// typeface) both point the same direction. Poppins only ships as static
-// weight files (not variable), so request exactly the weights the type
-// scale uses. See DECISIONS.md.
-const poppins = Poppins({
-  subsets: ["latin", "latin-ext"],
-  weight: ["700", "800", "900"],
-  variable: "--font-poppins",
-});
-
-const instrumentSans = Instrument_Sans({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-instrument-sans",
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-});
-
-const defaultTitle = "Adriatica — Social Media Marketing & Comunicazione";
+const defaultTitle = "Adriatica Studio — Social media, foto e video a Roma";
 const defaultDescription =
-  "Adriatica è uno studio di marketing e comunicazione. Trasformiamo brand in storie che le persone vogliono seguire.";
+  "Gestione social, foto e video per farti riconoscere, a modo tuo. Adriatica è lo studio di Andrea Patrizi, a Roma.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -48,7 +26,7 @@ export const metadata: Metadata = {
     title: defaultTitle,
     description: defaultDescription,
     url: siteUrl,
-    siteName: "Adriatica",
+    siteName: "Adriatica Studio",
     locale: "it_IT",
     type: "website",
   },
@@ -59,24 +37,31 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#f5f2ea",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({ children }: { children: ReactNode }) {
+  // the two faces every first paint needs: section titles and the wordmark
+  preload("/fonts/Poppins-Bold-Latin.woff2", { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
+  preload("/fonts/InstrumentSans-Semibold.ttf", { as: "font", type: "font/ttf", crossOrigin: "anonymous" });
+  preload("/fonts/InstrumentSans-Regular.ttf", { as: "font", type: "font/ttf", crossOrigin: "anonymous" });
+
   return (
-    <html
-      lang="it"
-      className={`${poppins.variable} ${instrumentSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="flex min-h-full flex-col">
-        {/* fixed together so the header floats transparently over each
-            page's hero — content underneath reserves its own clearance
-            rather than the layout pushing everything down globally */}
-        <div className="fixed inset-x-0 top-0 z-40 flex flex-col">
-          <StickyBar />
-          <SiteHeader />
-        </div>
-        <main className="flex-1">{children}</main>
+    // data-intro is written by the inline script below before first paint
+    <html lang="it" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: introBootScript }} />
+      </head>
+      <body>
+        <SkipLink />
+        <main id="contenuto" tabIndex={-1} style={{ outline: "none" }}>
+          {children}
+        </main>
         <Footer />
-        <ContactRail />
-        <OfflineBanner />
+        <HashRedirect />
       </body>
     </html>
   );

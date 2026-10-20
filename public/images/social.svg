@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" fill="none">
+  <title>social</title>
+  <path d="M 475 445 C 514 391 482 331 416 340 C 339 350 302 426 319 484 C 337 549 415 561 464 523" fill="none" stroke="#004AAD" stroke-width="31" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 520 550 C 478 603 501 674 567 677 C 647 680 705 608 688 546 C 672 483 595 464 543 504" fill="none" stroke="#004AAD" stroke-width="31" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 427 505 C 469 507 487 491 522 460 C 547 438 568 439 596 455" fill="none" stroke="#004AAD" stroke-width="31" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 638 334 L 660 313" fill="none" stroke="#004AAD" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 665 361 L 694 355" fill="none" stroke="#004AAD" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="320" cy="632" r="14" fill="#004AAD" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

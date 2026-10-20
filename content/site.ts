@@ -50,40 +50,6 @@ export const cta = {
   secondary: "Guarda i progetti",
 };
 
-// brief §5.1 wanted a client-avatar cluster + review-score badge here.
-// Andrea confirmed there are no real reviews yet and asked for fabricated
-// ones — declined (DECISIONS.md #3): this honest line replaces both rather
-// than inventing a score or a follower count that isn't real either.
-export const trustNote = "Stiamo raccogliendo le prime recensioni.";
-
-// brief §5.1 — the hero headline/sub are distinct from brand.positioning,
-// which is the separate manifesto-strip line further down the home page.
-export const hero = {
-  eyebrow: "Social Media Marketing & Comunicazione — Roma",
-  headline: "Trasformiamo brand in storie che le persone vogliono seguire.",
-  sub: "Uniamo strategia, contenuti e dati per far crescere davvero la tua presenza online.",
-};
-
-// "Chi siamo" — brief §5.1.7. Built from confirmed real facts only
-// (brand.foundedYear/teamFraming) — no invented headcount, years of
-// experience, or client counts. Founder portrait still missing
-// (MISSING-ASSETS.md), ships as an initials block until supplied.
-export const chiSiamo = {
-  eyebrow: "Chi siamo?",
-  heading: "Sono Andrea, e sono Adriatica.",
-  paragraph:
-    "Adriatica nasce nel 2026 a Roma. Non è un'agenzia con cinquanta persone in open space — sono io, Andrea Patrizi, più due collaboratori esterni per foto/video e sviluppo. Seguo personalmente ogni progetto dalla prima chiamata al report mensile: niente passaggi di mano, niente account manager tra te e chi lavora davvero.",
-};
-
-// rotates every 7s in the sticky bar, dismissible per-session (brief §6).
-// Original copy in the client's voice — not a client-supplied quote, flagged
-// for approval in DECISIONS.md.
-export const provocations: string[] = [
-  "Ancora nessuna strategia social? Si vede.",
-  "I follower non pagano le bollette. I clienti sì.",
-  "Zero fuffa. Solo social media marketing che funziona.",
-];
-
 export const legal = {
   // Andrea confirmed no P.IVA yet — omitted from the site entirely rather
   // than showing a placeholder. Revisit if/when one exists (DECISIONS.md #5).
@@ -355,7 +321,7 @@ export const loroNoi: { loro: string; noi: string }[] = [
   { loro: "Contenuti generici, uguali per ogni cliente.", noi: "Ogni piano editoriale parte dal tuo settore specifico." },
   { loro: "I file restano loro.", noi: "Tutto quello che creiamo è tuo, sempre." },
   { loro: "Report trimestrali, se va bene.", noi: "Report mensile, con dati veri — non vanity metrics." },
-  { loro: "Team enorme, comunicazione lenta.", noi: "Studio piccolo — io più due collaboratori — risposte rapide." },
+  { loro: "Team enorme, comunicazione lenta.", noi: "Studio piccolo — Andrea più due collaboratori — risposte rapide." },
 ];
 
 export type ProcessoStep = { title: string; bullets: string[] };
@@ -419,7 +385,7 @@ export const founderQuote = {
 
 export const vantaggi: { title: string; description: string }[] = [
   { title: "Zero intermediari", description: "Parli sempre con chi lavora davvero sul tuo progetto." },
-  { title: "Preventivo chiaro", description: "Tariffe reali, nessuna sorpresa dopo la firma." },
+  { title: "Preventivo chiaro", description: "Un preventivo su misura, senza sorprese dopo la firma." },
   { title: "Contenuti su misura", description: "Pensati per il tuo settore, non template riciclati." },
   { title: "Report mensile", description: "Dati veri, non screenshot di vanity metrics." },
   { title: "Nessun vincolo nascosto", description: "Restiamo insieme finché il lavoro ha senso per entrambi." },
@@ -430,7 +396,7 @@ export const metodoFaq: { question: string; answer: string }[] = [
   {
     question: "Quanto costa lavorare con voi?",
     answer:
-      "Dipende dal servizio e dal piano — trovi le tariffe reali qui sopra. Ogni preventivo viene comunque calibrato dopo la consulenza gratuita.",
+      "Dipende dal servizio e da cosa ti serve: i costi si definiscono dopo la consulenza gratuita, con un preventivo su misura.",
   },
   {
     question: "Quanto dura un contratto?",
@@ -454,7 +420,7 @@ export const metodoFaq: { question: string; answer: string }[] = [
   {
     question: "Gestite anche le campagne pubblicitarie (Ads)?",
     answer:
-      "Sì — la gestione è inclusa nei piani, il budget pubblicitario resta a tuo carico, così sai sempre dove va ogni euro.",
+      "Sì. Il budget pubblicitario resta a tuo carico e l'account resta intestato a te, così sai sempre dove va ogni euro.",
   },
   {
     question: "Posso vedere dei lavori reali?",
@@ -570,12 +536,6 @@ export const contatti = {
   heading: "Parliamone.",
   sub: "Scrivici, chiama, o passa direttamente al punto con una call gratuita.",
   formHeading: "Scrivici",
-  budgetOptions: [
-    "Sotto i 500€/mese",
-    "500–1000€/mese",
-    "Oltre 1000€/mese",
-    "Non sono sicuro/a",
-  ],
   directHeading: "Contatto diretto",
   responseNote: "Rispondiamo entro 24 ore, dal lunedì al venerdì.",
   faq: [
@@ -590,14 +550,14 @@ export const contatti = {
   ],
 };
 
-// Real, accurate description of how this site's forms actually work
-// (Resend for delivery, no other processors, no P.IVA yet — see
-// DECISIONS.md #5/#15). Not a substitute for professional legal review,
-// especially once Andrea registers a P.IVA — flagged there too.
+// Description of how the site really handles data (reviewed 2026-10-20 after the
+// site renewal: homepage form, antispam, hosting, intro flag in sessionStorage).
+// This is a careful drafting review, not legal advice: Andrea should still have it
+// read by a professional, and update it when a P.IVA is activated (DECISIONS.md #5).
 export const privacyPolicy = {
   eyebrow: "Legale",
   heading: "Privacy Policy",
-  updated: "7 agosto 2026",
+  updated: "20 ottobre 2026",
   sections: [
     {
       heading: "Titolare del trattamento",
@@ -608,45 +568,49 @@ export const privacyPolicy = {
     {
       heading: "Quali dati raccogliamo",
       paragraphs: [
-        "Raccogliamo solo i dati che inserisci volontariamente nei moduli del sito (pagine Contatti, Consulenza gratuita e Analisi social gratuita): nome, email, telefono ed azienda se forniti, budget indicativo se selezionato, e — nel modulo di analisi — il tuo handle social e il sito web da analizzare.",
-        "Non usiamo cookie di tracciamento né raccogliamo dati di navigazione — vedi la Cookie Policy per i dettagli.",
+        "Raccogliamo i dati che inserisci volontariamente nei moduli del sito (il blocco \"Parliamone\" della home page e le pagine Contatti, Consulenza gratuita e Analisi social gratuita): il servizio da cui vuoi partire, nome, email, il messaggio che scrivi, telefono e azienda se li fornisci e — nel modulo di analisi — il tuo handle social, il sito web da analizzare, il settore e l'obiettivo.",
+        "Il conferimento dei dati è facoltativo, ma senza nome, email e messaggio non possiamo risponderti.",
+        "Come ogni sito, il server che lo ospita registra dati tecnici di accesso (ad esempio l'indirizzo IP e l'orario della richiesta) per farlo funzionare e proteggerlo. Lo stesso indirizzo IP viene usato per un breve limite anti-spam sull'invio dei moduli: resta nella memoria del server per pochi minuti o per un'ora al massimo e non viene salvato.",
+        "Non usiamo cookie di tracciamento né strumenti di analytics — vedi la Cookie Policy per i dettagli.",
       ],
     },
     {
       heading: "Perché li raccogliamo",
       paragraphs: [
-        "Usiamo questi dati esclusivamente per risponderti, preparare un preventivo, oppure svolgere l'analisi social gratuita che hai richiesto. Non li usiamo per finalità di marketing non richieste e non li vendiamo né condividiamo con terzi a scopo commerciale.",
+        "Usiamo questi dati esclusivamente per risponderti, preparare un preventivo, oppure svolgere l'analisi social gratuita che hai richiesto. Non li usiamo per finalità di marketing non richieste, non li vendiamo e non li condividiamo con terzi a scopo commerciale.",
       ],
     },
     {
       heading: "Base giuridica",
       paragraphs: [
-        "Il trattamento si basa sul consenso esplicito che dai selezionando la casella \"Accetto l'informativa privacy\" al momento dell'invio di un modulo.",
+        "Il trattamento è necessario per dare seguito alla richiesta che ci invii e, se lo desideri, per le misure precontrattuali che ne derivano, come un preventivo (art. 6, par. 1, lett. b del GDPR). Per il solo invio del modulo ti chiediamo di confermare di aver letto questa informativa selezionando la casella \"Accetto l'informativa privacy\". Il tracciamento tecnico per sicurezza e antispam si basa sul nostro interesse legittimo a proteggere il sito (art. 6, par. 1, lett. f).",
       ],
     },
     {
       heading: "Chi riceve i tuoi dati",
       paragraphs: [
-        "I moduli del sito inviano i dati via email tramite Resend (resend.com), un servizio di invio email usato solo come infrastruttura tecnica di consegna — non ha altri usi. Nessun altro fornitore terzo riceve i dati che invii tramite i moduli.",
+        "I moduli del sito inviano i dati via email tramite Resend (resend.com), un servizio di invio email usato solo come infrastruttura tecnica di consegna. L'email arriva nella casella di posta dello studio, gestita con un servizio di posta elettronica (Gmail). Il sito è ospitato su Vercel, che tratta i dati tecnici di accesso per conto nostro. Nessun altro fornitore riceve i dati che invii tramite i moduli.",
         "La pagina Consulenza gratuita include inoltre un embed di Calendly per la prenotazione delle call: se prenoti una call, i dati che inserisci in quel calendario (nome, email, orario) sono gestiti direttamente da Calendly secondo la loro informativa privacy, non dalla nostra.",
+        "Alcuni di questi fornitori hanno sede o infrastrutture fuori dallo Spazio economico europeo (in particolare negli Stati Uniti). Il trasferimento avviene sulla base delle garanzie previste dal GDPR, come le clausole contrattuali standard o la decisione di adeguatezza del Data Privacy Framework, secondo quanto indicato dai singoli fornitori.",
       ],
     },
     {
       heading: "Conservazione",
       paragraphs: [
-        "Conserviamo i tuoi dati solo per il tempo necessario a gestire la tua richiesta e l'eventuale collaborazione successiva, salvo diversi obblighi di legge.",
+        "Conserviamo i tuoi dati solo per il tempo necessario a gestire la tua richiesta e l'eventuale collaborazione successiva, salvo diversi obblighi di legge. Se la richiesta non porta a una collaborazione, la cancelliamo quando non serve più rispondere o riprendere il contatto.",
       ],
     },
     {
       heading: "I tuoi diritti",
       paragraphs: [
-        `Puoi chiedere in qualsiasi momento di accedere ai tuoi dati, correggerli o farli cancellare, scrivendo a ${contact.email}.`,
+        `Puoi chiedere in qualsiasi momento di accedere ai tuoi dati, correggerli, farli cancellare, limitarne il trattamento, riceverli in un formato leggibile (portabilità) o opporti al trattamento, scrivendo a ${contact.email}. Se avevi dato un consenso, puoi revocarlo quando vuoi senza effetti sul trattamento già avvenuto.`,
+        "Se ritieni che il trattamento violi la normativa, puoi presentare un reclamo al Garante per la protezione dei dati personali (www.garanteprivacy.it).",
       ],
     },
     {
       heading: "Modifiche a questa informativa",
       paragraphs: [
-        "Questa informativa verrà aggiornata se cambiano gli strumenti usati dal sito o la struttura legale dell'attività (ad esempio con l'attivazione di una partita IVA).",
+        "Questa informativa verrà aggiornata se cambiano gli strumenti usati dal sito o la struttura legale dell'attività (ad esempio con l'attivazione di una partita IVA). La data dell'ultimo aggiornamento è indicata in alto.",
       ],
     },
   ],
@@ -655,18 +619,24 @@ export const privacyPolicy = {
 export const cookiePolicy = {
   eyebrow: "Legale",
   heading: "Cookie Policy",
-  updated: "7 agosto 2026",
+  updated: "20 ottobre 2026",
   sections: [
     {
       heading: "Cookie utilizzati da questo sito",
       paragraphs: [
-        "Questo sito non utilizza cookie di tracciamento, profilazione o marketing, e non installa strumenti di analytics.",
+        "Questo sito non utilizza cookie di tracciamento, profilazione o marketing, e non installa strumenti di analytics. I font sono ospitati sul sito stesso: non vengono caricati da servizi esterni.",
+      ],
+    },
+    {
+      heading: "Memoria del browser (strumenti tecnici)",
+      paragraphs: [
+        "Alla prima visita della home page il sito mostra una breve animazione di apertura. Per non ripeterla a ogni pagina, salva nella memoria di sessione del tuo browser (sessionStorage) un'impostazione tecnica che ricorda che l'hai già vista. Non contiene dati personali, non viene inviata a nessuno e sparisce quando chiudi la scheda. Puoi rivedere l'animazione in ogni momento con il pulsante \"Rivedi la firma\" in fondo alla pagina.",
       ],
     },
     {
       heading: "Servizi di terze parti",
       paragraphs: [
-        "La pagina Consulenza gratuita include un calendario Calendly incorporato per prenotare una call. Calendly può impostare i propri cookie tecnici secondo la propria informativa, indipendente da questo sito.",
+        "La pagina Consulenza gratuita include un calendario Calendly incorporato per prenotare una call. Calendly può impostare i propri cookie tecnici secondo la propria informativa, indipendente da questo sito. I link verso Instagram, LinkedIn e Google portano a siti esterni con le loro regole.",
       ],
     },
     {

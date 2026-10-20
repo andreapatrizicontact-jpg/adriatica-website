@@ -1,0 +1,244 @@
+/*
+  The kit's contact-form language (underlined fields, pill choices, mono-less labels)
+  on the paper ground: ink instead of cream, the blue pill as the button.
+*/
+
+.form {
+  min-width: 0;
+}
+
+.field,
+.group,
+.consent {
+  margin: 0 0 24px;
+}
+
+.group {
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.label {
+  display: block;
+  padding: 0;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 8px 0 12px;
+  border: 0;
+  border-bottom: 1px solid rgba(11, 12, 42, 0.5);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 18px;
+}
+
+.input::placeholder {
+  color: #66677a;
+  opacity: 1;
+}
+
+.input[aria-invalid="true"] {
+  padding-bottom: 11px;
+  border-bottom: 2px solid var(--blue);
+}
+
+/* ---------- Pill choices (the kit's .service-choices) ---------- */
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.choice {
+  position: relative;
+  cursor: pointer;
+}
+
+.choice input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.choice span {
+  display: block;
+  padding: 9px 12px;
+  border: 1px solid rgba(11, 12, 42, 0.5);
+  border-radius: 24px;
+  font-size: 13px;
+  line-height: 1.3;
+  transition:
+    background 0.18s,
+    color 0.18s;
+}
+
+.choice:hover span {
+  border-color: var(--ink);
+}
+
+.choice input:checked + span {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--paper);
+}
+
+.choice input:focus-visible + span {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.group[data-invalid="true"] .choice span {
+  border-color: var(--blue);
+}
+
+/* ---------- Consent ---------- */
+.consentRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.consentRow input {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--blue);
+}
+
+.consentRow label {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.consentRow a {
+  color: var(--blue);
+  border-bottom: 1px solid currentColor;
+}
+
+/* ---------- Messages ---------- */
+.error {
+  margin-top: 8px;
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.consent .error {
+  padding-left: 32px;
+}
+
+.submit {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.submit[aria-disabled="true"] {
+  cursor: progress;
+  opacity: 0.75;
+}
+
+.submit[aria-disabled="true"]:hover {
+  transform: none;
+}
+
+.status {
+  min-height: 1.4em;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.status[data-kind="error"],
+.status[data-kind="validation"] {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.status a {
+  color: var(--blue);
+  border-bottom: 1px solid currentColor;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Honeypot ---------- */
+.trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- Confirmation (replaces the form after a real 200 ok) ---------- */
+.success {
+  padding: 28px;
+  background: var(--blue);
+  border-radius: 4px;
+  color: var(--paper);
+}
+
+.success:focus-visible {
+  outline-offset: 4px;
+}
+
+.successTitle {
+  font: 600 clamp(26px, 2.4vw, 34px) / 1.1 var(--font-body);
+  letter-spacing: -0.035em;
+}
+
+.successText {
+  margin-top: 14px;
+  font-size: 18px;
+}
+
+@media (max-width: 600px) {
+  .input {
+    font-size: 17px;
+  }
+  .label {
+    font-size: 13px;
+  }
+  .choices {
+    gap: 6px;
+  }
+  .choice span {
+    padding: 9px 10px;
+    font-size: 12px;
+  }
+  .success {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 360px) {
+  .choice span {
+    font-size: 11px;
+    padding: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .choice span {
+    transition: none;
+  }
+}

@@ -1,0 +1,63 @@
+/* The twelve checks: paper cards on the grey ground, 3 columns → 2 → 1 (number beside the text). */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  min-width: 0;
+  min-height: 150px;
+  padding: 22px 24px 24px;
+  background: var(--paper);
+  border: 1px solid rgba(11, 12, 42, 0.13);
+  border-radius: 4px;
+}
+
+.number {
+  color: var(--blue);
+}
+
+.text {
+  margin-top: auto;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+  .card {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 16px;
+    min-height: 0;
+    padding: 18px 20px;
+  }
+  .number {
+    flex: none;
+    min-width: 2ch;
+  }
+  .text {
+    margin-top: 0;
+    font-size: 19px;
+  }
+}

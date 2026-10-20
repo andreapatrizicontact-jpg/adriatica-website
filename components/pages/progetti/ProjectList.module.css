@@ -1,0 +1,137 @@
+/*
+  /progetti — the published projects as bordered paper cards on the "work" grey
+  (the kit's review-card language: paper ground, hairline border, 4px radius).
+  3 columns above 1000px, 2 up to 601px, 1 on phones. No rotation, no motion.
+*/
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  min-width: 0;
+  background: var(--paper);
+  border: 1px solid rgba(11, 12, 42, 0.13);
+  border-radius: 4px;
+}
+
+.next {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--paper);
+}
+
+.article {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0;
+  min-height: 300px;
+  padding: 28px;
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.fig {
+  color: var(--blue);
+}
+
+.next .fig {
+  color: var(--paper);
+}
+
+/* honest marker for the project that is still being written up */
+.wip {
+  flex: none;
+  padding: 3px 9px;
+  border: 1px solid var(--blue);
+  border-radius: 20px;
+  color: var(--blue);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.media {
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  border-radius: 2px;
+  background: var(--work-bg);
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* title + text sit at the bottom: text-only cards stretch to the row's height */
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.title {
+  margin-bottom: 12px;
+  font: 600 clamp(28px, 2.6vw, 38px) / 1.07 var(--font-body);
+  letter-spacing: -0.035em;
+  overflow-wrap: break-word;
+}
+
+.text {
+  max-width: 420px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.next .text {
+  color: var(--paper);
+}
+
+.cta {
+  width: 100%;
+  margin-top: 28px;
+}
+
+@media (max-width: 1000px) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .article {
+    padding: 23px;
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 600px) {
+  .list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .article {
+    gap: 22px;
+    min-height: 0;
+    padding: 24px;
+  }
+  .title {
+    font-size: 30px;
+  }
+  .fig {
+    font-size: 10px;
+  }
+}
