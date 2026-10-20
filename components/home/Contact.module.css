@@ -1,0 +1,96 @@
+/*
+  #contatti — measures taken 1:1 from the approved kit (style.css: .contact,
+  .contact-grid, .contact-copy, .contact-email and their 850 / 600 / 360
+  breakpoints). The form itself is styled in components/contact/ContactForm.module.css.
+*/
+
+.contact {
+  padding-block: var(--section-y);
+  background: var(--blue);
+  color: var(--paper);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12%;
+}
+
+/* ---------- Copy column ---------- */
+.copy {
+  min-width: 0;
+}
+
+.copy .eyebrow {
+  margin-bottom: 25px;
+}
+
+.copy h2 {
+  margin-bottom: 30px;
+  font-size: clamp(45px, 4.7vw, 72px);
+}
+
+.text {
+  max-width: 340px;
+  margin-bottom: 28px;
+  font-size: 20px;
+}
+
+.email {
+  display: inline-block;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(245, 242, 234, 0.55);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.email:hover {
+  border-bottom-color: var(--paper);
+}
+
+/* the global ring is --accent, too faint on the blue */
+.email:focus-visible {
+  outline: 3px solid var(--paper);
+  outline-offset: 5px;
+}
+
+/* ---------- Tablet (kit: 850) ---------- */
+@media (max-width: 850px) {
+  .grid {
+    gap: 7%;
+  }
+
+  .copy h2 {
+    font-size: 52px;
+  }
+}
+
+/* ---------- Phone (kit: 600) ---------- */
+@media (max-width: 600px) {
+  .grid {
+    display: block;
+  }
+
+  .copy {
+    margin-bottom: 43px;
+  }
+
+  .copy h2 {
+    font-size: 56px;
+  }
+
+  .text {
+    font-size: 18px;
+  }
+
+  .email {
+    font-size: 12px;
+  }
+}
+
+/* ---------- Small phone (kit: 360) ---------- */
+@media (max-width: 360px) {
+  .copy h2 {
+    font-size: 50px;
+  }
+}

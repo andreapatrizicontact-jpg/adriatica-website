@@ -1,0 +1,243 @@
+/* Studio — portrait + first-person copy + the 3-step method.
+   Ported from the kit's style.css (.studio-grid, .portrait-frame, .portrait-tag,
+   .studio-copy, .method and their 850 / 600 breakpoints). */
+
+.studio {
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.2fr;
+  gap: 11%;
+  align-items: center;
+}
+
+/* ---------- Portrait ---------- */
+.portrait {
+  position: relative;
+}
+
+.portraitImage {
+  width: 100%;
+  max-height: 530px;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.portraitTag {
+  position: absolute;
+  bottom: 26px;
+  right: -28px;
+  padding: 12px 23px;
+  border-radius: 4px;
+  background: var(--blue);
+  color: var(--paper);
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  transform: rotate(-5deg);
+}
+
+/* ---------- Copy ---------- */
+/* .copy .x: two classes, so these win over the shared Eyebrow / TextLink modules
+   whatever order the stylesheets are emitted in. */
+.copy .eyebrow {
+  margin-bottom: 28px;
+}
+
+.copy .title {
+  margin-bottom: 28px;
+  font-size: clamp(38px, 4vw, 60px);
+}
+
+.paragraph {
+  max-width: 480px;
+  margin-bottom: 17px;
+  font-size: 20px;
+}
+
+.copy .link {
+  margin-top: 29px;
+}
+
+/* ---------- Method: "Dalle persone. Alle idee." (Ascolto / Direzione / Continuità) ---------- */
+.methodBlock {
+  margin-top: 88px;
+}
+
+.methodHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 48px;
+  margin-bottom: 40px;
+}
+
+.methodTitle {
+  font-size: clamp(40px, 4.2vw, 66px);
+}
+
+.methodDescription {
+  max-width: 340px;
+  padding-top: 10px;
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.method {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.figure {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: clamp(240px, 24vw, 340px);
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.figure img {
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* the line art is on white: multiply drops the white onto the paper */
+  mix-blend-mode: multiply;
+}
+
+.stepBody {
+  padding-top: 28px;
+}
+
+.step .stepEyebrow {
+  color: var(--blue);
+}
+
+.stepTitle {
+  margin: 14px 0 10px;
+  font-size: 26px;
+}
+
+.stepText {
+  max-width: 340px;
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--muted-2);
+}
+
+@media (max-width: 850px) {
+  .grid {
+    gap: 7%;
+  }
+
+  .portraitTag {
+    right: -14px;
+    font-size: 20px;
+  }
+
+  .paragraph {
+    font-size: 18px;
+  }
+
+  .method {
+    gap: 24px;
+  }
+
+  .methodHead {
+    gap: 28px;
+  }
+
+  .methodDescription {
+    font-size: 18px;
+  }
+
+  .stepTitle {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 42px;
+  }
+
+  .portrait {
+    width: 86%;
+  }
+
+  .portraitImage {
+    max-height: 470px;
+    aspect-ratio: 4 / 5;
+    object-position: center 32%;
+  }
+
+  .portraitTag {
+    right: -28px;
+    bottom: 22px;
+    font-size: 21px;
+  }
+
+  .copy .title {
+    margin-bottom: 22px;
+    font-size: 43px;
+  }
+
+  .copy .eyebrow {
+    margin-bottom: 20px;
+  }
+
+  .methodBlock {
+    margin-top: 56px;
+  }
+
+  .methodHead {
+    display: block;
+    margin-bottom: 28px;
+  }
+
+  .methodTitle {
+    font-size: 44px;
+  }
+
+  .methodDescription {
+    margin-top: 18px;
+    font-size: 17px;
+  }
+
+  .method {
+    display: block;
+  }
+
+  .step {
+    padding-bottom: 12px;
+  }
+
+  .figure {
+    height: 240px;
+  }
+
+  .stepBody {
+    padding: 22px 0 18px;
+  }
+}
+
+/* The kit's 43px heading ("dietro Adriatica," measures 7.43em) only just fits the
+   320px column of a 360px phone, and breaks into three lines on narrower ones.
+   Below 360px scale it with the column so the two-line composition holds down to
+   320px; at 360px and above it is exactly the kit's 43px. */
+@media (max-width: 360px) {
+  .copy .title {
+    font-size: min(43px, calc((100vw - 40px) / 7.43));
+  }
+}

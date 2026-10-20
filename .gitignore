@@ -43,3 +43,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# iCloud-proof node_modules (symlinked as node_modules)
+/node_modules.nosync

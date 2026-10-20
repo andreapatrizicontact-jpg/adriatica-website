@@ -1,0 +1,98 @@
+.section {
+  padding: var(--section-y) 0;
+  background: var(--blue);
+  color: var(--paper);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 8%;
+}
+
+.eyebrow {
+  margin-bottom: 22px;
+}
+
+.calendar,
+.write {
+  min-width: 0;
+}
+
+.calendar h2 {
+  margin-bottom: 36px;
+}
+
+/* fixed height: the page never shifts while Calendly loads */
+.frame {
+  height: 700px;
+  margin-bottom: 22px;
+  background: #fff;
+  border: 1px solid rgba(245, 242, 234, 0.55);
+}
+
+.iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.calendar .fallback {
+  max-width: 100%;
+  gap: 24px;
+  font-size: 15px;
+}
+
+.writeSub {
+  max-width: 340px;
+  margin-bottom: 36px;
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 64px;
+  }
+  .writeSub {
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 850px) {
+  .calendar h2 {
+    margin-bottom: 28px;
+  }
+  .writeSub {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    gap: 52px;
+  }
+  .eyebrow {
+    font-size: 10px;
+    margin-bottom: 18px;
+  }
+  .calendar h2 {
+    margin-bottom: 24px;
+    font-size: clamp(36px, 11.5vw, 48px);
+  }
+  .frame {
+    height: 740px;
+  }
+  .calendar .fallback {
+    font-size: 14px;
+    gap: 14px;
+  }
+  .writeSub {
+    font-size: 17px;
+    margin-bottom: 26px;
+  }
+}

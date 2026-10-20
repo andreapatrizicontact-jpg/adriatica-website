@@ -1,0 +1,83 @@
+/* #cosa-copriamo — a numbered list with thin rules + one calm bordered card. */
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 64px;
+}
+
+.covers {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--ink);
+  list-style: none;
+}
+
+.cover {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 8px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.number {
+  color: var(--blue);
+}
+
+.cover p {
+  max-width: 600px;
+  font-size: clamp(20px, 1.9vw, 26px);
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: -0.025em;
+}
+
+.isNot {
+  padding: 32px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+
+.isNotLabel {
+  margin-bottom: 18px;
+  color: var(--blue);
+  text-transform: uppercase;
+}
+
+.isNot p {
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.45;
+}
+
+@media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 850px) {
+  .isNot {
+    padding: 27px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cover {
+    grid-template-columns: 40px minmax(0, 1fr);
+    padding: 22px 0;
+  }
+  .cover p {
+    font-size: 20px;
+  }
+  .isNot {
+    padding: 24px;
+  }
+  .isNot p {
+    font-size: 17px;
+  }
+}

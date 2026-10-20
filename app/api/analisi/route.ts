@@ -1,50 +1,41 @@
-import { NextResponse } from "next/server";
-import { analisiSchema } from "@/lib/validation";
-import { sendNotificationEmail } from "@/lib/email";
-import { getClientIp, isRateLimited } from "@/lib/rateLimit";
+import { formatFieldLines, httpResultFor, sanitizeHeaderValue, sendNotificationEmail } from "@/lib/email";
+import { createFormGuard, formResponse, guardFormRequest } from "@/lib/rateLimit";
+import { analisiSchema, toFieldErrors } from "@/lib/validation";
+
+// Free social analysis request (/analisi). Same contract and the same hardening
+// as /api/contatti: 200 {ok:true} only if delivered (or dev fallback) · 400 · 413 · 429 · 503.
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+const guard = createFormGuard("analisi");
 
 export async function POST(request: Request) {
-  const ip = getClientIp(request.headers);
-  if (isRateLimited(ip)) {
-    return NextResponse.json(
-      { ok: false, errors: { form: ["Troppe richieste. Riprova tra qualche minuto."] } },
-      { status: 429 }
-    );
-  }
+  const guarded = await guardFormRequest(request, guard);
+  if ("response" in guarded) return guarded.response;
 
-  const body = await request.json().catch(() => null);
-  const parsed = analisiSchema.safeParse(body);
-
+  const parsed = analisiSchema.safeParse(guarded.body);
   if (!parsed.success) {
-    return NextResponse.json(
-      { ok: false, errors: parsed.error.flatten().fieldErrors },
-      { status: 400 }
-    );
+    guarded.noteRejected();
+    return formResponse({ ok: false, errors: toFieldErrors(parsed.error) }, 400);
   }
 
-  // honeypot tripped — pretend success so the bot doesn't learn anything,
-  // just don't actually send a notification.
-  if (parsed.data.website) {
-    return NextResponse.json({ ok: true });
-  }
-
+  guarded.noteDelivery();
   const { handle, sito, settore, obiettivo, nome, email, telefono } = parsed.data;
 
-  await sendNotificationEmail({
-    subject: `Nuova richiesta di analisi social — ${nome}`,
-    text: [
-      `Nome: ${nome}`,
-      `Email: ${email}`,
-      telefono ? `Telefono: ${telefono}` : null,
-      `Handle: ${handle}`,
-      sito ? `Sito: ${sito}` : null,
-      `Settore: ${settore}`,
-      `Obiettivo: ${obiettivo}`,
-    ]
-      .filter(Boolean)
-      .join("\n"),
+  const result = await sendNotificationEmail({
+    subject: sanitizeHeaderValue(`Nuova richiesta di analisi social — ${nome}`),
+    text: formatFieldLines([
+      ["Nome", nome],
+      ["Email", email],
+      ["Telefono", telefono],
+      ["Handle", handle],
+      ["Sito", sito],
+      ["Settore", settore],
+      ["Obiettivo", obiettivo],
+    ]).join("\n"),
     replyTo: email,
   });
 
-  return NextResponse.json({ ok: true });
+  const { status, body } = httpResultFor(result);
+  return formResponse(body, status);
 }

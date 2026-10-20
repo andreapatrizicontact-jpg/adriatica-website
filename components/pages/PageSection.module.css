@@ -1,0 +1,75 @@
+.section {
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
+  scroll-margin-top: 0;
+}
+
+.paper {
+  background: var(--paper);
+}
+
+.work {
+  background: var(--work-bg);
+}
+
+.reviews {
+  background: var(--reviews-bg);
+  border-top: 1px solid var(--line);
+}
+
+.blue {
+  background: var(--blue);
+  color: var(--paper);
+}
+
+.heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  margin-bottom: 46px;
+}
+
+.eyebrow {
+  margin-bottom: 22px;
+  color: var(--blue);
+}
+
+.blue .eyebrow {
+  color: var(--paper);
+}
+
+.description {
+  max-width: 340px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+@media (max-width: 850px) {
+  .heading {
+    gap: 28px;
+  }
+  .description {
+    font-size: 18px;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 600px) {
+  .heading {
+    display: block;
+    margin-bottom: 30px;
+  }
+  .heading h2 {
+    font-size: clamp(36px, 11.5vw, 48px);
+  }
+  .eyebrow {
+    font-size: 10px;
+    margin-bottom: 18px;
+  }
+  .description {
+    margin-top: 22px;
+    font-size: 17px;
+    max-width: 330px;
+  }
+}

@@ -1,0 +1,26 @@
+.logo {
+  display: flex;
+  align-items: baseline;
+  font-size: 30px;
+  letter-spacing: -0.055em;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.logo img {
+  height: 0.75em;
+  width: auto;
+  margin-right: 0.055em;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo {
+    font-size: 23px;
+  }
+}

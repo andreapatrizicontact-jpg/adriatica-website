@@ -1,0 +1,324 @@
+/* Reviews — ported from the kit's reviews.css (1000 / 850 / 600 / 360 breakpoints),
+   including the :has() rules that swap the excerpt for the full text. */
+
+.reviews {
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
+  background: var(--reviews-bg);
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- Heading row ---------- */
+.heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  margin-bottom: 42px;
+}
+
+/* two classes: wins over the shared Eyebrow module whatever the stylesheet order */
+.heading .headingEyebrow {
+  margin-bottom: 22px;
+}
+
+.description {
+  max-width: 320px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+/* ---------- Grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+/* ---------- Card ---------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  min-height: 358px;
+  padding: 28px;
+  background: var(--paper);
+  border: 1px solid rgba(11, 12, 42, 0.13);
+  border-radius: 4px;
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.top .label {
+  max-width: 72%;
+  color: var(--blue);
+  overflow-wrap: anywhere;
+}
+
+.rating {
+  flex: none;
+  font: 500 13px/1.6 var(--font-body);
+  color: var(--blue);
+  white-space: nowrap;
+}
+
+.quote {
+  margin: 0 0 22px;
+  font-size: 23px;
+  line-height: 1.32;
+  letter-spacing: -0.025em;
+}
+
+/* the big opening quote mark is generated content (empty alt text keeps it
+   out of the accessible name / speech in browsers that support it) */
+.quote::before {
+  content: "\201C";
+  content: "\201C" / "";
+  display: block;
+  height: 35px;
+  margin-bottom: 7px;
+  font: 600 58px/1 var(--font-body);
+  color: var(--blue);
+}
+
+.preview {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+/* ---------- Native disclosure ---------- */
+.details {
+  margin: 0 0 26px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.details summary {
+  width: fit-content;
+  padding: 4px 0;
+  border-bottom: 1px solid currentColor;
+  color: var(--blue);
+  font-size: 13px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.details summary::-webkit-details-marker {
+  display: none;
+}
+
+.details summary::after {
+  content: " +";
+  content: " +" / "";
+  display: inline-block;
+  margin-left: 9px;
+  font-size: 17px;
+}
+
+.details[open] summary::after {
+  content: " \2212";
+  content: " \2212" / "";
+}
+
+.details[open] summary {
+  margin-bottom: 18px;
+}
+
+.details > p {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  color: var(--muted);
+}
+
+/* open: the full text replaces the excerpt */
+.card:has(.details[open]) .preview {
+  display: none;
+}
+
+.card:has(.details[open]) .quote {
+  margin-bottom: 13px;
+}
+
+/* ---------- Footer: author + date ---------- */
+.author {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: auto;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.author > span {
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.author time {
+  flex: none;
+  color: #595a6e;
+  font: 400 10px/1.5 var(--font-mono);
+  white-space: nowrap;
+}
+
+/* text for screen readers only (the "di {cliente}" after the toggle label) */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    gap: 16px;
+  }
+
+  .card {
+    min-height: 380px;
+    padding: 23px;
+  }
+
+  .quote {
+    font-size: 21px;
+  }
+
+  .author {
+    display: block;
+  }
+
+  .author time {
+    display: block;
+    margin-top: 7px;
+  }
+}
+
+@media (max-width: 850px) {
+  .heading {
+    gap: 28px;
+  }
+
+  .description {
+    max-width: 280px;
+    font-size: 18px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 0;
+    padding: 28px;
+  }
+
+  .quote {
+    max-width: 620px;
+    font-size: 24px;
+  }
+
+  .preview {
+    -webkit-line-clamp: 3;
+  }
+
+  .author {
+    display: flex;
+  }
+
+  .author time {
+    margin-top: 0;
+  }
+
+  .top {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .heading {
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .heading .headingEyebrow {
+    margin-bottom: 18px;
+    font-size: 10px;
+  }
+
+  .title {
+    font-size: 45px;
+  }
+
+  .description {
+    max-width: 330px;
+    margin-top: 22px;
+    font-size: 17px;
+  }
+
+  .grid {
+    gap: 14px;
+  }
+
+  .card {
+    padding: 24px;
+  }
+
+  .quote {
+    font-size: 23px;
+  }
+
+  .preview {
+    -webkit-line-clamp: 4;
+  }
+
+  .author {
+    font-size: 13px;
+  }
+
+  .author time {
+    font-size: 9px;
+  }
+
+  .top {
+    gap: 12px;
+  }
+
+  .top .label {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .title {
+    font-size: 39px;
+  }
+
+  .card {
+    padding: 21px;
+  }
+
+  .quote {
+    font-size: 21px;
+  }
+
+  .author {
+    display: block;
+  }
+
+  .author time {
+    margin-top: 7px;
+  }
+}

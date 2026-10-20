@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" fill="none">
+  <title>partiamo</title>
+  <path d="M 313 626 C 344 670 419 651 415 599 C 411 543 318 559 325 481 C 332 398 394 354 473 356 C 548 358 610 397 682 456" fill="none" stroke="#004AAD" stroke-width="31" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 609 447 L 682 456 L 667 384" fill="none" stroke="#004AAD" stroke-width="31" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="313" cy="626" r="18" fill="#004AAD" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 553 619 L 573 639" fill="none" stroke="#004AAD" stroke-width="23" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 593 600 L 620 599" fill="none" stroke="#004AAD" stroke-width="23" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

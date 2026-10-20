@@ -1,0 +1,12 @@
+/* "Ultimo aggiornamento" line under the title: a quiet mono label, not the 20px intro. */
+.updated {
+  font: 400 12px/1.6 var(--font-mono);
+  letter-spacing: 0.045em;
+  color: var(--muted);
+}
+
+/* The shared Prose gives every h2 a 48px top margin; the first one already has the
+   hero's padding above it, so it starts flush. (Higher specificity than .prose h2.) */
+.document > section:first-child > h2 {
+  margin-top: 0;
+}

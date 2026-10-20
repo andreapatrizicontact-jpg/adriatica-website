@@ -1,652 +1,217 @@
-@import "tailwindcss";
-
 /*
-  Token system — mirrors DESIGN-PLAN.md §1.
-  Spacing deliberately uses Tailwind's default 4px-based scale (1/2/3/4/6/8/
-  12/16/24/32/48) unmodified, because DESIGN-PLAN's spacing scale was chosen
-  to match it exactly — no custom --spacing-* tokens needed.
+  Adriatica — global layer.
+  Only what must be global lives here: font faces, design tokens, reset and the
+  intro first-paint cover. Every component styles itself with a co-located
+  CSS Module placed next to it. Values come from the approved
+  design kit (brand-tokens.json + design-reference/style.css).
 */
-@theme {
-  /* 1.1 color — black+blue system (green/kraft world retired, see DECISIONS.md) */
-  --color-adriatic: #004aad;
-  --color-abisso: #25227a;
-  --color-nero: #06060f;
-  --color-periwinkle: #5271ff;
-  --color-inchiostro: #0b0c2a;
-  --color-carta: #f5f2ea;
-  --color-bianco: #ffffff;
 
-  /* fonts */
-  --font-display: var(--font-poppins);
-  --font-body: var(--font-instrument-sans);
-  --font-mono: var(--font-geist-mono);
-
-  /* 1.2 type scale */
-  --text-display-2xl: clamp(3.5rem, 11vw, 11rem);
-  --text-display-2xl--line-height: 0.88;
-  --text-display-2xl--letter-spacing: -0.03em;
-
-  --text-display-xl: clamp(2.75rem, 8vw, 7rem);
-  --text-display-xl--line-height: 0.88;
-  --text-display-xl--letter-spacing: -0.03em;
-
-  --text-display-l: clamp(2.25rem, 5vw, 4rem);
-  --text-display-l--line-height: 0.92;
-  --text-display-l--letter-spacing: -0.02em;
-
-  --text-display-m: clamp(1.5rem, 3.2vw, 2.25rem);
-  --text-display-m--line-height: 0.95;
-  --text-display-m--letter-spacing: -0.01em;
-
-  --text-body-l: clamp(1.125rem, 1.4vw, 1.375rem);
-  --text-body-l--line-height: 1.5;
-
-  --text-body-m: 1rem;
-  --text-body-m--line-height: 1.6;
-
-  --text-body-s: 0.875rem;
-  --text-body-s--line-height: 1.5;
-
-  --text-mono-label: 0.75rem;
-  --text-mono-label--line-height: 1.4;
-  --text-mono-label--letter-spacing: 0.18em;
-
-  /* 1.5 motion */
-  --ease-entrance: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-transition: cubic-bezier(0.65, 0, 0.35, 1);
-  --duration-fast: 180ms;
-  --duration-base: 320ms;
-  --duration-slow: 620ms;
+/* ---------- Fonts (self-hosted, licences kept in /public/fonts) ---------- */
+@font-face {
+  font-family: "Instrument";
+  src: url("/fonts/InstrumentSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument";
+  src: url("/fonts/InstrumentSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument";
+  src: url("/fonts/InstrumentSans-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/GeistMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Bold-Latin.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Bold-LatinExt.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  unicode-range: U+100-2BA, U+1E00-1EFF;
 }
 
-/* section vertical rhythm — one token, not a per-section guess (DESIGN-PLAN §1.3) */
-@utility section-y {
-  padding-block: clamp(6rem, 4rem + 8vw, 12rem);
-}
-
-@utility section-y-tight {
-  padding-block: clamp(4rem, 3rem + 4vw, 6rem);
-}
-
+/* ---------- Tokens ---------- */
 :root {
+  --paper: #f5f2ea;
+  --blue: #004aad;
+  --ink: #0b0c2a;
+  --accent: #5271ff;
+  --line: rgba(11, 12, 42, 0.2);
+  --work-bg: #e8e9e4;
+  --post-board: #dce3ec;
+  --reviews-bg: #eceee8;
+  --muted: #41415a;
+  --muted-2: #45465c;
+
+  --font-body: "Instrument", Arial, sans-serif;
+  --font-display: "Poppins", "Instrument", sans-serif;
+  --font-mono: "Geist", ui-monospace, monospace;
+
+  --wrap-max: 1440px;
+  --wrap-margin: 44px;
+  --section-y: 96px;
+  --header-h: 98px;
+
   color-scheme: light;
-  /* neutral chrome accent (header/sticky-bar/contact-rail) — toggled via the
-     header's Toggle3D control, independent of each section's own
-     data-world. Not a full site re-theme: branded world sections keep their
-     authored colors regardless. */
-  --chrome-bg: var(--color-abisso);
 }
 
-:root[data-chrome-accent="dark"] {
-  --chrome-bg: var(--color-nero);
+@media (max-width: 850px) {
+  :root {
+    --wrap-margin: 24px;
+    --section-y: 68px;
+  }
+}
+@media (max-width: 600px) {
+  :root {
+    --wrap-margin: 20px;
+    --section-y: 58px;
+    --header-h: 79px;
+  }
 }
 
-html,
+/* ---------- Reset / base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 28px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
-  height: 100%;
-}
-
-body {
-  background: var(--color-carta);
-  color: var(--color-inchiostro);
-  font-family: var(--font-body), system-ui, sans-serif;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 18px/1.45 var(--font-body);
   -webkit-font-smoothing: antialiased;
 }
 
-/* world rule — every <section data-world="blue|dark|paper"> reassigns the
-   local surface/ink pair its children inherit, so components never
-   hardcode which world they're rendered in (DESIGN-PLAN §1.1).
-   "dark" replaced the original green/kraft paper-cutout world — retired in
-   favor of a mixed black+blue system, see DECISIONS.md. */
-[data-world="blue"] {
-  --surface: var(--color-adriatic);
-  --surface-deep: var(--color-abisso);
-  --ink: var(--color-bianco);
-  --accent: var(--color-periwinkle);
-  background: var(--surface-deep);
-  color: var(--ink);
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-[data-world="dark"] {
-  --surface: var(--color-nero);
-  --ink: var(--color-bianco);
-  --accent: var(--color-periwinkle);
-  background:
-    radial-gradient(120% 90% at 12% -10%, color-mix(in oklab, var(--color-adriatic) 55%, transparent) 0%, transparent 60%),
-    radial-gradient(100% 80% at 100% 110%, color-mix(in oklab, var(--color-abisso) 65%, transparent) 0%, transparent 65%),
-    var(--color-nero);
-  color: var(--ink);
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
-[data-world="paper"] {
-  --surface: var(--color-carta);
-  --ink: var(--color-inchiostro);
-  --accent: var(--color-adriatic);
-  background: var(--surface);
-  color: var(--ink);
+button,
+a,
+input,
+textarea,
+select {
+  touch-action: manipulation;
+}
+
+button {
+  color: inherit;
+  cursor: pointer;
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+img {
+  height: auto;
+}
+
+p,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+h2 {
+  font: 700 clamp(40px, 4.2vw, 66px) / 1.02 var(--font-display);
+  letter-spacing: -0.055em;
+}
+
+h3 {
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.035em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 5px;
+  border-radius: 3px;
 }
 
 ::selection {
-  background: var(--color-periwinkle);
-  color: var(--color-bianco);
+  background: var(--accent);
+  color: #fff;
 }
 
-/* focus-visible rings — periwinkle everywhere now that lime is retired */
-:focus-visible {
-  outline: 3px solid var(--color-periwinkle);
-  outline-offset: 3px;
-}
-
-[data-world="blue"] :focus-visible,
-[data-world="dark"] :focus-visible {
-  outline-color: var(--color-bianco);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+@media (max-width: 600px) {
+  html {
+    scroll-padding-top: 18px;
+  }
+  body {
+    font-size: 17px;
   }
 }
 
-/* =====================================================================
-   Bespoke interactive primitives — Toggle3D and DominoLoader use real
-   pseudo-element 3D faces / staggered keyframe choreography that don't
-   translate cleanly to utility classes, so they live here as plain CSS,
-   built on the token system (no hardcoded hex). Adapted from Uiverse.io
-   community snippets (r7chardgh's switch, satyamchaudharydev's spinner),
-   re-skinned to the black+blue palette and made theme-token-driven.
-   ===================================================================== */
-
-.t3d-switch {
-  position: relative;
-  display: inline-flex;
-  width: 4.5em;
-  height: 2.25em;
-  font-size: 1em;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
-.t3d-input {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.t3d-track {
-  position: absolute;
+/* ---------- Intro first-paint cover ----------
+  An inline script in <head> (app/layout.tsx) sets html[data-intro="pending"]
+  only on a fresh load of "/" when the signature hasn't been seen this session
+  and the visitor hasn't asked for reduced motion. The cover hides the page
+  behind the intro for the few ms before React mounts the real <dialog>.
+  It auto-hides after 3.5s with CSS alone, so a failed script can never leave
+  the site covered. The IntroOverlay removes the attribute as soon as it
+  takes over. */
+html[data-intro="pending"] body::after {
+  content: "";
+  position: fixed;
   inset: 0;
-  cursor: pointer;
-  display: flex;
-  border-radius: 0.15em;
-  overflow: hidden;
-  perspective: 12em;
-  background: var(--color-nero);
-  box-shadow:
-    -0.3em 0 0 0 var(--color-nero),
-    -0.3em 0.3em 0 0 var(--color-nero),
-    0.3em 0 0 0 var(--color-nero),
-    0.3em 0.3em 0 0 var(--color-nero),
-    0 0.3em 0 0 var(--color-nero);
-  transition: box-shadow var(--duration-fast) var(--ease-entrance);
+  z-index: 2147483000;
+  background: var(--paper) url("/intro/poster-1080p.png") center / contain no-repeat;
+  animation: intro-cover-failsafe 0s linear 3.5s forwards;
 }
 
-.t3d-input:focus-visible + .t3d-track {
-  outline: 3px solid var(--color-periwinkle);
-  outline-offset: 4px;
-}
-
-.t3d-face {
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 0.65em;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  background: var(--color-bianco);
-  color: var(--color-inchiostro);
-  transform-style: preserve-3d;
-  transition: transform 220ms ease, color 220ms ease;
-}
-
-.t3d-face--left {
-  left: 0;
-  transform-origin: right center;
-  transform: rotateY(0deg);
-}
-
-.t3d-face--right {
-  right: 0;
-  transform-origin: left center;
-  transform: rotateY(-55deg);
-  color: color-mix(in oklab, var(--color-inchiostro) 35%, var(--color-carta));
-}
-
-.t3d-input:checked ~ .t3d-track .t3d-face--left {
-  transform: rotateY(55deg);
-}
-
-.t3d-input:checked ~ .t3d-track .t3d-face--right {
-  transform: rotateY(0deg);
-  color: var(--color-periwinkle);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .t3d-face {
-    transition: none;
+@media (max-width: 700px) and (orientation: portrait) {
+  html[data-intro="pending"] body::after {
+    background-image: url("/intro/poster-phone.png");
   }
 }
 
-.domino-loader {
-  position: relative;
-  width: 5.5rem;
-  height: 1.5rem;
-}
-
-.domino-loader span {
-  position: absolute;
-  top: 50%;
-  left: calc(var(--i) * 0.85rem);
-  width: 1.9rem;
-  height: 0.4rem;
-  background: var(--color-bianco);
-  box-shadow: 0.1rem 0.1rem 0.15rem 0 var(--color-inchiostro);
-  animation: domino-fall 1s ease infinite;
-  animation-delay: calc(var(--i) * -0.125s + 1s);
-}
-
-@keyframes domino-fall {
-  50% {
-    opacity: 0.7;
-  }
-  75% {
-    transform: rotate(90deg);
-  }
-  80% {
-    opacity: 1;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .domino-loader span {
-    animation: none;
-    opacity: 0.85;
-  }
-}
-
-/* Layered glass service card — adapted from a Uiverse.io snippet
-   (Smit-Prajapati), original mint-green gradient swapped for our own
-   periwinkle→adriatic run. Real multi-layer 3D: card/glass/content/badge
-   sit at increasing translateZ, and the whole card tilts on hover via
-   rotate3d while the badge's concentric circles and social buttons push
-   further forward — not a flat card with a fake shadow. */
-.svc3d-parent {
-  width: 100%;
-  height: 21rem;
-  perspective: 60rem;
-}
-
-.svc3d-card {
-  position: relative;
-  height: 100%;
-  border-radius: 2rem;
-  background: linear-gradient(135deg, var(--color-periwinkle) 0%, var(--color-adriatic) 100%);
-  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-  transform-style: preserve-3d;
-  box-shadow: rgba(6, 6, 15, 0) 40px 50px 25px -40px, rgba(6, 6, 15, 0.3) 0px 25px 25px -5px;
-}
-
-.svc3d-glass {
-  transform-style: preserve-3d;
-  position: absolute;
-  inset: 0.5rem;
-  border-radius: 2.2rem;
-  border-top-right-radius: 100%;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.82) 100%);
-  transform: translate3d(0px, 0px, 25px);
-  border-left: 1px solid var(--color-bianco);
-  border-bottom: 1px solid var(--color-bianco);
-  transition: transform 0.5s ease-in-out;
-}
-
-.svc3d-content {
-  position: relative;
-  padding: 5.5rem 3rem 0 1.75rem;
-  transform: translate3d(0, 0, 26px);
-}
-
-.svc3d-title {
-  display: block;
-  color: var(--color-abisso);
-  font-weight: 900;
-  font-size: 1.15rem;
-}
-
-.svc3d-text {
-  display: block;
-  color: color-mix(in oklab, var(--color-abisso) 78%, transparent);
-  font-size: 0.85rem;
-  margin-top: 0.85rem;
-  line-height: 1.5;
-}
-
-.svc3d-bottom {
-  padding: 0.6rem 0.75rem;
-  transform-style: preserve-3d;
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  right: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transform: translate3d(0, 0, 26px);
-}
-
-.svc3d-view-more {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  color: var(--color-adriatic);
-  font-weight: 800;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  transition: transform 0.2s ease-in-out;
-}
-
-.svc3d-view-more:hover {
-  transform: translate3d(0, 0, 10px);
-}
-
-.svc3d-view-more svg {
-  width: 0.85rem;
-  height: 0.85rem;
-  fill: none;
-  stroke: var(--color-adriatic);
-  stroke-width: 3px;
-}
-
-.svc3d-socials {
-  display: flex;
-  gap: 0.5rem;
-  transform-style: preserve-3d;
-}
-
-.svc3d-social-btn {
-  width: 1.75rem;
-  aspect-ratio: 1;
-  display: grid;
-  place-content: center;
-  border-radius: 50%;
-  background: var(--color-bianco);
-  color: var(--color-adriatic);
-  box-shadow: rgba(6, 6, 15, 0.5) 0px 7px 5px -5px;
-  transition: background 0.15s ease, color 0.15s ease;
-}
-
-.svc3d-social-btn:nth-child(1) {
-  transition: transform 0.2s ease-in-out 0.4s, box-shadow 0.2s ease-in-out 0.4s, background 0.15s ease, color 0.15s ease;
-}
-.svc3d-social-btn:nth-child(2) {
-  transition: transform 0.2s ease-in-out 0.6s, box-shadow 0.2s ease-in-out 0.6s, background 0.15s ease, color 0.15s ease;
-}
-.svc3d-social-btn:nth-child(3) {
-  transition: transform 0.2s ease-in-out 0.8s, box-shadow 0.2s ease-in-out 0.8s, background 0.15s ease, color 0.15s ease;
-}
-
-.svc3d-social-btn svg {
-  width: 0.85rem;
-  height: 0.85rem;
-  fill: currentColor;
-}
-
-.svc3d-social-btn:hover {
-  background: var(--color-nero);
-  color: var(--color-bianco);
-}
-
-.svc3d-badge {
-  position: absolute;
-  right: 0;
-  top: 0;
-  transform-style: preserve-3d;
-}
-
-.svc3d-circle {
-  display: block;
-  position: absolute;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  top: 0;
-  right: 0;
-  box-shadow: rgba(6, 6, 15, 0.15) -10px 10px 20px 0px;
-  backdrop-filter: blur(4px);
-  background: rgba(82, 113, 255, 0.22);
-  transition: transform 0.5s ease-in-out;
-}
-
-.svc3d-circle1 {
-  width: 9.5rem;
-  transform: translate3d(0, 0, 20px);
-  top: 0.4rem;
-  right: 0.4rem;
-}
-.svc3d-circle2 {
-  width: 7.6rem;
-  transform: translate3d(0, 0, 40px);
-  top: 0.55rem;
-  right: 0.55rem;
-  transition-delay: 0.4s;
-}
-.svc3d-circle3 {
-  width: 5.9rem;
-  transform: translate3d(0, 0, 60px);
-  top: 0.9rem;
-  right: 0.9rem;
-  transition-delay: 0.8s;
-}
-.svc3d-circle4 {
-  width: 4.2rem;
-  transform: translate3d(0, 0, 80px);
-  top: 1.2rem;
-  right: 1.2rem;
-  transition-delay: 1.2s;
-}
-.svc3d-circle5 {
-  width: 2.6rem;
-  transform: translate3d(0, 0, 100px);
-  top: 1.55rem;
-  right: 1.55rem;
-  display: grid;
-  place-content: center;
-  transition-delay: 1.6s;
-}
-.svc3d-circle5 svg {
-  width: 1.1rem;
-  color: var(--color-bianco);
-}
-
-.svc3d-parent:hover .svc3d-card {
-  transform: rotate3d(1, 1, 0, 22deg);
-  box-shadow: rgba(6, 6, 15, 0.3) 30px 50px 25px -40px, rgba(6, 6, 15, 0.15) 0px 25px 30px 0px;
-}
-.svc3d-parent:hover .svc3d-social-btn {
-  transform: translate3d(0, 0, 40px);
-  box-shadow: rgba(6, 6, 15, 0.25) -5px 20px 10px 0px;
-}
-.svc3d-parent:hover .svc3d-circle2 {
-  transform: translate3d(0, 0, 55px);
-}
-.svc3d-parent:hover .svc3d-circle3 {
-  transform: translate3d(0, 0, 75px);
-}
-.svc3d-parent:hover .svc3d-circle4 {
-  transform: translate3d(0, 0, 95px);
-}
-.svc3d-parent:hover .svc3d-circle5 {
-  transform: translate3d(0, 0, 115px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .svc3d-card,
-  .svc3d-glass,
-  .svc3d-view-more,
-  .svc3d-social-btn,
-  .svc3d-circle {
-    transition: none;
-  }
-  /* resting depth stack stays (it's not motion, just layout) — only the
-     hover-triggered tilt/push is what needs to disappear */
-  .svc3d-parent:hover .svc3d-card,
-  .svc3d-parent:hover .svc3d-social-btn,
-  .svc3d-parent:hover .svc3d-circle2,
-  .svc3d-parent:hover .svc3d-circle3,
-  .svc3d-parent:hover .svc3d-circle4,
-  .svc3d-parent:hover .svc3d-circle5 {
-    transform: none;
-  }
-}
-
-/* Offline-connection mascot — adapted from a Uiverse.io snippet
-   (preet_7613), which was CSS-only. The original's exact markup wasn't
-   pasted, so the SVG in ui/OfflineFace.tsx is a reconstruction built to
-   match these keyframes' intent (blink, wandering pupils, a mouth that
-   draws itself in), not a pixel copy of an artwork we never had. */
-.face__eyes,
-.face__eye-lid,
-.face__mouth-left,
-.face__mouth-right,
-.face__nose,
-.face__pupil {
-  animation: eyes 1s 0.3s forwards;
-}
-
-.face__eye-lid,
-.face__pupil {
-  animation-duration: 4s;
-  animation-delay: 1.3s;
-  animation-iteration-count: infinite;
-}
-
-.face__eye-lid {
-  animation-name: eye-lid;
-}
-.face__mouth-left {
-  animation-name: mouth-left;
-}
-.face__mouth-right {
-  animation-name: mouth-right;
-}
-.face__nose {
-  animation-name: nose;
-}
-.face__pupil {
-  animation-name: pupil;
-}
-
-@keyframes eye-lid {
-  0%,
-  40%,
-  45%,
-  100% {
-    transform: translateY(0);
-  }
-  42.5% {
-    transform: translateY(17.5px);
-  }
-}
-
-@keyframes eyes {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
+@keyframes intro-cover-failsafe {
   to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes pupil {
-  0%,
-  37.5%,
-  40%,
-  45%,
-  87.5%,
-  100% {
-    stroke-dashoffset: 0;
-    transform: translate(0, 0);
-  }
-  12.5%,
-  25%,
-  62.5%,
-  75% {
-    transform: translate(-6px, 0);
-  }
-  42.5% {
-    stroke-dashoffset: 35;
-    transform: translate(0, 3px);
-  }
-}
-
-@keyframes mouth-left {
-  from,
-  50% {
-    stroke-dashoffset: -102;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes mouth-right {
-  from,
-  50% {
-    stroke-dashoffset: 102;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes nose {
-  from {
-    transform: translate(0, -4px);
-    opacity: 0;
-  }
-  to {
-    transform: translate(0, 0);
-    opacity: 0.6;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .face__eyes,
-  .face__eye-lid,
-  .face__mouth-left,
-  .face__mouth-right,
-  .face__nose,
-  .face__pupil {
-    animation: none;
-  }
-  /* land in the resting "settled" pose instead of the mid-blink/mid-look
-     frame an animation freeze could land on */
-  .face__mouth-left,
-  .face__mouth-right {
-    stroke-dashoffset: 0;
-  }
-  .face__nose {
-    opacity: 0.6;
+    visibility: hidden;
+    pointer-events: none;
   }
 }

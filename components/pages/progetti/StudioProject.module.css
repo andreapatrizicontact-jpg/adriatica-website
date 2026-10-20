@@ -1,0 +1,45 @@
+.section {
+  padding: 64px 0 var(--section-y);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px 48px;
+}
+
+.title {
+  margin-bottom: 8px;
+  font: 600 clamp(26px, 2.4vw, 34px) / 1.07 var(--font-body);
+  letter-spacing: -0.035em;
+}
+
+.text {
+  max-width: 420px;
+  color: var(--muted-2);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.link {
+  flex: none;
+}
+
+@media (max-width: 850px) {
+  .section {
+    padding-top: 48px;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding-top: 40px;
+  }
+  .inner {
+    display: block;
+  }
+  .link {
+    margin-top: 22px;
+  }
+}

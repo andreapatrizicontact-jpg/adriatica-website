@@ -1,0 +1,332 @@
+/*
+  Contact form — styled for the blue ground (#contatti and the /contatti band).
+  Measures 1:1 from the approved kit (style.css: fieldset, legend / .field-label,
+  .service-choices, #brief-form inputs, .button.cream) and its 600 / 360 breakpoints.
+
+  Focus: the global ring (--accent) only reaches ~2:1 on the blue, so every
+  focusable thing in here uses a paper (cream) ring, like the kit does for the
+  service pills.
+*/
+
+.form {
+  position: relative;
+  container-type: inline-size;
+  width: 100%;
+  min-width: 0;
+  color: var(--paper);
+}
+
+/* ---------- service choice (real radios, pill-styled) ---------- */
+.fieldset {
+  margin: 0 0 22px;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.legend,
+.label {
+  display: block;
+  margin-bottom: 10px;
+  padding: 0;
+  font-size: 14px;
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.choice {
+  position: relative;
+  cursor: pointer;
+}
+
+.choice input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.choice span {
+  display: block;
+  padding: 9px 12px;
+  border: 1px solid rgba(245, 242, 234, 0.55);
+  border-radius: 24px;
+  font-size: 13px;
+  transition:
+    background 0.18s,
+    color 0.18s;
+}
+
+.choice:hover span {
+  border-color: var(--paper);
+}
+
+.choice input:checked + span {
+  background: var(--paper);
+  color: var(--blue);
+  border-color: var(--paper);
+}
+
+.choice input:focus-visible + span {
+  outline: 3px solid var(--paper);
+  outline-offset: 4px;
+}
+
+/* ---------- text fields ---------- */
+.field {
+  margin-bottom: 24px;
+}
+
+.control {
+  display: block;
+  width: 100%;
+  padding: 8px 0 12px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(245, 242, 234, 0.5);
+  border-radius: 0;
+  color: var(--paper);
+  font-size: 18px;
+}
+
+.control::placeholder {
+  color: #c4d5ed;
+  opacity: 1;
+}
+
+textarea.control {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.control:hover {
+  border-bottom-color: rgba(245, 242, 234, 0.85);
+}
+
+.control:focus-visible {
+  outline: 3px solid var(--paper);
+  outline-offset: 4px;
+  border-bottom-color: var(--paper);
+}
+
+.control[aria-invalid="true"] {
+  padding-bottom: 11px;
+  border-bottom: 2px solid var(--paper);
+}
+
+/* browsers paint autofilled inputs light blue: keep them on the brand blue */
+.control:-webkit-autofill,
+.control:-webkit-autofill:hover,
+.control:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--paper);
+  box-shadow: 0 0 0 1000px var(--blue) inset;
+  caret-color: var(--paper);
+  transition: background-color 9999s ease-out;
+}
+
+/* budget <select>: same underline look, custom caret */
+.select {
+  appearance: none;
+  padding-right: 28px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none' stroke='%23F5F2EA' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1.5 1.5 7 7l5.5-5.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  cursor: pointer;
+}
+
+.select option {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* "full" variant: name | company and email | phone side by side when the form is wide enough */
+.pair {
+  display: block;
+}
+
+@container (min-width: 560px) {
+  .pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 28px;
+  }
+}
+
+/* ---------- errors ---------- */
+.error {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.error::before {
+  content: "!";
+  content: "!" / "";
+  display: inline-grid;
+  place-content: center;
+  width: 15px;
+  height: 15px;
+  margin-right: 7px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 10px;
+  line-height: 1;
+  vertical-align: 1px;
+}
+
+/* ---------- consent ---------- */
+.consentRow {
+  margin-bottom: 8px;
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: 14px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.consent input {
+  appearance: none;
+  display: grid;
+  place-content: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  background: transparent;
+  border: 1px solid rgba(245, 242, 234, 0.7);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.consent input::after {
+  content: "";
+  width: 10px;
+  height: 5px;
+  margin-top: -2px;
+  border-left: 2px solid var(--blue);
+  border-bottom: 2px solid var(--blue);
+  transform: rotate(-45deg);
+  opacity: 0;
+}
+
+.consent input:checked {
+  background: var(--paper);
+  border-color: var(--paper);
+}
+
+.consent input:checked::after {
+  opacity: 1;
+}
+
+.consent input:focus-visible {
+  outline: 3px solid var(--paper);
+  outline-offset: 3px;
+}
+
+.consent input[aria-invalid="true"] {
+  border-width: 2px;
+  border-color: var(--paper);
+}
+
+.consentLink,
+.mailLink {
+  border-bottom: 1px solid rgba(245, 242, 234, 0.7);
+}
+
+.consentLink:hover,
+.mailLink:hover {
+  border-bottom-color: var(--paper);
+}
+
+.consentLink:focus-visible,
+.mailLink:focus-visible {
+  outline: 3px solid var(--paper);
+  outline-offset: 3px;
+}
+
+/* ---------- submit + messages ---------- */
+.submit {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.submit:focus-visible {
+  outline: 3px solid var(--paper);
+  outline-offset: 4px;
+  border-radius: 30px;
+}
+
+.messages {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.status:not(:empty),
+.alert:not(:empty) {
+  margin-top: 16px;
+  font-weight: 500;
+}
+
+/* ---------- honeypot / visually hidden ---------- */
+.trap {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- phone / small phone (kit: 600, 360) ---------- */
+@media (max-width: 600px) {
+  .choices {
+    gap: 6px;
+  }
+
+  .choice span {
+    padding: 9px 10px;
+    font-size: 12px;
+  }
+
+  .control {
+    font-size: 17px;
+  }
+
+  .legend,
+  .label {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .choice span {
+    padding: 8px;
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .choice span {
+    transition: none;
+  }
+}

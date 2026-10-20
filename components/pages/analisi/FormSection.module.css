@@ -1,0 +1,78 @@
+/* Continues the hero's paper ground: the hero already carries the bottom padding. */
+
+.section {
+  padding: 0 0 var(--section-y);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12%;
+  align-items: start;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+
+.eyebrow {
+  margin-bottom: 25px;
+  color: var(--blue);
+}
+
+.copy h2 {
+  margin-bottom: 28px;
+  font-size: clamp(40px, 4vw, 60px);
+}
+
+.note {
+  max-width: 400px;
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.direct {
+  max-width: 340px;
+  margin-top: 28px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.email {
+  display: inline-block;
+  margin-top: 6px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  color: var(--ink);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 850px) {
+  .grid {
+    gap: 7%;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    display: block;
+    padding-top: 32px;
+  }
+  .eyebrow {
+    margin-bottom: 18px;
+    font-size: 10px;
+  }
+  .copy {
+    margin-bottom: 36px;
+  }
+  .copy h2 {
+    margin-bottom: 22px;
+    font-size: clamp(36px, 11.5vw, 48px);
+  }
+  .note {
+    font-size: 18px;
+  }
+  .email {
+    font-size: 12px;
+  }
+}

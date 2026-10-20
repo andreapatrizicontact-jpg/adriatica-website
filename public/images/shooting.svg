@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" fill="none">
+  <title>shooting</title>
+  <path d="M 337 396 C 308 398 295 427 297 459 L 306 590 C 308 618 334 640 365 641 L 643 631 C 669 629 691 605 687 576 L 680 438 C 677 409 653 393 625 392 L 596 392 L 562 335 C 552 321 536 318 519 319 L 453 323 C 434 324 419 337 409 354 L 385 394 Z" fill="none" stroke="#004AAD" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 490 435 C 541 432 580 470 579 519 C 577 569 543 608 492 608 C 443 608 402 574 401 524 C 400 477 440 438 490 435 Z" fill="none" stroke="#004AAD" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 449 490 C 459 475 477 468 495 468" fill="none" stroke="#004AAD" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="624" cy="446" r="12" fill="#004AAD" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 641 314 L 658 293" fill="none" stroke="#004AAD" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 674 338 L 703 333" fill="none" stroke="#004AAD" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

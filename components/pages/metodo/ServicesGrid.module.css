@@ -1,0 +1,158 @@
+/*
+  #servizi — the kit's service language (one dominant blue card, thin lines,
+  Instrument Sans titles) applied to all six pillars. 3 columns above 1000px,
+  2 up to 601px, 1 on phones.
+*/
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 32px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+
+.featured {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--paper);
+}
+
+.number {
+  margin-bottom: 30px;
+  color: var(--blue);
+}
+
+.featured .number {
+  color: var(--paper);
+}
+
+.name {
+  margin-bottom: 14px;
+  font-size: clamp(28px, 2.5vw, 36px);
+  overflow-wrap: break-word;
+}
+
+.description {
+  max-width: 420px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.featured .description {
+  color: var(--paper);
+}
+
+.includes {
+  margin: 26px 0 30px;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.includes li {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.featured .includes,
+.featured .includes li {
+  border-color: rgba(245, 242, 234, 0.35);
+}
+
+.card .link {
+  width: 100%;
+  margin-top: auto;
+}
+
+/* ---------- Settori: a quiet list under the grid ---------- */
+.settori {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3.4fr);
+  gap: 32px;
+  margin-top: 64px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.settoriLabel {
+  color: var(--blue);
+  text-transform: uppercase;
+}
+
+.settoriList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px 40px;
+  margin: 0;
+}
+
+.settore dt {
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.settore dd {
+  margin: 0;
+  color: var(--muted-2);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 850px) {
+  .settori {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    margin-top: 48px;
+  }
+  .card {
+    padding: 27px;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  .name {
+    font-size: 32px;
+  }
+  .settoriList {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .settore {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .settore:first-child {
+    padding-top: 0;
+  }
+  .settore:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+}

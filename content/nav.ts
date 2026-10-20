@@ -1,17 +1,7 @@
-export type NavItem = {
-  number: string;
-  label: string;
-  href: string;
-};
-
-// Numbered on purpose — this is the deliberate funnel order (brief §2), not decoration.
-export const mainNav: NavItem[] = [
-  { number: "01", label: "Home", href: "/" },
-  { number: "02", label: "Il Metodo", href: "/metodo" },
-  { number: "03", label: "Consulenza gratuita", href: "/consulenza" },
-  { number: "04", label: "Analisi social gratuita", href: "/analisi" },
-  { number: "05", label: "Contatti", href: "/contatti" },
-];
+// Secondary navigation. The primary navigation (Servizi / Studio / Parliamone)
+// lives in content/home.ts → homeNav and is identical on every page.
+// These links keep every previously published page reachable from the footer
+// without crowding the homepage.
 
 export type FooterLinkGroup = {
   title: string;
@@ -20,19 +10,19 @@ export type FooterLinkGroup = {
 
 export const footerLinkGroups: FooterLinkGroup[] = [
   {
-    title: "Servizi",
+    title: "Servizi e progetti",
     links: [
-      { label: "Social Media Management", href: "/metodo#servizi" },
-      { label: "Content Creation", href: "/metodo#servizi" },
-      { label: "Strategia & Ads", href: "/metodo#servizi" },
-      { label: "Siti Web che convertono", href: "/metodo#servizi" },
+      { label: "Tutti i servizi", href: "/metodo#servizi" },
+      { label: "Il bollino trovabile", href: "/bollino" },
+      { label: "Progetti", href: "/progetti" },
+      { label: "Il metodo", href: "/metodo" },
     ],
   },
   {
-    title: "Studio",
+    title: "Parliamone",
     links: [
-      { label: "Il Metodo", href: "/metodo" },
-      { label: "Chi siamo", href: "/#chi-siamo" },
+      { label: "Consulenza gratuita", href: "/consulenza" },
+      { label: "Analisi social gratuita", href: "/analisi" },
       { label: "Contatti", href: "/contatti" },
     ],
   },

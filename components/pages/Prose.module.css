@@ -1,0 +1,51 @@
+.section {
+  padding: 0 0 var(--section-y);
+}
+
+.prose {
+  max-width: 740px;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.prose h2 {
+  margin: 48px 0 14px;
+  font: 700 clamp(26px, 2.6vw, 34px) / 1.1 var(--font-display);
+  letter-spacing: -0.045em;
+}
+
+.prose h3 {
+  margin: 28px 0 8px;
+  font-size: 20px;
+}
+
+.prose p + p,
+.prose ul,
+.prose ol {
+  margin-top: 14px;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 22px;
+}
+
+.prose li + li {
+  margin-top: 6px;
+}
+
+.prose a {
+  color: var(--blue);
+  border-bottom: 1px solid currentColor;
+}
+
+.prose p,
+.prose li {
+  color: var(--muted);
+}
+
+@media (max-width: 600px) {
+  .prose {
+    font-size: 17px;
+  }
+}

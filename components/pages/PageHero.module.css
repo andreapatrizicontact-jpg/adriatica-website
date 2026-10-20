@@ -1,0 +1,86 @@
+.hero {
+  padding: 44px 0 var(--section-y);
+}
+
+.container {
+  position: relative;
+}
+
+.art {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  width: min(44vw, 620px);
+  pointer-events: none;
+}
+
+.art img {
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+.blue {
+  background: var(--blue);
+  color: var(--paper);
+}
+
+.eyebrow {
+  margin-bottom: 25px;
+  color: var(--blue);
+}
+
+.blue .eyebrow {
+  color: var(--paper);
+}
+
+.title {
+  max-width: 14ch;
+  font: 700 clamp(46px, 6.2vw, 96px) / 1 var(--font-display);
+  letter-spacing: -0.055em;
+}
+
+.intro {
+  max-width: 620px;
+  margin-top: 30px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+  margin-top: 34px;
+}
+
+@media (max-width: 850px) {
+  .art {
+    display: none;
+  }
+  .hero {
+    padding-top: 24px;
+  }
+  .intro {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding-top: 12px;
+  }
+  .title {
+    font-size: clamp(40px, 12.5vw, 56px);
+    max-width: none;
+  }
+  .eyebrow {
+    font-size: 10px;
+    margin-bottom: 18px;
+  }
+  .intro {
+    margin-top: 22px;
+    font-size: 17px;
+  }
+}
